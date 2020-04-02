@@ -1,0 +1,30 @@
+{
+  "name": "seguranca",
+  "version": "1.0.0",
+  "description": "api de segurança responsável por selecionar os moradores por e-mail e dispara as mesagens para filas.",
+  "author": "jose bacelar",
+  "license": "MIT",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "npm-run-all -p start:*",
+    "start:server": "nodemon src/server.js",
+    "build": "echo NODE_ENV=riba"
+  },
+  "dependencies": {
+    "amqplib": "^0.5.5",
+    "axios": "^0.19.2",
+    "body-parser": "^1.19.0",
+    "bull": "^3.13.0",
+    "bull-board": "^0.6.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "eureka-js-client": "^4.5.0",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.2",
+    "sucrase": "^3.12.1",
+    "swagger-ui-express": "^4.1.3"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
+  }
+}

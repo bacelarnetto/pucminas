@@ -1,0 +1,76 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "API de segurança",
+    "description": "API de segurança responsável por selecionar os moradores por barragens e disparar as mesagens para filas.",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:3001",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Barragens",
+      "description": "Endpoint para barragem no sistema"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/barragem": {
+      "post": {
+        "tags": [
+          "Barragens"
+        ],
+        "description": "Responsável por buscar os moradores por barragem para disparo de e-mails de alerta",
+        "parameters": [
+          {
+            "name": "barragem",
+            "in": "body",
+            "description": "(corpo) Barragem que queremos usar para buscar os moradores e usar seus email para envio de mesagens em background",
+            "schema": {
+              "$ref": "#/definitions/Barragem"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "New barragem is created",
+            "schema": {
+              "$ref": "#/definitions/Barragem"
+            }
+          }
+        }
+      }      
+    }
+  },
+  "definitions": {
+    "Barragem": {
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "nome": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

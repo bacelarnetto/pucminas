@@ -1,0 +1,25 @@
+{
+  "name": "comunicacao",
+  "version": "1.0.0",
+  "description": "api de comunicação. responsavel por alertar os moradores por e-mail.",
+  "author": "jose bacelar",
+  "license": "MIT",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "nodemon src/server.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "bull": "^3.13.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "eureka-js-client": "^4.5.0",
+    "express": "^4.17.1",
+    "nodemailer": "^6.4.2",
+    "nodemon": "^2.0.2",
+    "sucrase": "^3.12.1"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
+  }
+}
