@@ -1,0 +1,37 @@
+version: '3.1'
+
+services:
+
+  seguranca:
+    container_name: seguranca
+    image: seguranca
+    build: ./seguranca
+    environment:
+      TZ: America/Sao_Paulo
+    ports:
+      - "3333:3333"
+    command: yarn start
+    deploy:
+      resources:
+        limits:
+          memory: 280M
+        reservations:
+          memory: 220M
+
+  comunicacao:
+    container_name: comunicacao
+    image: comunicacao
+    build: ./comunicacao
+    environment:
+      TZ: America/Sao_Paulo
+    ports:
+      - "3334:3334"
+    depends_on:
+      - seguranca
+    command: yarn start
+    deploy:
+      resources:
+        limits:
+          memory: 250M
+        reservations:
+          memory: 220M

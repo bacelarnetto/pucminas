@@ -1,0 +1,11 @@
+br/com/monitoramento/listener/BarragemListener.class
+br/com/monitoramento/controller/MonitoramentoController.class
+br/com/monitoramento/profile/config/RibaProfileConfig.class
+br/com/monitoramento/controller/DefesaCivilController.class
+br/com/monitoramento/service/MonitoramentoService.class
+br/com/monitoramento/profile/config/FlavioProfileConfig.class
+br/com/monitoramento/configuration/SwaggerConfiguration.class
+br/com/monitoramento/model/Monitoramento.class
+br/com/monitoramento/configuration/MonitoramentoConfiguration.class
+br/com/monitoramento/profile/config/ProdProfileConfig.class
+br/com/monitoramento/MonitoramentoApplication.class

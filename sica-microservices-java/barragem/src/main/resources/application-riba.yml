@@ -1,0 +1,62 @@
+server:
+  port: 8082
+  
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8081/eureka/
+    register-with-eureka: true
+
+spring:
+  application:
+    name: barragem
+
+  rabbitmq:
+    host: 192.168.99.105
+    port: 5672
+    username: guest
+    password: guest
+
+#  jpa:
+#    show-sql: true
+#    hibernate:
+#      ddl-auto: create
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.MySQL8Dialect
+#        format_sql: true
+#  jmx:
+#    enabled: false
+#  datasource:
+#    url: jdbc:mysql://192.168.99.105:3308/sica_barragem?createDatabaseIfNotExist=true
+#    username: root
+#    password: 12345
+
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    generate-ddl: true
+  # Hibernate ddl auto (create, create-drop, validate, update)
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        jdbc.lob:
+          non_contextual_creation: true
+
+  datasource:
+    initialization-mode: always
+    platform: postgres
+    url: jdbc:postgresql://192.168.99.105:5433/sica_barragem
+    driver-class-name: org.postgresql.Driver
+    username: root
+    password: 12345 
+
+
+jwt:
+  config:
+    type: signed

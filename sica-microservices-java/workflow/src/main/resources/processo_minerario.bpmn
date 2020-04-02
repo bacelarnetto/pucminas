@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1sdqf0q" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.6.0">
+  <bpmn:collaboration id="Collaboration_1ibeak9">
+    <bpmn:participant id="Participant_1yflx2g" processRef="Gestao_Processo_Minerario" />
+  </bpmn:collaboration>
+  <bpmn:process id="Gestao_Processo_Minerario" name="Gestao_Processo_Ferro_Aço" isExecutable="true">
+    <bpmn:startEvent id="Processo_Minerio_Ferro_Aco">
+      <bpmn:outgoing>SequenceFlow_1xdndne</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:serviceTask id="Task_0p49elz" name="Quebrar Minérios" camunda:delegateExpression="#{quebrarMinerioDelegate}">
+      <bpmn:incoming>SequenceFlow_1ab2ftn</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_02804yz</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Iniciar_Processo_MInerio_Ferrro" name="Iniciar Processo Minerio" camunda:delegateExpression="#{inicioProcessoFerroDelegate}">
+      <bpmn:incoming>SequenceFlow_05vtlya</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1ab2ftn</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Task_1obm1al" name="Classificar Tamanho&#10;&#10;" camunda:delegateExpression="#{classificarTamanhoDelegate}">
+      <bpmn:incoming>SequenceFlow_02804yz</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1w1aif3</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="EndEvent_1em67h3">
+      <bpmn:incoming>SequenceFlow_17trg42</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:serviceTask id="Task_0ol6c22" name="Transformar Minerio de Ferro + Aço = &#10;&#10;" camunda:delegateExpression="#{transformarMinerioFerroCarvaoDelegate}">
+      <bpmn:incoming>SequenceFlow_1w1aif3</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_17trg42</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:userTask id="IniciarProducao" name="IniciarProducao">
+      <bpmn:incoming>SequenceFlow_1xdndne</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_05vtlya</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="SequenceFlow_17trg42" sourceRef="Task_0ol6c22" targetRef="EndEvent_1em67h3" />
+    <bpmn:sequenceFlow id="SequenceFlow_1w1aif3" sourceRef="Task_1obm1al" targetRef="Task_0ol6c22" />
+    <bpmn:sequenceFlow id="SequenceFlow_02804yz" sourceRef="Task_0p49elz" targetRef="Task_1obm1al" />
+    <bpmn:sequenceFlow id="SequenceFlow_1ab2ftn" sourceRef="Iniciar_Processo_MInerio_Ferrro" targetRef="Task_0p49elz" />
+    <bpmn:sequenceFlow id="SequenceFlow_05vtlya" sourceRef="IniciarProducao" targetRef="Iniciar_Processo_MInerio_Ferrro" />
+    <bpmn:sequenceFlow id="SequenceFlow_1xdndne" sourceRef="Processo_Minerio_Ferro_Aco" targetRef="IniciarProducao" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1ibeak9">
+      <bpmndi:BPMNShape id="Participant_1yflx2g_di" bpmnElement="Participant_1yflx2g" isHorizontal="true">
+        <dc:Bounds x="160" y="80" width="1109" height="491" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="Processo_Minerio_Ferro_Aco">
+        <dc:Bounds x="210" y="122" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="156" y="142" width="82" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ServiceTask_17pm5mx_di" bpmnElement="Iniciar_Processo_MInerio_Ferrro">
+        <dc:Bounds x="323" y="100" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_1em67h3_di" bpmnElement="EndEvent_1em67h3">
+        <dc:Bounds x="1213" y="285" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1ab2ftn_di" bpmnElement="SequenceFlow_1ab2ftn">
+        <di:waypoint x="423" y="140" />
+        <di:waypoint x="531" y="140" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ServiceTask_0xlaqw1_di" bpmnElement="Task_0p49elz">
+        <dc:Bounds x="531" y="100" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_02804yz_di" bpmnElement="SequenceFlow_02804yz">
+        <di:waypoint x="631" y="140" />
+        <di:waypoint x="686" y="140" />
+        <di:waypoint x="686" y="233" />
+        <di:waypoint x="741" y="233" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ServiceTask_1n0v60e_di" bpmnElement="Task_1obm1al">
+        <dc:Bounds x="741" y="193" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1w1aif3_di" bpmnElement="SequenceFlow_1w1aif3">
+        <di:waypoint x="841" y="233" />
+        <di:waypoint x="896" y="233" />
+        <di:waypoint x="896" y="303" />
+        <di:waypoint x="1001" y="303" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_17trg42_di" bpmnElement="SequenceFlow_17trg42">
+        <di:waypoint x="1101" y="303" />
+        <di:waypoint x="1213" y="303" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ServiceTask_173foj5_di" bpmnElement="Task_0ol6c22">
+        <dc:Bounds x="1001" y="263" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="UserTask_0psljnq_di" bpmnElement="IniciarProducao">
+        <dc:Bounds x="241" y="243" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_05vtlya_di" bpmnElement="SequenceFlow_05vtlya">
+        <di:waypoint x="291" y="243" />
+        <di:waypoint x="291" y="212" />
+        <di:waypoint x="373" y="212" />
+        <di:waypoint x="373" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1xdndne_di" bpmnElement="SequenceFlow_1xdndne">
+        <di:waypoint x="228" y="158" />
+        <di:waypoint x="228" y="201" />
+        <di:waypoint x="251" y="201" />
+        <di:waypoint x="251" y="243" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

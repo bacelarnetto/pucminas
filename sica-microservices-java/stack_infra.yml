@@ -1,0 +1,92 @@
+version: '3.1'
+
+services:
+      
+  postgresauth:
+    container_name: postgresauth
+    image: postgres
+    environment:
+      TZ: America/Sao_Paulo
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: 12345
+      POSTGRES_DB: sica_auth
+      PGDATA: /data/postgres
+    volumes:
+        - sica_vol_postgres_auth:/data/postgres
+    ports:
+      - "5434:5432"
+    restart: unless-stopped
+
+  postgresativo:
+    container_name: postgresativo
+    image: postgres
+    environment:
+      TZ: America/Sao_Paulo
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: 12345
+      POSTGRES_DB: sica_ativo
+      PGDATA: /data/postgres
+    volumes:
+        - sica_vol_postgres_ativo:/data/postgres
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+  
+  postgresbarragem:
+    container_name: postgresbarragem
+    image: postgres
+    environment:
+      TZ: America/Sao_Paulo
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: 12345
+      POSTGRES_DB: sica_barragem
+      PGDATA: /data/postgres
+    volumes:
+        - sica_vol_postgres_barragem:/data/postgres
+    ports:
+      - "5433:5432"
+    restart: unless-stopped
+    
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pgadmin4@pgadmin.org
+      PGADMIN_DEFAULT_PASSWORD: admin
+    volumes:
+       - sica_vol_pgadmin:/root/.pgadmin
+    ports:
+      - "5050:80"
+    restart: unless-stopped     
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "9080:15672"
+    volumes:
+      - sica_vol_rabbitmq:/var/lib/rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: "guest"
+      RABBITMQ_DEFAULT_PASS: "guest"
+      RABBITMQ_DEFAULT_VHOST: "/"
+
+  redissegurancacomunicacao:
+    container_name: redissegurancacomunicacao
+    image: redis:alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    ports:
+      - 6379:6379
+    hostname: redis
+    volumes:
+      - sica_vol_redis:/var/lib/redis
+     
+volumes:  
+  sica_vol_redis:
+  sica_vol_rabbitmq:
+  sica_vol_postgres_auth:
+  sica_vol_postgres_ativo:
+  sica_vol_postgres_barragem:
+  sica_vol_pgadmin:
+
