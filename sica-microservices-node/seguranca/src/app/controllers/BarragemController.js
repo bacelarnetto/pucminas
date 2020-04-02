@@ -1,5 +1,6 @@
 import Queue from '../lib/Queue';
 import { MoradorService as moradorService }  from './../../servers/morador'
+import taskAlert from './../tasks/SegurancaTask'
 
 
 module.exports =  {
@@ -13,16 +14,8 @@ module.exports =  {
       nome,
     };
 
-    const moradores = await moradorService.findMoradoresByIdBarragem(barragem.id)
-
-    await moradores.map(item => {
-      const morador = {
-        name: item.nome,
-        email: item.email,
-      }
-      // Adicionar job RegistrationMail na fila
-      Queue.add('AlertMail', { morador })
-    })        
+    console.log("envio de e-mail via endpoint de barragem!!!! Barragem: " + barragem.nome )
+    taskAlert(barragem.id)      
 
     // Adicionar job RegistrationMail na fila
     //await Queue.add('AlertMail', { morador });

@@ -14,8 +14,7 @@ module.exports = () => amqp.connect(rabbitmqConfig.host, function(error0, connec
         channel.assertQueue(queue, {
             durable: true
         });
-        console.log(" [*] Waiting for messages in %s. To exit press CTRL+C", queue);
-        taskAlert(1)  
+        console.log(" [*] Waiting for messages in %s. To exit press CTRL+C", queue); 
         channel.consume(queue, function(msg) {
             console.log(" [x] Received %s", msg.content.toString());   
             taskAlert(msg.content.toString())   

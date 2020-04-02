@@ -1,6 +1,5 @@
 const url = {
-  //BASE: 'http://localhost:8082',
-  BASE: 'http://192.168.99.105:8082',
+  BASE: process.env.API_BARRAGEM ,
   BARRAGEM_MORADORES: '/morador/barragem/',
 
 }
