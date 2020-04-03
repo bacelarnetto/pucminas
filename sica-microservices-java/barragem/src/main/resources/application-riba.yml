@@ -14,25 +14,10 @@ spring:
     name: barragem
 
   rabbitmq:
-    host: 192.168.99.105
+    host: 192.168.56.101
     port: 5672
     username: guest
     password: guest
-
-#  jpa:
-#    show-sql: true
-#    hibernate:
-#      ddl-auto: create
-#    properties:
-#      hibernate:
-#        dialect: org.hibernate.dialect.MySQL8Dialect
-#        format_sql: true
-#  jmx:
-#    enabled: false
-#  datasource:
-#    url: jdbc:mysql://192.168.99.105:3308/sica_barragem?createDatabaseIfNotExist=true
-#    username: root
-#    password: 12345
 
   jpa:
     database: POSTGRESQL
@@ -51,7 +36,7 @@ spring:
   datasource:
     initialization-mode: always
     platform: postgres
-    url: jdbc:postgresql://192.168.99.105:5433/sica_barragem
+    url: jdbc:postgresql://192.168.56.101:5433/sica_barragem
     driver-class-name: org.postgresql.Driver
     username: root
     password: 12345 

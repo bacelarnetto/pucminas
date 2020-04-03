@@ -19,21 +19,6 @@ spring:
     username: guest
     password: guest
 
-#  jpa:
-#    show-sql: true
-#    hibernate:
-#      ddl-auto: create
-#    properties:
-#      hibernate:
-#        dialect: org.hibernate.dialect.MySQL8Dialect
-#        format_sql: true
-#  jmx:
-#    enabled: false
-#  datasource:
-#    url: jdbc:mysql://192.168.56.101:33080/sica_barragem?createDatabaseIfNotExist=true
-#    username: root
-#    password: 12345
-
   jmx:
     enabled: false
   jpa:
