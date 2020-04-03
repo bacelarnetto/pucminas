@@ -66,10 +66,10 @@ public class SecurityTokenConfig extends WebSecurityConfigurerAdapter{
 			.antMatchers(HttpMethod.POST, PUBLIC_MATCHERS_POST).permitAll()
 			.antMatchers(HttpMethod.GET, PUBLIC_MATCHERS_GET).permitAll()
 			.antMatchers(PUBLIC_MATCHERS).permitAll()
-			.antMatchers(PRIVATE_MATCHERS_ADMIN).hasAnyRole("ADMIN")
-			.antMatchers(PRIVATE_MATCHERS_USER).hasAnyRole("USER", "ADMIN")
-            .antMatchers(PRIVATE_MATCHERS_ENGINEER).hasAnyRole("ENGINEER", "ADMIN") 
-            .antMatchers(PRIVATE_MATCHERS_PROVIDER).hasAnyRole( "PROVIDER", "ADMIN")  
+			.antMatchers(PRIVATE_MATCHERS_ADMIN).hasRole("ADMIN")
+			.antMatchers(PRIVATE_MATCHERS_USER).hasAnyRole("ADMIN","USER")
+            .antMatchers(PRIVATE_MATCHERS_ENGINEER).hasAnyRole("ADMIN", "ENGINEER") 
+            .antMatchers(PRIVATE_MATCHERS_PROVIDER).hasAnyRole( "ADMIN", "PROVIDER")  
 			.anyRequest().authenticated();
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		http.exceptionHandling().authenticationEntryPoint((req, resp, e) -> resp.sendError(HttpServletResponse.SC_UNAUTHORIZED));
