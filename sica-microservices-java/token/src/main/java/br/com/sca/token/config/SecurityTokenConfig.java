@@ -30,11 +30,16 @@ public class SecurityTokenConfig extends WebSecurityConfigurerAdapter{
 	
 	private static final String[] PRIVATE_MATCHERS_ADMIN = {
 			"/auth/user/**",
+			"/barragem/barragem/**",
+			"/barragem/morador/**",
+			"/ativo/manutencao/**",
+			"/ativo/marca/**",
+			"/ativo/insumo/**",
+			"/ativo/fornecedor/**",
+			"/ativo/pedido/**",
 	};
 	
 	private static final String[] PRIVATE_MATCHERS_FUNCTIONARY = {
-			"/barragem/barragem/**",
-			"/barragem/morador/**",
 			"/ativo/manutencao/**",
 			"/ativo/marca/**",
 			"/ativo/insumo/**",
