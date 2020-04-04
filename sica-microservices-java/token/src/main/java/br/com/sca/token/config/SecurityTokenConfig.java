@@ -32,7 +32,7 @@ public class SecurityTokenConfig extends WebSecurityConfigurerAdapter{
 			"/auth/user/**",
 	};
 	
-	private static final String[] PRIVATE_MATCHERS_USER = {
+	private static final String[] PRIVATE_MATCHERS_FUNCTIONARY = {
 			"/barragem/barragem/**",
 			"/barragem/morador/**",
 			"/ativo/manutencao/**",
@@ -60,7 +60,7 @@ public class SecurityTokenConfig extends WebSecurityConfigurerAdapter{
 			.antMatchers(HttpMethod.GET, PUBLIC_MATCHERS_GET).permitAll()
 			.antMatchers(PUBLIC_MATCHERS).permitAll()
 			.antMatchers(PRIVATE_MATCHERS_ADMIN).hasRole("ADMIN")
-			.antMatchers(PRIVATE_MATCHERS_USER).hasAnyRole("ADMIN","USER")
+			.antMatchers(PRIVATE_MATCHERS_FUNCTIONARY).hasAnyRole("ADMIN", "FUNCTIONARY")
             .antMatchers(PRIVATE_MATCHERS_ENGINEER).hasAnyRole("ADMIN", "ENGINEER") 
             .antMatchers(PRIVATE_MATCHERS_PROVIDER).hasAnyRole( "ADMIN", "PROVIDER")  
 			.anyRequest().authenticated();
