@@ -3,7 +3,7 @@ package br.com.sca.token.enums;
 public enum RoleEnum {
 
 	ADMIN(1, "ROLE_ADMIN"), 
-	USER(2, "ROLE_USER"),
+	FUNCTIONARY(2, "ROLE_FUNCTIONARY"),
 	ENGINEER(3, "ROLE_ENGINEER"),
 	PROVIFER(4, "ROLE_PROVIDER"),
 	RESIDENT(5, "ROLE_RESIDENT"),

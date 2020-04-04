@@ -62,14 +62,6 @@ public class Usuario implements AbstractEntity {
 	private Set<Integer> roles = new HashSet<>();
 
 
-    public Usuario(@NotNull Usuario applicationUser) {
-        this.id = applicationUser.getId();
-        this.username = applicationUser.getUsername();
-        this.password = applicationUser.getPassword();
-        this.email = applicationUser.getEmail();
-        addRole(RoleEnum.USER);
-    }
-    
     public Usuario(Long id, String username, String email, String password, RoleEnum role) {
         this.id = id;
         this.username = username;
