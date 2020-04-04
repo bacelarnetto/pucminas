@@ -1,6 +1,6 @@
 var amqp = require('amqplib/callback_api');
 import rabbitmqConfig from '../../config/rabbitmq';
-import taskAlert from './../tasks/SegurancaTask'
+import SegurancaTask from './../tasks/SegurancaTask'
 
 module.exports = () => amqp.connect(rabbitmqConfig.host, function(error0, connection) {
     if (error0) {
@@ -17,7 +17,7 @@ module.exports = () => amqp.connect(rabbitmqConfig.host, function(error0, connec
         console.log(" [*] Waiting for messages in %s. To exit press CTRL+C", queue); 
         channel.consume(queue, function(msg) {
             console.log(" [x] Received %s", msg.content.toString());   
-            taskAlert(msg.content.toString())   
+            SegurancaTask.taskAlert(msg.content.toString())   
         }, {
             noAck: true
         });

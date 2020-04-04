@@ -70,7 +70,7 @@ public class MoradorController {
 		return ResponseEntity.ok().body(morador);
 	}
 
-	@ApiOperation(value="Buscar a lista com todas as Moradors")
+	@ApiOperation(value="Buscar a lista com todos os Moradores")
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<MoradorDTO>> findAll(@RequestHeader(value = "Authorization") String authorization) {
 		List<Morador> list = moradorService.findAll();
@@ -78,7 +78,7 @@ public class MoradorController {
 		return ResponseEntity.ok().body(listDTO);
 	}
 	
-	@ApiOperation(value="Find Morador by id da barragem")
+	@ApiOperation(value="Busca Moradores pelo id da barragem")
 	@RequestMapping(value = "/barragem/{id}", method = RequestMethod.GET)
 	public ResponseEntity<List<Morador>> getMoradoresByIdBarragem(@PathVariable Long id,
 			@RequestHeader(value = "Authorization") String authorization) {

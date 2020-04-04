@@ -1,9 +1,9 @@
 import express from 'express'
-import BarragemController from './app/controllers/BarragemController'
+import AlertController from './app/controllers/AlertController'
 
 const routes = express.Router();
 
-
-routes.post('/barragem', BarragemController.store);
+routes.post('/barragem', AlertController.storeByBarragem);
+routes.post('/moradores', AlertController.storeByMoradores);
 
 module.exports = routes;

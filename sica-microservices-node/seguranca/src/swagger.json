@@ -55,6 +55,38 @@
           }
         }
       }      
+    },
+    "/moradores": {
+      "post": {
+        "tags": [
+          "Moradores"
+        ],
+        "description": "Responsável disparo de e-mails de alerta via lista de moradores",
+        "parameters": [
+          {
+            "name": "moradores",
+            "in": "body",
+            "description": "(corpo) Usar os emails da lista de Moradores para envio de mesagens em background",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Morador"
+              }
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Disparo de alertas",
+            "schema": {
+              "$ref": "#/definitions/Morador"
+            }
+          }
+        }
+      }      
     }
   },
   "definitions": {
@@ -68,6 +100,23 @@
           "uniqueItems": true
         },
         "nome": {
+          "type": "string"
+        }
+      }
+    },
+    "Morador": {
+      "required": [
+        "id", "email", "nome"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "nome": {
+          "type": "string"
+        },
+        "email": {
           "type": "string"
         }
       }
