@@ -41,5 +41,11 @@ URL: http://localhost:9080/
 ## PgAdmin
 URL: http://localhost:5050/
 
+## Hystrix Dashboard
+URL: http://localhost:7979/
+
+## Bull Board Dashboard
+URL: http://localhost:3333/admin/queues
+
 
 
