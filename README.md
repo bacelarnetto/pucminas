@@ -9,21 +9,28 @@ Sistema de Gestão Ambiental - SICA
 [Java](https://java.com/pt_BR/)<br/>
 [Spring Boot](https://spring.io/projects/spring-boot)<br/>
 [Spring Cloud](https://spring.io/projects/spring-cloud)<br/>
-[PostgreSQL](https://www.postgresql.org/)<br/>
-[Maven](https://maven.apache.org/)<br/>
-[RabbitMQ](https://www.rabbitmq.com/)<br/>
-[Docker](https://www.docker.com/)<br/>
 [Node.js](https://nodejs.org/en/)<br/>
-[Redis](https://redis.io/)<br/>
 [Camunda](https://camunda.com/)<br/>
 [Grafana](https://grafana.com/)/[Prometheus](https://prometheus.io/)<br/>
+
+### DevOps
+[Maven](https://maven.apache.org/)<br/>
+[Yarn](https://yarnpkg.com/)<br/>
+[Docker](https://www.docker.com/)<br/>
+
+### Infraestrutura
+[PostgreSQL](https://www.postgresql.org/)<br/>
+[pgAdmin](https://www.pgadmin.org/)<br/>
+[RabbitMQ](https://www.rabbitmq.com/)<br/>
+[Redis](https://redis.io/)<br/>
+[NGINX](https://www.nginx.com/)<br/>
+[Undertow](http://undertow.io/)<br/>
 
 ### Frontend
 [React](https://reactjs.org/)<br/>
 [Redux](https://redux.js.org/)<br/>
 [Redux-saga](https://redux-saga.js.org/)<br/>
 [Material-ui](https://material-ui.com/)<br/>
-[NGINX](https://www.nginx.com/)<br/>
 
 # Modulos 
 

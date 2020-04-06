@@ -12,14 +12,20 @@ C:\workspace\sica-microservices>docker-compose -f stack.yml up <br/>
 ### Backend
 [Java](https://java.com/pt_BR/)<br/>
 [Spring Boot](https://spring.io/projects/spring-boot)<br/>
-[PostgreSQL](https://www.postgresql.org/)<br/>
-[Maven](https://maven.apache.org/)<br/>
-[RabbitMQ](https://www.rabbitmq.com/)<br/>
-[Docker](https://www.docker.com/)<br/>
 [Node.js](https://nodejs.org/en/)<br/>
-[Redis](https://redis.io/)<br/>
 [Camunda](https://camunda.com/)<br/>
 [Grafana](https://grafana.com/)/[Prometheus](https://prometheus.io/)<br/>
+
+### DevOps
+[Maven](https://maven.apache.org/)<br/>
+[Docker](https://www.docker.com/)<br/>
+[Yarn](https://yarnpkg.com/)<br/>
+
+### Infraestrutura
+[PostgreSQL](https://www.postgresql.org/)<br/>
+[pgAdmin](https://www.pgadmin.org/)<br/>
+[RabbitMQ](https://www.rabbitmq.com/)<br/>
+[Redis](https://redis.io/)<br/>
 
 ### Frontend
 [React](https://reactjs.org/)<br/>
