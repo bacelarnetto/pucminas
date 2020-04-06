@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import br.com.sca.barragem.dto.EnvioAlertaDTO;
 import br.com.sca.barragem.dto.MoradorDTO;
 import br.com.sca.barragem.dto.MoradorNewDTO;
+import br.com.sca.barragem.integration.SegurancaIntegration;
 import br.com.sca.barragem.model.Morador;
 import br.com.sca.barragem.service.MoradorService;
 import io.swagger.annotations.ApiOperation;
@@ -30,6 +32,9 @@ public class MoradorController {
 
 	@Autowired
 	private MoradorService moradorService;
+	
+	@Autowired
+	private SegurancaIntegration segurancaIntegration;	
 
 	@ApiOperation(value="Cadastrar um Morador")
 	@RequestMapping(method = RequestMethod.POST)
@@ -43,8 +48,8 @@ public class MoradorController {
 
 	@ApiOperation(value="Atualizar um Morador por id")
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Void> update(@Valid @PathVariable Long id, 
-			@RequestBody MoradorDTO dto,
+	public ResponseEntity<Void> update(@PathVariable Long id, 
+			@Valid @RequestBody MoradorDTO dto,
 			@RequestHeader(value = "Authorization") String authorization) {
 		Morador morador = moradorService.fromTO(dto);
 		if(id != null) {
@@ -84,7 +89,7 @@ public class MoradorController {
 			@RequestHeader(value = "Authorization") String authorization) {
 		List<Morador> list = moradorService.findListMoradorByIdBarragem(id);
 		return ResponseEntity.ok().body(list);
-	}
+	}	
 	
 	@ApiOperation(value="Lista de Morador paginada")
 	@RequestMapping(value = "/list-page", method = RequestMethod.GET)
@@ -106,5 +111,14 @@ public class MoradorController {
 		long cnt = moradorService.qntMorador();
 		return ResponseEntity.ok().body(cnt);
 	}
+	
+	@ApiOperation(value="Envio de Alert de perigo de rompimento de Barragem")
+	@RequestMapping(value = "/enviar-alerta", method = RequestMethod.POST)
+	public ResponseEntity<String> enviarAlerta(@RequestBody EnvioAlertaDTO dto,
+			@RequestHeader(value = "Authorization") String authorization) {
+		String msn  = segurancaIntegration.enviarAlerta(dto);		
+		return ResponseEntity.ok().body(msn);
+	}
+
 
 }

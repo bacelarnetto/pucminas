@@ -1,0 +1,15 @@
+package br.com.sca.commons.lib.exception;
+
+public class ServiceUnavailableException extends RuntimeException {
+
+	private static final long serialVersionUID = 1L;
+
+	public ServiceUnavailableException(String msg) {
+		super(msg);
+	}
+
+	public ServiceUnavailableException(String msg, Throwable cause) {
+		super(msg, cause);
+	}
+
+}

@@ -13,6 +13,7 @@ import br.com.sca.commons.lib.exception.AuthorizationException;
 import br.com.sca.commons.lib.exception.DataIntegrityException;
 import br.com.sca.commons.lib.exception.FileException;
 import br.com.sca.commons.lib.exception.ObjectNotFoundException;
+import br.com.sca.commons.lib.exception.ServiceUnavailableException;
 import br.com.sca.commons.lib.message.StandardError;
 import br.com.sca.commons.lib.message.ValidationError;
 
@@ -69,4 +70,11 @@ public class CustomExceptionHandler {
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
 	}
 
+	@ExceptionHandler(ServiceUnavailableException.class)
+	public ResponseEntity<StandardError> integration(ServiceUnavailableException e, HttpServletRequest request) {
+
+		StandardError err = new StandardError(System.currentTimeMillis(), HttpStatus.SERVICE_UNAVAILABLE.value(),
+				"Erro de Integração. Sistema ou serviço indisponível", e.getMessage(), request.getRequestURI());
+		return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(err);
+	}
 }

@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import br.com.sca.barragem.dto.MoradorAlertaDTO;
 import br.com.sca.barragem.model.Morador;
 
 
@@ -22,6 +23,10 @@ public interface MoradorRepository extends JpaRepository<Morador, Long> {
 	@Transactional(readOnly=true)
 	@Query(value = "SELECT m FROM Morador m WHERE m.barragem.id = :idBarragem ")
 	public List<Morador> findListMoradorByIdBarragem(Long idBarragem);
+	
+	
+	@Query(value = "SELECT id, nome, email FROM morador WHERE id_barragem = :idBarragem ", nativeQuery = true)
+	public List<MoradorAlertaDTO> findListMoradorAlertaByIdBarragem(Long idBarragem);
 	
 	Page<Morador> findByNomeContainingIgnoreCase(@Param("nome") String nome, Pageable pageable);
 	
