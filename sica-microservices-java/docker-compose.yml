@@ -111,6 +111,25 @@ services:
           memory: 400M
         reservations:
           memory: 370M
+
+  hystrix-dashboard:
+    container_name: hystrix-dashboard
+    image: hystrix-dashboard
+    restart: always
+    environment:
+      TZ: America/Sao_Paulo
+    ports:
+      - "7979:7979"
+    links:
+      - discovery
+    depends_on:
+      - discovery
+    deploy:
+      resources:
+        limits:
+          memory: 350M
+        reservations:
+          memory: 300M
             
   gateway:
     container_name: gateway
