@@ -21,6 +21,7 @@
     "eureka-js-client": "^4.5.0",
     "express": "^4.17.1",
     "nodemon": "^2.0.2",
+    "simplified-hystrixjs": "^1.0.16",
     "sucrase": "^3.12.1",
     "swagger-ui-express": "^4.1.3"
   },

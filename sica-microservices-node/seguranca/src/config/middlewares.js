@@ -4,6 +4,7 @@ import swaggerUi from 'swagger-ui-express';
 import swaggerDocument from './../swagger.json';
 import BullBoard from 'bull-board';
 import Queue from './../app/lib/Queue';
+const { createHystrixStream, getPrometheusStream } = require('simplified-hystrixjs');
 
 
 module.exports = app => {
@@ -14,5 +15,7 @@ module.exports = app => {
     }))
     app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
     app.use('/admin/queues', BullBoard.UI)
-  
+    createHystrixStream(app,'/actuator/hystrix.stream'); // default /manage/hystrix.stream
+    getPrometheusStream()
+    
 }
