@@ -43,6 +43,11 @@ spring:
     username: root
     password: 12345 
 
+url:
+  api:
+    seguraca:
+      moradores: http://localhost:3333/moradores
+
 
 jwt:
   config:
