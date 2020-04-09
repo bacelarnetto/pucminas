@@ -8,6 +8,7 @@ import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
@@ -36,12 +37,14 @@ public class SegurancaIntegration {
 	@HystrixCommand(fallbackMethod = "fallback")
 	public String enviarAlerta(EnvioAlertaDTO dto) {
 		List<MoradorAlertaDTO> moradores = repo.findListMoradorAlertaByIdBarragem(dto.getIdBarragem());
-		restTemplate.postForObject(baseUrl, moradores, ResponseEntity.class);
+		
+		restTemplate.postForObject(baseUrl, moradores, Object[].class);
+		
 		return "OK";
 	}
 
 	// a fallback method to be called if failure happened
-	public String fallback(EnvioAlertaDTO dto, Throwable hystrixCommand) {
+	public String fallback(EnvioAlertaDTO dto) {
 		return "Não foi possivel enviar o alerta para os moradores. " + "ID Barragem: " + dto.getIdBarragem()
 				+ ". Serviço indisponível.";
 	}
