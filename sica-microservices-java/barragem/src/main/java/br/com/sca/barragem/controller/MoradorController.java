@@ -48,13 +48,11 @@ public class MoradorController {
 
 	@ApiOperation(value="Atualizar um Morador por id")
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Void> update(@PathVariable Long id, 
-			@Valid @RequestBody MoradorDTO dto,
+	public ResponseEntity<Void> update(@Valid @PathVariable Long id, 
+			@RequestBody MoradorDTO dto,
 			@RequestHeader(value = "Authorization") String authorization) {
 		Morador morador = moradorService.fromTO(dto);
-		if(id != null) {
-			morador.setId(id);
-		}
+		morador.setId(id);		
 		morador = moradorService.update(morador);
 		return ResponseEntity.noContent().build();
 	}

@@ -103,6 +103,29 @@ function* insertMoradorSaga(action) {
   }
 }
 
+function* enviarAlertaMoradorSaga(action) {
+  yield put(actions.enviarAlertaMoradorStart())
+  try {    
+    const response = yield service.enviarAlertaMorador(action.barragem); 
+    if(response !== undefined && response !== null &&
+    (response.status === 200 || response.status === 201)) {
+      if(response.data === 'OK'){
+        yield put(actions.enviarAlertaMoradorSucess())
+        toastr.success('Sucesso:', 'Enviar de alertas realizado com sucesso.') 
+      }else{
+        yield put(actions.enviarAlertaMoradorError())
+        toastr.warning('Serviço indisponível: ', response.data) 
+      }
+    }else{
+      throw new Error('Erro ao tentar enviar os alertas'); // gera uma exceção
+    }
+  } catch (error) {
+    yield put(actions.enviarAlertaMoradorError())
+    toastr.error('Erro:', error.message)
+    console.error(error) // eslint-disable-line
+  }
+}
+
 export function* watchMorador() {
   yield all([
     takeEvery(types.BUSCA_LIST_MORADOR, buscaListMoradoresSaga),
@@ -110,5 +133,6 @@ export function* watchMorador() {
     takeLatest(types.INSERT_MORADOR, insertMoradorSaga),
     takeLatest(types.DELETE_MORADOR, deleteMoradorSaga),
     takeLatest(types.EDIT_MORADOR, editMoradorSaga),   
+    takeLatest(types.ENVIAR_ALERTA_MORADOR, enviarAlertaMoradorSaga), 
   ]);
 }

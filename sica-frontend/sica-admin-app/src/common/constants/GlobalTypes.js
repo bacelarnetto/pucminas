@@ -1,5 +1,6 @@
 const url = {
   BASE: 'http://192.168.56.101/gateway',
+  //BASE: 'http://localhost:8080/gateway',
 
   LOGIN: '/auth/login',
   // API DE ATIVOS
@@ -46,6 +47,7 @@ const url = {
   BARRAGEM_MORADOR_LIST_PAGE: '/barragem/morador/list-page?',
   BARRAGEM_MORADOR: '/barragem/morador/',
   BARRAGEM_MORADOR_QNT:'/barragem/morador/qnt-morador',
+  BARRAGEM_MORADOR_ENVIAR_ALERTA:'/barragem/morador/enviar-alerta',
  
   // API AUTH
   AUTH_USUARIO_LIST_PAGE: '/auth/user/list-page?',

@@ -37,8 +37,10 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import AddIcon from '@material-ui/icons/Add';
 import Tooltip from '@material-ui/core/Tooltip';
+import NotificationImportantIcon from '@material-ui/icons/NotificationImportant';
 
 import { Creators as actions } from './../../../../store/actions/barragem';
+import { Creators as actionsMorador } from './../../../../store/actions/morador';
 
 const useStyles = makeStyles(() => ({
   root: {},
@@ -112,7 +114,9 @@ const BarragemTable = props => {
   const [order, setOrder] = useState('asc');
   const [orderBy, setOrderBy] = useState('id'); 
   const [open, setOpen] = useState(false);
+  const [openAlertaMorador, setOpenAlertaMorador] = useState(false);
   const [id, setId] = useState('');
+  const [nome, setNome] = useState('');
 
   
   const dispatch = useDispatch();
@@ -171,6 +175,26 @@ const BarragemTable = props => {
     event.preventDefault();
     dispatch(actions.deleteBarragem(id, values, page, rowsPerPage, order, orderBy),[])  
     setOpen(false);
+  };
+
+
+
+  const handleClickOpenAlertaMorador = (idBarragem, nomeBarragem) => {
+    setId(idBarragem)
+    setNome(nomeBarragem)
+    setOpenAlertaMorador(true);
+  };
+
+  const handleAlertaMoradorClose = () => {
+    setOpenAlertaMorador(false);
+    setId('')
+    setNome('')
+  };
+
+  const handleAlertaMorador = event => {
+    event.preventDefault();
+    dispatch(actionsMorador.enviarAlertaMorador(id),[])  
+    setOpenAlertaMorador(false);
   };
 
   const headCells = [
@@ -328,10 +352,10 @@ const BarragemTable = props => {
                       hover
                       key={barragem.id}
                     > 
-                      <TableCell  style={{ width: 120 }}>
+                      <TableCell  style={{ width: 160 }}>
                         <div
                           className={classes.colAction}
-                          style={{ width: 110 }}
+                          style={{ width: 150 }}
                         >
                           <Tooltip title="Excluir">
                             <IconButton
@@ -352,6 +376,15 @@ const BarragemTable = props => {
                               </IconButton>
                             </Tooltip>
                           </ RouterLink>
+                          <Tooltip title="Enviar Alerta">
+                            <IconButton
+                              aria-label="Enviar Alerta"
+                              className={classes.buttonDelete}
+                              onClick={() => handleClickOpenAlertaMorador(barragem.id, barragem.descricao)}
+                            >
+                              <NotificationImportantIcon />
+                            </IconButton>
+                          </Tooltip>
                         </div>
                       </TableCell>            
                       <TableCell><div style={{minWidth: '160px'}}>{barragem.descricao}</div></TableCell>
@@ -442,6 +475,36 @@ const BarragemTable = props => {
           </Button>
         </DialogActions>
       </Dialog>
+
+      <Dialog
+        aria-describedby="alert-dialog-slide-description"
+        aria-labelledby="alert-dialog-slide-title"
+        keepMounted
+        onClose={handleClose}
+        open={openAlertaMorador}
+      >
+        <DialogTitle id="alert-dialog-slide-title">{'Enviar Alerta'}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-slide-description">
+            {`Deseja enviar alertas para os moradores próximos da barragem "${nome}" ?`}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            className={classes.buttonLabel}
+            onClick={handleAlertaMoradorClose}
+          >
+            Não
+          </Button>
+          <Button
+            className={classes.buttonLabel}
+            onClick={handleAlertaMorador}
+          >
+            Sim
+          </Button>
+        </DialogActions>
+      </Dialog>
+
 
       { erro && (
         (codigoErro === 403 && (<Redirect to={'/not-unauthorized'}/>))||

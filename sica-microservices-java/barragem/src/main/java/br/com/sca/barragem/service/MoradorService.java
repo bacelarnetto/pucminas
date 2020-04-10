@@ -33,16 +33,17 @@ public class MoradorService {
 	}
 
 	@Transactional
-	public Morador insert(Morador pessoa) {
-		pessoa.setId(null);
-		pessoa = repo.save(pessoa);
-		return pessoa;
+	public Morador insert(Morador morador) {
+		morador.setId(null);
+		morador = repo.save(morador);
+		return morador;
 	}
 
-	public Morador update(Morador pessoa) {
-		Morador newPessoa = find(pessoa.getId());
-		updateData(newPessoa, pessoa);
-		return repo.save(newPessoa);
+	
+	public Morador update(Morador morador) {
+		Morador newMorador = find(morador.getId());
+		updateData(newMorador, morador);
+		return repo.save(newMorador);
 	}
 
 	public void delete(Long id) {
@@ -62,19 +63,7 @@ public class MoradorService {
 		return repo.findListMoradorByIdBarragem(idBarragem);
 	}
 
-	private void updateData(Morador newPessoa, Morador pessoa) {
-		newPessoa.setNome(pessoa.getNome());
-		newPessoa.setEmail(pessoa.getEmail());
-		newPessoa.setIdade(pessoa.getIdade());
-		newPessoa.setTelefone(pessoa.getTelefone());
-		newPessoa.setEndereco(pessoa.getEndereco());
-		newPessoa.setNumero(pessoa.getNumero());    
-		newPessoa.setBairro(pessoa.getBairro());
-		newPessoa.setCidade(pessoa.getCidade());
-		newPessoa.setUf(pessoa.getUf());
-		newPessoa.setBarragem(pessoa.getBarragem());
-		newPessoa.setCep(pessoa.getCep());
-	}
+	
 
 	public Morador fromTO(MoradorNewDTO dto) {
 		Barragem barragem = new Barragem();
@@ -121,6 +110,21 @@ public class MoradorService {
 	
 	public long qntMorador() {		
 		return repo.count();
+	}
+	
+	
+	private void updateData(Morador newMorador, Morador morador) {
+		newMorador.setNome(morador.getNome());
+		newMorador.setEmail(morador.getEmail());
+		newMorador.setIdade(morador.getIdade());
+		newMorador.setTelefone(morador.getTelefone());
+		newMorador.setEndereco(morador.getEndereco());
+		newMorador.setNumero(morador.getNumero());    
+		newMorador.setBairro(morador.getBairro());
+		newMorador.setCidade(morador.getCidade());
+		newMorador.setUf(morador.getUf());
+		newMorador.setBarragem(morador.getBarragem());
+		newMorador.setCep(morador.getCep());
 	}
 
 }

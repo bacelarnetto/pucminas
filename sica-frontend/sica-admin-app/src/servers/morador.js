@@ -41,6 +41,7 @@ export const MoradorService = {
       console.error('Erro: ' + JSON.stringify(error.response.data))
     }
   },
+  
 
   submitMorador: async (value) => {
     try {
@@ -52,13 +53,21 @@ export const MoradorService = {
     }
   },
 
-  findMoradorById: async (id ) => {
+  findMoradorById: async (id) => {
     try {
       return await api.get(globalTypes.url.BARRAGEM_MORADOR + id)
     } catch (error) {
       console.error('Erro: ' + JSON.stringify(error.response.data))
     }
   },
-
+ 
+  enviarAlertaMorador: async (value) => {
+    try {
+      const method =  globalTypes.method.POST
+      return await api[method](globalTypes.url.BARRAGEM_MORADOR_ENVIAR_ALERTA, value)
+    } catch (error) {
+      console.error('Erro: ' + JSON.stringify(error))
+    }
+  },
  
 }
