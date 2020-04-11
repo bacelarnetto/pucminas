@@ -2,8 +2,7 @@ import React from 'react';
 import { createMuiTheme } from '@material-ui/core/styles';
 
 import { ThemeProvider } from '@material-ui/styles';
-import './App.css';
-import Form from './views/Form';
+import Routes from './Routes';
 
 const theme = createMuiTheme({
   typography: {
@@ -25,9 +24,9 @@ const theme = createMuiTheme({
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <div className="App">
-        
-        <Form />
+      <div className="App"> 
+           
+        <Routes/>
       </div>
     </ThemeProvider>
   );

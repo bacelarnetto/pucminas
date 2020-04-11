@@ -1,6 +1,7 @@
 package br.com.sca.barragem.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -24,6 +25,10 @@ public interface BarragemRepository extends PagingAndSortingRepository<Barragem,
 	
 	@Query(value = "SELECT b FROM Barragem b WHERE b.status = '1' ")
 	public List<Barragem> findListAll();
+	
+	@Query(value = "SELECT b FROM Barragem b INNER JOIN b.moradores m  "
+			+ " WHERE m.email = :email ")
+	public Optional<Barragem> findBarragemByEmailMorador(@Param("email")String email);
 	
 	long count();
 	

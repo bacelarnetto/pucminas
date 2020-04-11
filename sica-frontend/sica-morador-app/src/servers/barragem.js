@@ -2,6 +2,7 @@
 import api from './api';
 
 import globalTypes from './../common/constants/GlobalTypes'
+import { serializeQuery}  from './../common/util'
 
 export const BarragemService = {
 
@@ -11,6 +12,18 @@ export const BarragemService = {
       return response.data
     } catch (error) {
       console.error('Erro: ' + JSON.stringify(error.response.data))
+    }
+  },
+
+  findBarragem: async email => {
+    try {
+      const response = await api.get(globalTypes.url.BARRAGEM_BY_MORADOR + serializeQuery({
+        email
+      }))
+      return response.data
+    } catch (error) {
+      console.error('Erro: ' + JSON.stringify(error.response.data))
+      throw  new Error(error.response.data.message); 
     }
   },
     

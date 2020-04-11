@@ -3,7 +3,7 @@ const url = {
 
   BARRAGEM_MORADOR: '/barragem/public/morador/',
   BARRAGEM_LIST: '/barragem/public/barragem/',
-
+  BARRAGEM_BY_MORADOR: '/barragem/public/barragem-por-morador?',
 }
 
 const method = {

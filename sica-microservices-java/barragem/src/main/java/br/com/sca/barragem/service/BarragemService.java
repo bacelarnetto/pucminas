@@ -9,6 +9,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -45,6 +46,13 @@ public class BarragemService {
 		Optional<Barragem> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Barragem não encontrada! Id: " + id + ", Tipo: " + Barragem.class.getName()));
+	}
+	
+	public Barragem findBarragemByEmailMorador(String email) {
+		Optional<Barragem> obj = repo.findBarragemByEmailMorador(email);
+		return obj.orElseThrow(() -> new ObjectNotFoundException(
+				"Barragem não encontrada! Email: " + email + ", Tipo: " + Barragem.class.getName()));
+
 	}
 
 	@Transactional
