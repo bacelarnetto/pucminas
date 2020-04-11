@@ -124,7 +124,7 @@ export default function SignIn() {
               <Grid item> 
                <br/>
                 <Typography variant="body1">
-                  Cadastre-se para receber alertas com informações das barragens proxiomo a você!
+                  Cadastre-se para receber alertas com informações das barragens próximo a você!
                 </Typography>
               </Grid>
             </Grid>
