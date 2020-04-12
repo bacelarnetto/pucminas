@@ -45,6 +45,8 @@ url:
   api:
     seguraca:
       moradores: http://localhost:3333/moradores
+    auth:
+      user: http://localhost:8083/user/
 
 
 

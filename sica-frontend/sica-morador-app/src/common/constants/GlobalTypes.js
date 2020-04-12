@@ -1,5 +1,7 @@
 const url = {
   BASE: 'http://192.168.56.101/gateway',
+  
+  LOGIN: '/auth/login',
 
   BARRAGEM_MORADOR: '/barragem/public/morador/',
   BARRAGEM_LIST: '/barragem/public/barragem/',

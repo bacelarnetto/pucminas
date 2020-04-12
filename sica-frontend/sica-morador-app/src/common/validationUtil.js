@@ -1,9 +1,15 @@
 //https://redux-form.com/7.4.2/examples/fieldlevelvalidation/
 const required = value => (
   value ||
+  value  !== undefined ||
   typeof value === 'number' || 
   value.length !== 0   ?  undefined : 'Preenchimento obrigatório'
 )
+const minLengthRequired = (min, value) => (
+  value ||
+  typeof value === 'number' || 
+  value.length !== 0   ?  undefined : 'Preenchimento obrigatório'
+) || (value.length < min ? `Deve ter no mínimo  ${min} caracteres ou mais` : undefined)
 
 const maxLength = max => value =>
   value && value.length > max ? `Deve ter no máximo ${max} caracteres ou menos` : undefined
@@ -63,5 +69,6 @@ export default {
   tooYoung,
   aol,
   alphaNumeric,
-  phoneNumber
+  phoneNumber,
+  minLengthRequired
 }

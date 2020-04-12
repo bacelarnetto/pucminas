@@ -11,7 +11,7 @@ export const BarragemService = {
       const response = await api.get(globalTypes.url.BARRAGEM_LIST)
       return response.data
     } catch (error) {
-      console.error('Erro: ' + JSON.stringify(error.response.data))
+      console.error('Erro: ' + JSON.stringify(error))
     }
   },
 

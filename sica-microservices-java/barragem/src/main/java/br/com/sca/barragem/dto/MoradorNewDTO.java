@@ -30,6 +30,7 @@ public class MoradorNewDTO implements Serializable {
 	private String uf;
 	private Long idBarragem;
 	private String cep;
+	private String senha;
 
 	public MoradorNewDTO() {
 	}
@@ -146,6 +147,14 @@ public class MoradorNewDTO implements Serializable {
 
 	public void setCep(String cep) {
 		this.cep = cep;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 	
 	

@@ -68,8 +68,11 @@ export default function SingUp() {
     numero: '',
     telefone: '',
     uf: 'sel',
-    idBarragem : 'sel'  
+    idBarragem : 'sel',
+    senha: ''
   });
+
+  const [load, setLoad] = useState(false)
 
   const UFs = estados;
 
@@ -94,8 +97,9 @@ export default function SingUp() {
   };
 
   const handleSubmit = async event => {
+    setLoad(true)
     event.preventDefault();
-    if (validation.required(values.nome.trim()) 
+    if (validation.minLengthRequired(6, values.nome.trim())
       || validation.email(values.email) 
       || validation.required(values.endereco.trim()) 
       || validation.required(values.bairro.trim())
@@ -104,15 +108,14 @@ export default function SingUp() {
       || values.idBarragem === 'sel'
       || values.uf === 'sel' 
       || validation.required(values.cidade.trim())
+      || validation.required(values.senha.trim())
     ) {
       toast.error(`Por favor, preencha os campos obrigatórios.`)
       setShowErrors(true);
-    } else {
-      
-        await moradorService.submitMorador(values) ;  
-      
+      setLoad(false);
+    } else {      
+        await moradorService.submitMorador(values) ;        
         await toast.success(`Cadastro realizado com sucesso.`)
-
         setValues({  
           id: '',   
           nome: '',
@@ -124,10 +127,12 @@ export default function SingUp() {
           numero: '',
           telefone: '',
           uf: 'sel',
-          idBarragem : 'sel' 
+          idBarragem : 'sel',
+          senha: ''
         });        
       
       setShowErrors(false);
+      setLoad(false);
     }
   }
   return (
@@ -158,11 +163,11 @@ export default function SingUp() {
         </Typography>
         <form className={classes.form} noValidate onSubmit={handleSubmit} >
           <Grid container spacing={2}>
-            <Grid item xs={12}>
+            <Grid item xs={9}>
               <TextField
-                error={validation.required(values.nome.trim()) && showErrors}
+                error={validation.minLengthRequired(6, values.nome.trim()) && showErrors}
                 fullWidth
-                helperText={showErrors && validation.required(values.nome.trim())}
+                helperText={showErrors && validation.minLengthRequired(6, values.nome.trim())}
                 label="Nome"
                 name="nome"
                 onChange={handleChange}
@@ -173,7 +178,7 @@ export default function SingUp() {
             </Grid>
             <Grid item md={3} xs={12}>
               <TextField
-                error={validation.email(values.idade) && showErrors}
+                error={validation.number(values.idade) && showErrors}
                 fullWidth
                 helperText={showErrors && validation.number(values.idade)}
                 label="Idade"
@@ -183,6 +188,21 @@ export default function SingUp() {
                 inputProps={{ min: '1', max: '200', step: '1' }}
                 type="number" 
                 value={values.idade}
+                variant="outlined"
+              />
+            </Grid>
+            <Grid item md={3} xs={12}>
+              <TextField
+                error={validation.required(values.senha) && showErrors}
+                fullWidth
+                helperText={showErrors && validation.required(values.senha)}
+                label="Senha"
+                name="senha"
+                onChange={handleChange}
+                required
+                inputProps={{ min: '1', max: '200', step: '1' }}
+                type="password" 
+                value={values.senha}
                 variant="outlined"
               />
             </Grid>
@@ -324,7 +344,6 @@ export default function SingUp() {
                 helperText={values.idBarragem === 'sel' && showErrors && 'Por favor, selecione uma Barragem.'}
                 variant="outlined"
                 required
-                fullWidth
                 id="idBarragem"
                 label="Barragem próxima da sua residência"
                 name="idBarragem"
@@ -356,6 +375,7 @@ export default function SingUp() {
             variant="contained"
             color="primary"
             className={classes.submit}
+            disabled={load}
           >
             Salvar
           </Button>

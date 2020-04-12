@@ -37,7 +37,7 @@ public class PublicController {
 	@RequestMapping(value = "/morador", method = RequestMethod.POST)
 	public ResponseEntity<Void> insert(@Valid @RequestBody MoradorNewDTO dto) {
 		Morador morador = moradorService.fromTO(dto);
-		morador = moradorService.insert(morador);
+		morador = moradorService.insert(morador, dto.getSenha());
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(morador.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}

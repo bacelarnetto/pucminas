@@ -28,20 +28,20 @@ import br.com.sca.barragem.service.BarragemService;
 import br.com.sca.barragem.service.TipoBarragemService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import lombok.RequiredArgsConstructor;
 
 /**
  * @author Jose Bacelar
  */
 @RestController
 @RequestMapping("barragem")
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @Api(value = "Endpoints de Barragens")
 public class BarragemController {
 	
-    private final BarragemService barragemService;
+	@Autowired
+    private  BarragemService barragemService;
     
-    private final TipoBarragemService tipoBarragemService;
+	@Autowired
+    private  TipoBarragemService tipoBarragemService;
     
     @ApiOperation(value="Find Barragem")
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)

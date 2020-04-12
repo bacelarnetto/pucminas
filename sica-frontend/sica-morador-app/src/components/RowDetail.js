@@ -16,7 +16,7 @@ export default function RowDetail(props) {
   const { label, value, style } = props;
   const classes = useStyles();  
   return (
-    <dvi>
+    <div>
       <Grid
         container
         spacing={2}
@@ -50,6 +50,6 @@ export default function RowDetail(props) {
       </Grid>
       <Divider />
       <br/>
-    </dvi>
+    </div>
   )
 }

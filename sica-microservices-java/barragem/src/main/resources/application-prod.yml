@@ -47,6 +47,8 @@ url:
   api:
     seguraca:
       moradores: http://192.168.56.101:3333/moradores
+    auth:
+      user: http://192.168.56.101:8083/user/
 
 
 jwt:

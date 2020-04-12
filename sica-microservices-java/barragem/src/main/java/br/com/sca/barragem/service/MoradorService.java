@@ -13,6 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.sca.barragem.dto.MoradorDTO;
 import br.com.sca.barragem.dto.MoradorNewDTO;
+import br.com.sca.barragem.dto.UserDTO;
+import br.com.sca.barragem.integration.AuthIntegration;
 import br.com.sca.barragem.model.Barragem;
 import br.com.sca.barragem.model.Morador;
 import br.com.sca.barragem.repository.MoradorRepository;
@@ -24,6 +26,9 @@ public class MoradorService {
 
 	@Autowired
 	private MoradorRepository repo;
+	
+	@Autowired
+	private AuthIntegration authIntegration;
 
 	public Morador find(Long id) {
 
@@ -33,8 +38,10 @@ public class MoradorService {
 	}
 
 	@Transactional
-	public Morador insert(Morador morador) {
+	public Morador insert(Morador morador, String senha) {
 		morador.setId(null);
+		UserDTO user = new UserDTO(morador.getEmail(), senha, 5 , morador.getEmail());
+		authIntegration.insertUser(user);
 		morador = repo.save(morador);
 		return morador;
 	}

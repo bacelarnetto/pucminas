@@ -15,6 +15,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { BarragemService as service }  from './../../servers/barragem'
 
+import { AuthService as authService }  from './../../servers/auth'
+
 import Copyright  from './../../components/Copyright'
 
 const useStyles = makeStyles((theme) => ({
@@ -61,18 +63,18 @@ export default function SignIn() {
   const history = useHistory();
 
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   async function handleLogin(e) {
     e.preventDefault();
     try {
+      await authService.authUser(email, password)    
       const barragem = await service.findBarragem(email)
-
       localStorage.setItem('moradorEmail', email);
-      localStorage.setItem('moradorBarragem', JSON.stringify(barragem));      
-
+      localStorage.setItem('moradorBarragem', JSON.stringify(barragem));
       history.push('/home');
     } catch (error) {
-      await toast.error(`Falha no Login. Email não cadastrado.`)
+      await toast.error(`Erro: ${error.message}`)
     }
   }
 
@@ -105,7 +107,19 @@ export default function SignIn() {
               value={email}
               onChange={e => setEmail(e.target.value)}
             />
-           
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+            />           
             <Button
               type="submit"
               fullWidth

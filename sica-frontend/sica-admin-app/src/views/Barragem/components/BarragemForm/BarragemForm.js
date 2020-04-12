@@ -153,11 +153,11 @@ const BarragemForm = props => {
   
   const handleSubmit = event => {
     event.preventDefault();
-    if (validation.minLengthRequired(6, values.descricao.trim()
+    if (validation.minLengthRequired(6, values.descricao.trim())
         || validation.required(values.empreendedor.trim())
         || validation.required(values.cnpjEmpreendedor.trim()) 
         || validation.required(values.minerio.trim())    
-        || validation.required(values.vidaUtilQuantidadeAnos))  
+        || validation.required(values.vidaUtilQuantidadeAnos)
         || validation.required(values.latitude.trim())    
         || validation.required(values.longitude.trim())        
         || validation.required(values.cidade.trim()) 
