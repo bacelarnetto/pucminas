@@ -163,7 +163,7 @@ export default function SingUp() {
         </Typography>
         <form className={classes.form} noValidate onSubmit={handleSubmit} >
           <Grid container spacing={2}>
-            <Grid item xs={9}>
+            <Grid item md={9} xs={12}>
               <TextField
                 error={validation.minLengthRequired(6, values.nome.trim()) && showErrors}
                 fullWidth
