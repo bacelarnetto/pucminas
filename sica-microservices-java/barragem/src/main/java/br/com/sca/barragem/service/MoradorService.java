@@ -45,6 +45,14 @@ public class MoradorService {
 		morador = repo.save(morador);
 		return morador;
 	}
+	
+	
+	@Transactional
+	public Morador insert(Morador morador) {
+		morador.setId(null);
+		morador = repo.save(morador);
+		return morador;
+	}
 
 	
 	public Morador update(Morador morador) {
