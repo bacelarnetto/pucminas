@@ -60,7 +60,7 @@ DOCKER, JAVA, MAVEN, NODE.js.
 3 - Executar o comando `docker-compose -up` ou `docker-compose -up --build`<br/>
 
 ## Módulos Java
-#### Apis feitas com Java e Spring boot<br>
+#### Apis feitas com Java e Spring boot:
 
 #### Discovery
 
