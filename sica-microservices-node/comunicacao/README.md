@@ -8,7 +8,24 @@ ou <br/>
 
 ## Criar e configurar arquivo ".env"
 Criar um arquivo de configuração renomeando o arquivo ".env.example" para ".env" <br/> 
-e modificar os parametros de acordo com as variaveis do seu ambiente de desenvolvimento.
+e modificar os parametros de acordo com as variaveis do seu ambiente de desenvolvimento.<br/>
+Exemplo:<br/>
+##### Arquivo ".env" do módulo de comunicação
+
+`SERVER_PORT=3002` <br/>
+
+`REDIS_HOST=localhost` <br/>
+`REDIS_PORT=6379` <br/>
+
+`MAIL_HOST=smtp.mailtrap.io` <br/>
+`MAIL_PORT=xxxx` <br/>
+`MAIL_USER=xxxxxxxxxx` <br/>
+`MAIL_PASS=xxxxxxx` <br/>
+
+`HOSTNAME=localhost` <br/>
+`IP_ADDR=172.18.0.4` <br/>
+`EUREKA_PORT=8081` <br/>
+`EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=localhost` <br/>
 
 ## Inicializar 
 `yarn start`<br/>
