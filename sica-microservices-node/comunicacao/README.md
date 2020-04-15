@@ -8,11 +8,12 @@ ou <br/>
 
 ## Criar e configurar arquivo ".env"
 Criar um arquivo de configuração renomeando o arquivo ".env.example" para ".env" <br/> 
-e modificar os parametros de acordo com as variaveis do seu ambiente de desenvolvimento.<br/>
+e modificar os parametros de acordo com as variaveis do seu ambiente de desenvolvimento.<br/><br/>
+
 Exemplo:<br/>
 ##### Arquivo ".env" do módulo de comunicação
 
-`SERVER_PORT=3002` <br/>
+`SERVER_PORT=3332` <br/>
 
 `REDIS_HOST=localhost` <br/>
 `REDIS_PORT=6379` <br/>
@@ -23,7 +24,7 @@ Exemplo:<br/>
 `MAIL_PASS=xxxxxxx` <br/>
 
 `HOSTNAME=localhost` <br/>
-`IP_ADDR=172.18.0.4` <br/>
+`IP_ADDR=XXX.XX.X.X` <br/>
 `EUREKA_PORT=8081` <br/>
 `EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=localhost` <br/>
 
