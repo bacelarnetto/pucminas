@@ -12,23 +12,23 @@ DOCKER
 Por Favor, Seguir a ordem de instalação. 
 
 ##### Passo 1 (PostgreSQL, RabbitMQ, Redis): 
-1 - Abrir o diretório "pucminas/" via linha de comando.
-2 - docker-compose -up
-3 - Configurar filas
+1 - Abrir o diretório "pucminas/" via linha de comando.<br/>
+2 - docker-compose -up<br/>
+3 - Configurar filas<br/>
 
 ##### Passo 2 (APIs Java):
-1 - Abrir o diretório "pucminas/sica-microservices-java/" via linha de comando.
-2 - Executar o comando `docker-compose -up`
+1 - Abrir o diretório "pucminas/sica-microservices-java/" via linha de comando.<br/>
+2 - Executar o comando `docker-compose -up`<br/>
 
 ##### Passo 3 (APIs Node.js):
-1 - Criar e configurar os arquivos ".env". Para mais detalhes acesse: [segurança](/sica-microservices-node/seguranca/README.md) e [comunicação](/sica-microservices-node/comunicacao/README.md)
-2 - Abrir o diretório "pucminas/sica-microservices-node/" via linha de comando.
-3 - Executar o comando `docker-compose -up`
+1 - Criar e configurar os arquivos ".env". Para mais detalhes acessar: [segurança](/sica-microservices-node/seguranca/README.md) e [comunicação](/sica-microservices-node/comunicacao/README.md)<br/>
+2 - Abrir o diretório "pucminas/sica-microservices-node/" via linha de comando.<br/>
+3 - Executar o comando `docker-compose -up`<br/>
 
 ##### Passo 3 (Módulos web react):
-1 - Criar e configurar os arquivos ".env". Para mais detalhes acesse: [sica-admin-app](/sica-microservices-node/seguranca/README.md) e [sica-morador-app](/sica-microservices-node/comunicacao/README.md)
-2 - Abrir o diretório "pucminas/sica-frontend/" via linha de comando.
-3 - Executar o comando `docker-compose -up`
+1 - Criar e configurar os arquivos ".env". Para mais detalhes acesse: [sica-admin-app](/sica-microservices-node/seguranca/README.md) e [sica-morador-app](/sica-microservices-node/comunicacao/README.md)<br/>
+2 - Abrir o diretório "pucminas/sica-frontend/" via linha de comando.<br/>
+3 - Executar o comando `docker-compose -up`<br/>
 
 
 ## Principais técnologias utilizadas
