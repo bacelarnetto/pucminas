@@ -4,6 +4,9 @@
 ## Escopo
 Sistema de Gestão Ambiental - SICA
 
+## Pré-requisito de instalação
+DOCKER
+
 ## Principais técnologias utilizadas
 ### Backend
 [Java](https://java.com/pt_BR/)<br/>
@@ -32,16 +35,32 @@ Sistema de Gestão Ambiental - SICA
 [Redux-saga](https://redux-saga.js.org/)<br/>
 [Material-ui](https://material-ui.com/)<br/>
 
-# Modulos Node.js
+# Módulos Java
+Apis feitas com Java e Spring boot<br>
 
-# Modulos Node.js
+## Discovery
+
+## Gateway
+
+## Auth
+
+## Ativo
+
+## Barragem
+
+## Workflow
+
+## Monitoramento
+
+## Hystrix-dashboard
+
+# Módulos Node.js
+Api feita com Node.js
 
 ## Segurança:
-Api feita com Node.js<br>
 Configurção da api de [segurança](/sica-microservices-node/seguranca/README.md)
 
 ## Comunicação:
-Api feita com Node.js<br>
 Configurção da api de [comunicação](/sica-microservices-node/comunicacao/README.md)
 
 ## RabbitMQ
@@ -50,11 +69,7 @@ URL: http://localhost:9080/
 ## PgAdmin
 URL: http://localhost:5050/
 
-## Hystrix Dashboard
-URL: http://localhost:7979/
 
-## Bull Board Dashboard
-URL: http://localhost:3333/admin/queues
 
 
 
