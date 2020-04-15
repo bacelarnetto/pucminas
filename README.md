@@ -34,7 +34,7 @@ Sistema de Gestão Ambiental - SICA
 
 ## Instalação
 
-### Pré-requisito de instalação
+### Pré-requisitos de instalação
 DOCKER, JAVA, MAVEN, NODE.js.
 
 #### Por Favor, Seguir a ordem de instalação. 
