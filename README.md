@@ -60,32 +60,33 @@ DOCKER, JAVA, MAVEN, NODE.js.
 3 - Executar o comando `docker-compose -up` ou `docker-compose -up --build`<br/>
 
 ## Módulos Java
-### Apis feitas com Java e Spring boot<br>
+#### Apis feitas com Java e Spring boot<br>
 
-### Discovery
+#### Discovery
 
-### Gateway
+#### Gateway
 
-### Auth
+#### Auth
 
-### Ativo
+#### Ativo
 
-### Barragem
+#### Barragem
 
-### Workflow
+#### Workflow
 
-### Monitoramento
+#### Monitoramento
 
-### Hystrix-dashboard
+#### Hystrix-dashboard
+Mais informação sobre os microserviços [java](/sica-microservices-java/README.md)
 
 ## Módulos Node.js
-### Apis feitas com Node.js
+#### Apis feitas com Node.js
 
 ### Segurança:
-Configurção da api de [segurança](/sica-microservices-node/seguranca/README.md)
+Mais informação sobre api de [segurança](/sica-microservices-node/seguranca/README.md)
 
 ### Comunicação:
-Configurção da api de [comunicação](/sica-microservices-node/comunicacao/README.md)
+Mais informação sobre api de [comunicação](/sica-microservices-node/comunicacao/README.md)
 
 
 ## RabbitMQ

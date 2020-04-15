@@ -1,12 +1,23 @@
-# Arquitetura de Software - PUC Minas
-### Prova de Conceito do projeto de conclusão do curso de Pós-Graduação em Arquiterura de Sofware Distribuido da PUC Minas 
+# Módulos Java
 
-## Escopo
-Sistema de Controle Ambiental - SCA
+## Discovery
+API que usa Eureka Server. Contém as informações sobre todos os aplicativos clientes (Microserviços registrados no servidor Eureka). 
 
-1 - Execução da infraestrutura de bancos de dados via Docker <br/>
-cd C:\workspace\sica-microservices <br/>
-C:\workspace\sica-microservices>docker-compose -f stack.yml up <br/>
+## Gateway
+Zuul API Gateway. Ele lida com todas as solicitações e executa o roteamento dinâmico dos  microsserviços. Funciona como uma porta da frente para todos os pedidos.
+
+## Auth
+
+## Ativo
+
+## Barragem
+
+## Workflow
+
+## Monitoramento
+
+## Hystrix-dashboard
+
 
 
 ## Hystrix Dashboard
