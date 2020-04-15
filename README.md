@@ -32,15 +32,17 @@ Sistema de Gestão Ambiental - SICA
 [Redux-saga](https://redux-saga.js.org/)<br/>
 [Material-ui](https://material-ui.com/)<br/>
 
-# Modulos 
+# Modulos Node.js
+
+# Modulos Node.js
 
 ## Segurança:
 Api feita com Node.js<br>
-Configurção da api de [segurança](/seguranca/README.md)
+Configurção da api de [segurança](/sica-microservices-node/seguranca/README.md)
 
 ## Comunicação:
 Api feita com Node.js<br>
-Configurção da api de [comunicação](/comunicacao/README.md)
+Configurção da api de [comunicação](/sica-microservices-node/comunicacao/README.md)
 
 ## RabbitMQ
 URL: http://localhost:9080/
