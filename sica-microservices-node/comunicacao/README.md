@@ -1,5 +1,5 @@
 # Comunicação
-Modulo responsavel por pegar as mensagens na fila para processo em background de envios de emails<br/>
+Módulo responsável por pegar as mensagens na fila para processo em background de envios de emails<br/>
 
 ## Instalação
 `yarn` <br/>

@@ -42,7 +42,7 @@ DOCKER, JAVA, MAVEN, NODE.js.
 ##### Passo 1 (PostgreSQL, RabbitMQ, Redis): 
 1 - Abrir o diretório "pucminas/" via linha de comando.<br/>
 2 - Executar o comando `docker-compose -up`<br/>
-3 - Configurar filas. Acessar o link: URL: http://localhost:9080/<br/>
+3 - Configurar filas. Acessar o link do RabbitMQ admin: URL: http://localhost:9080/<br/>
 
 ##### Passo 2 (APIs Java):
 1 - Abrir o diretório "pucminas/sica-microservices-java/" via linha de comando.<br/>
@@ -59,32 +59,32 @@ DOCKER, JAVA, MAVEN, NODE.js.
 2 - Abrir o diretório "pucminas/sica-frontend/" via linha de comando.<br/>
 3 - Executar o comando `docker-compose -up` ou `docker-compose -up --build`<br/>
 
-# Módulos Java
-Apis feitas com Java e Spring boot<br>
+## Módulos Java
+### Apis feitas com Java e Spring boot<br>
 
-## Discovery
+### Discovery
 
-## Gateway
+### Gateway
 
-## Auth
+### Auth
 
-## Ativo
+### Ativo
 
-## Barragem
+### Barragem
 
-## Workflow
+### Workflow
 
-## Monitoramento
+### Monitoramento
 
-## Hystrix-dashboard
+### Hystrix-dashboard
 
-# Módulos Node.js
-Api feita com Node.js
+## Módulos Node.js
+### Apis feitas com Node.js
 
-## Segurança:
+### Segurança:
 Configurção da api de [segurança](/sica-microservices-node/seguranca/README.md)
 
-## Comunicação:
+### Comunicação:
 Configurção da api de [comunicação](/sica-microservices-node/comunicacao/README.md)
 
 

@@ -1,5 +1,5 @@
 # Segurança
-Modulo responsavel por jogar as mensagens na fila para processo em background<br/>
+Módulo responsável por jogar as mensagens na fila para processo em background<br/>
 
 ## Instalação
 `yarn` <br/>
@@ -9,7 +9,6 @@ ou <br/>
 ## Criar e configurar arquivo ".env"
 Criar um arquivo de configuração renomeando o arquivo ".env.example" para ".env" <br/> 
 e modificar os parametros de acordo com as variaveis do seu ambiente de desenvolvimento.
-
 <br/><br/>
 
 Exemplo:<br/>
