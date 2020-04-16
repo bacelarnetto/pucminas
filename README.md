@@ -37,14 +37,6 @@ Sistema de Gestão Ambiental - SICA
 ### Pré-requisitos de instalação
 DOCKER, JAVA, MAVEN, NODE.js.
 
-#### Portainer - Gerenciamento Docker WEB (Instalação Opcional).
-Solução para gerenciamento de recursos como imagens e containers Docker, networks e volumes.<br/>
-##### Instalação:
-`$ docker volume create portainer_data`<br/>
-`$ docker run -d -p 9000:9000 -p 8000:8000 --name portainer --restart always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer`<br/>
-
-Para mais informações, acesse: https://www.portainer.io/ e https://portainer.readthedocs.io/en/stable/<br/>
-
 #### Por Favor, Seguir a ordem de instalação. 
 
 ##### Passo 1 (PostgreSQL, RabbitMQ, Redis): 
@@ -66,6 +58,14 @@ Para mais informações, acesse: https://www.portainer.io/ e https://portainer.r
 1 - Criar e configurar os arquivos ".env". Para mais detalhes  acessar os links: [sica-admin-app](/sica-microservices-node/seguranca/README.md) e [sica-morador-app](/sica-microservices-node/comunicacao/README.md)<br/>
 2 - Abrir o diretório "pucminas/sica-frontend/" via linha de comando.<br/>
 3 - Executar o comando `docker-compose -up` ou `docker-compose -up --build`<br/>
+
+#### Portainer - Gerenciamento Docker WEB (Instalação Opcional).
+Solução para gerenciamento de recursos como imagens e containers Docker, networks e volumes.<br/>
+##### Instalação:
+`$ docker volume create portainer_data`<br/>
+`$ docker run -d -p 9000:9000 -p 8000:8000 --name portainer --restart always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer`<br/>
+
+Para mais informações, acesse: https://www.portainer.io/ e https://portainer.readthedocs.io/en/stable/<br/>
 
 ## Módulos Java
 #### Apis feitas com Java e Spring boot:
