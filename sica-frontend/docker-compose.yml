@@ -11,7 +11,7 @@ services:
     environment:
       TZ: America/Sao_Paulo
     ports:
-        - "8000:80"
+        - "3000:80"
     labels:
         NAME: "sicaadminapp"
     volumes:
@@ -26,7 +26,7 @@ services:
     environment:
       TZ: America/Sao_Paulo
     ports:
-        - "8001:80"
+        - "3001:80"
     labels:
         NAME: "sicamoradorapp"
     volumes:
