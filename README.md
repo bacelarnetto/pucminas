@@ -37,11 +37,11 @@ Sistema de Gestão Ambiental - SICA
 ### Pré-requisitos de instalação
 DOCKER, JAVA, MAVEN, NODE.js.
 
-#### Portainer - Gerenciamento Docker WEB(Instalação Opcional).
+#### Portainer - Gerenciamento Docker WEB (Instalação Opcional).
 Solução para gerenciamento de recursos como imagens e containers Docker, networks e volumes.<br/>
-##### Instalação
+##### Instalação:
 `$ docker volume create portainer_data`<br/>
-`$ docker run -d -p 9000:9000 -p 8000:8000 --name portainer --restart always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer`<br/><br/>
+`$ docker run -d -p 9000:9000 -p 8000:8000 --name portainer --restart always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer`<br/>
 
 Para mais informações, acesse: https://www.portainer.io/ e https://portainer.readthedocs.io/en/stable/<br/>
 
