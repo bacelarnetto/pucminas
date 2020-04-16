@@ -1,7 +1,5 @@
 const url = {
-  BASE: 'http://192.168.56.101/gateway',
-  //BASE: 'http://localhost:8080/gateway',
-
+  BASE: process.env.REACT_APP_BACKEND_SICA || 'http://localhost:8080/gateway',
   LOGIN: '/auth/login',
   // API DE ATIVOS
   ATIVO_MARCA_LIST_PAGE: '/ativo/marca/list-page?',

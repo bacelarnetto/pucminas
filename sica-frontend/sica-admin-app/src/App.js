@@ -33,6 +33,8 @@ export default class App extends Component {
         <Messages />
         <ThemeProvider theme={theme}>          
           <Router history={browserHistory}>
+          {process.env.NODE_ENV}
+            jgfhgfhfgh ${process.env.REACT_APP_GA_MEASUREMENT_ID} jjj
             <Routes />
           </Router>
         </ThemeProvider>

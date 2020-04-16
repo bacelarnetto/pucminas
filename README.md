@@ -103,6 +103,9 @@ URL: http://localhost:9080/
 ## PgAdmin
 URL: http://localhost:5050/
 
+## Portainer (Instalação Opcional).
+URL: http://localhost:9000/
+
 
 
 
