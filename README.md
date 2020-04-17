@@ -54,7 +54,7 @@ DOCKER, JAVA, MAVEN, NODE.js.
 2 - Abrir o diretório "pucminas/sica-microservices-node/" via linha de comando.<br/>
 3 - Executar o comando `docker-compose -up` ou `docker-compose -up --build`<br/>
 
-##### Passo 3 (Módulos web react):
+##### Passo 4 (Módulos web react):
 1 - Criar e configurar os arquivos ".env". Para mais detalhes  acessar os links: [sica-admin-app](/sica-microservices-node/seguranca/README.md) e [sica-morador-app](/sica-microservices-node/comunicacao/README.md)<br/>
 2 - Abrir o diretório "pucminas/sica-frontend/" via linha de comando.<br/>
 3 - Executar o comando `docker-compose -up` ou `docker-compose -up --build`<br/>
@@ -96,12 +96,21 @@ Mais informação sobre api de [segurança](/sica-microservices-node/seguranca/R
 ### Comunicação:
 Mais informação sobre api de [comunicação](/sica-microservices-node/comunicacao/README.md)
 
+# Paginas de acessos
+## Módulo web administrativo
+URL: http://localhost:3000/
+
+## Módulo web de cadstro de moradores
+URL: http://localhost:3001/
 
 ## RabbitMQ
 URL: http://localhost:9080/
 
 ## PgAdmin
 URL: http://localhost:5050/
+
+### Redis
+URL: http://localhost:3333/admin/queues
 
 ## Portainer (Instalação Opcional).
 URL: http://localhost:9000/
