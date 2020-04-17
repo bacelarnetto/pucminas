@@ -47,5 +47,7 @@ URL: http://localhost:3000/
 ### Telas
 
 <img src="/img/login-ADMIN-SCA.png"><br/>
+
 <img src="/img/dashboard-ADMIN-SCA.png"><br/>
+
 <img src="/img/list-ADMIN-SCA.png"><br/>
