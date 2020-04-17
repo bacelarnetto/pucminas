@@ -1,5 +1,5 @@
-# Modulo administrativo
-Módulo web responsável por gerenciar o sistema SCA<br/>
+# Módulo Administrativo
+Módulo web responsável pelo gerenciamento do sistema SCA<br/>
 
 ## Instalação
 `yarn` <br/>

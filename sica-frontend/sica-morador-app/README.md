@@ -1,5 +1,5 @@
-# Modulo administrativo
-Módulo web responsável por gerenciar o sistema SCA<br/>
+# Módulo de Moradores
+Módulo web de cadastro utilizado pelos próprios moradores para visualizar as informações das barragens próximas das suas residências e receberem alertas.<br/>
 
 ## Instalação
 `yarn` <br/>
