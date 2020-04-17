@@ -55,7 +55,7 @@ DOCKER, JAVA, MAVEN, NODE.js.
 3 - Executar o comando `docker-compose -up` ou `docker-compose -up --build`<br/>
 
 ##### Passo 4 (Módulos web react):
-1 - Criar e configurar os arquivos ".env". Para mais detalhes  acessar os links: [sica-admin-app](/sica-microservices-node/seguranca/README.md) e [sica-morador-app](/sica-microservices-node/comunicacao/README.md)<br/>
+1 - Criar e configurar os arquivos ".env". Para mais detalhes  acessar os links: [sica-admin-app](/sica-microservices-node/sica-admin-app/README.md) e [sica-morador-app](/sica-microservices-node/sica-morador-app/README.md)<br/>
 2 - Abrir o diretório "pucminas/sica-frontend/" via linha de comando.<br/>
 3 - Executar o comando `docker-compose -up` ou `docker-compose -up --build`<br/>
 
