@@ -2,7 +2,7 @@
 ### Prova de Conceito do projeto de conclusão do curso de Pós-Graduação em Arquiterura de Sofware Distribuido da PUC Minas 
 
 ## Escopo
-Sistema de Gestão Ambiental - SICA
+Sistema de Controle Ambiental - SCA
 
 ## Principais técnologias utilizadas
 ### Backend
