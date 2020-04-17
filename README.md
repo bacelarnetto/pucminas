@@ -100,7 +100,7 @@ Mais informação sobre api de [comunicação](/sica-microservices-node/comunica
 ## Módulo web administrativo
 URL: http://localhost:3000/
 
-## Módulo web de cadstro de moradores
+## Módulo web de cadastro de moradores
 URL: http://localhost:3001/
 
 ## RabbitMQ
@@ -109,7 +109,7 @@ URL: http://localhost:9080/
 ## PgAdmin
 URL: http://localhost:5050/
 
-### Redis
+## Redis
 URL: http://localhost:3333/admin/queues
 
 ## Portainer (Instalação Opcional).
