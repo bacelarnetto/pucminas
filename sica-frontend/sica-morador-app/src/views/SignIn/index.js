@@ -70,8 +70,8 @@ export default function SignIn() {
     try {
       await authService.authUser(email, password)    
       const barragem = await service.findBarragem(email)
-      localStorage.setItem('moradorEmail', email);
-      localStorage.setItem('moradorBarragem', JSON.stringify(barragem));
+      await localStorage.setItem('moradorEmail', email);
+      await localStorage.setItem('moradorBarragem', JSON.stringify(barragem));
       history.push('/home');
     } catch (error) {
       await toast.error(`Erro: ${error.message}`)
