@@ -11,7 +11,7 @@ export default {
       subject: `Atenção!! Aviso de rompimento da Barragem ${morador.barragem}!`,
       html: `Alerta de Perigo!! Por favor, ${morador.name}, evacuar área imediatamente,` + 
             `a "Barragem ${morador.barragem}" que fica nas proximidades de sua residencia sofreu um rompimento. ` +
-            'Procurar regiões altas sem risco de sofrer inundação'
+            'Procurar regiões altas sem risco de sofrer inundação.'
     });
   },
 };
