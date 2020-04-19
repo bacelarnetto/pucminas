@@ -25,7 +25,16 @@ public interface MoradorRepository extends JpaRepository<Morador, Long> {
 	public List<Morador> findListMoradorByIdBarragem(Long idBarragem);
 	
 	
-	@Query(value = "SELECT id, nome, email FROM morador WHERE id_barragem = :idBarragem ", nativeQuery = true)
+	@Query(value = " SELECT " +
+					"   m.id AS id, " +
+					"   m.nome AS nome, " +
+					"   m.email AS email, " +
+					"   b.id AS idBarragem, " + 
+					"   b.descricao AS nomeBarragem " + 
+				    " FROM "+
+					"	barragem b INNER JOIN " + 
+					"	morador m ON b.id = m.id_barragem " + 
+					" WHERE m.id_barragem = :idBarragem ", nativeQuery = true)
 	public List<MoradorAlertaDTO> findListMoradorAlertaByIdBarragem(Long idBarragem);
 	
 	Page<Morador> findByNomeContainingIgnoreCase(@Param("nome") String nome, Pageable pageable);

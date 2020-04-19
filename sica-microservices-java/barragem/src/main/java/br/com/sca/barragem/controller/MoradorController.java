@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.sca.barragem.dto.EnvioAlertaDTO;
+import br.com.sca.barragem.dto.MoradorAlertaDTO;
 import br.com.sca.barragem.dto.MoradorDTO;
 import br.com.sca.barragem.dto.MoradorNewDTO;
 import br.com.sca.barragem.integration.SegurancaIntegration;
@@ -83,9 +84,9 @@ public class MoradorController {
 	
 	@ApiOperation(value="Busca Moradores pelo id da barragem")
 	@RequestMapping(value = "/barragem/{id}", method = RequestMethod.GET)
-	public ResponseEntity<List<Morador>> getMoradoresByIdBarragem(@PathVariable Long id,
+	public ResponseEntity<List<MoradorAlertaDTO>> getMoradoresByIdBarragem(@PathVariable Long id,
 			@RequestHeader(value = "Authorization") String authorization) {
-		List<Morador> list = moradorService.findListMoradorByIdBarragem(id);
+		List<MoradorAlertaDTO> list = moradorService.findListMoradorByIdBarragem(id);
 		return ResponseEntity.ok().body(list);
 	}	
 	

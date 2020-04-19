@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import br.com.sca.barragem.dto.MoradorAlertaDTO;
 import br.com.sca.barragem.dto.MoradorDTO;
 import br.com.sca.barragem.dto.MoradorNewDTO;
 import br.com.sca.barragem.dto.UserDTO;
@@ -74,12 +75,11 @@ public class MoradorService {
 		return repo.findAll();
 	}
 	
-	public List<Morador> findListMoradorByIdBarragem(Long idBarragem ) {
-		return repo.findListMoradorByIdBarragem(idBarragem);
+	public List<MoradorAlertaDTO> findListMoradorByIdBarragem(Long idBarragem ) {
+		return repo.findListMoradorAlertaByIdBarragem(idBarragem);
 	}
 
 	
-
 	public Morador fromTO(MoradorNewDTO dto) {
 		Barragem barragem = new Barragem();
 		barragem.setId(dto.getIdBarragem());

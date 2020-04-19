@@ -20,10 +20,12 @@ const taskAlertByMoradores = async moradores => {
         const morador = {
             name: item.nome,
             email: item.email,
+            barragem: item.nomeBarragem
         }
         // Adicionar job RegistrationMail na fila
         Queue.add('AlertMail', { morador })
-    }) 
+    })     
+    Queue.add('PushNotification', { barragem : moradores[0].nomeBarragem })
   }  
 }
 

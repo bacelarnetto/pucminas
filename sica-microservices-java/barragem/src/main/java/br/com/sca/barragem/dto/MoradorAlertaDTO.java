@@ -9,5 +9,10 @@ public interface MoradorAlertaDTO extends Serializable {
 	public String getNome();
 
 	public String getEmail();
+	
+	public Long getIdBarragem();
+	
+	public String getNomeBarragem();
+	
 
 }

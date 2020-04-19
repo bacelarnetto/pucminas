@@ -6,11 +6,11 @@ export default {
     const { morador } = data;
 
     await Mail.sendMail({
-      from: 'Queue Test <queue@queuetest.com.br>',
+      from: 'SCA Alerta <queue@queuetest.com.br>',
       to: `${morador.name} <${morador.email}>`,
-      subject: 'Aviso de rompimento de barragem!',
-      html: `Alerta!! Por favor, ${morador.name}, evacuar area imediatamente,` + 
-            'a barragem nas proximidades de sua residencia sofreu um rompimento. ' +
+      subject: `Atenção!! Aviso de rompimento da Barragem ${morador.barragem}!`,
+      html: `Alerta de Perigo!! Por favor, ${morador.name}, evacuar área imediatamente,` + 
+            `a "Barragem ${morador.barragem}" que fica nas proximidades de sua residencia sofreu um rompimento. ` +
             'Procurar regiões altas sem risco de sofrer inundação'
     });
   },
