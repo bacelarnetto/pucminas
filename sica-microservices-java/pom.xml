@@ -34,7 +34,6 @@
 		<module>auth</module>
 		<module>token</module>
 		<module>ativo</module>
-		<module>barragem</module>
 		<module>workflow</module>
 		<module>monitoramento</module>
 		<module>hystrix-dashboard</module>

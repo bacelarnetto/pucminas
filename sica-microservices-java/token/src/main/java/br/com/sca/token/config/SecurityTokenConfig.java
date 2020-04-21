@@ -15,13 +15,14 @@ public class SecurityTokenConfig extends WebSecurityConfigurerAdapter{
 	
 	private static final String[] PUBLIC_MATCHERS = {
 			"/**/swagger-ui.html",
-			"/barragem/public/**"
+			"/monitoramento/public/**"
 	};
 
 	private static final String[] PUBLIC_MATCHERS_GET = {
 			"/**/swagger-resources/**", 
 			"/**/webjars/springfox-swagger-ui/**", 
-			"/**/v2/api-docs/**"
+			"/**/v2/api-docs/**",
+			"/monitoramento/defesa-civil/**"
 	};
 
 	private static final String[] PUBLIC_MATCHERS_POST = {
@@ -30,8 +31,8 @@ public class SecurityTokenConfig extends WebSecurityConfigurerAdapter{
 	
 	private static final String[] PRIVATE_MATCHERS_ADMIN = {
 			"/auth/user/**",
-			"/barragem/barragem/**",
-			"/barragem/morador/**",
+			"/monitoramento/barragem/**",
+			"/monitoramento/morador/**",
 			"/ativo/manutencao/**",
 			"/ativo/marca/**",
 			"/ativo/insumo/**",
@@ -48,8 +49,8 @@ public class SecurityTokenConfig extends WebSecurityConfigurerAdapter{
 	};
 	
 	private static final String[] PRIVATE_MATCHERS_ENGINEER = {
-			"/barragem/barragem/**",
-			"/barragem/morador/**"
+			"/monitoramento/barragem/**",
+			"/monitoramento/morador/**"
 	};
 	
 	private static final String[] PRIVATE_MATCHERS_PROVIDER = {

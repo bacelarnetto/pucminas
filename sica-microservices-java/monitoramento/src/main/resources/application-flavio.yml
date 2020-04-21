@@ -1,0 +1,64 @@
+server:
+  port: 8082
+  
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://192.168.15.16:8081/eureka/
+    register-with-eureka: true
+
+spring:
+  application:
+    name: monitoramento
+
+  rabbitmq:
+    host: 192.168.15.16
+    port: 5672
+    username: guest
+    password: guest
+
+  jmx:
+    enabled: false
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    generate-ddl: true
+  # Hibernate ddl auto (create, create-drop, validate, update)
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        jdbc.lob:
+          non_contextual_creation: true
+
+  datasource:
+    initialization-mode: always
+    platform: postgres
+    url: jdbc:postgresql://192.168.15.16:5433/sica_barragem
+    driver-class-name: org.postgresql.Driver
+    username: root
+    password: 12345 
+
+url:
+  api:
+    seguraca:
+      moradores: http://localhost:3333/moradores
+
+mq:
+  alert:
+    exchange: alert.monitoramento.exchange
+    queue: 
+      barragem: alert.barragem.queue 
+      morador: alert.morador.queue
+    routingkey: 
+      barragem: alert.barragem.routingkey
+      morador: alert.morador.routingkey
+    
+          
+jwt:
+  config:
+    type: signed
