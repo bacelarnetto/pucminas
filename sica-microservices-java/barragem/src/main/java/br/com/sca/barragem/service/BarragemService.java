@@ -9,7 +9,6 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -71,10 +70,9 @@ public class BarragemService {
 	}
 	
 	
-	public Barragem mudaStatusRiscoAlto(String id) {
-		Long idBarragem = Long.parseLong(id);		
+	public Barragem mudaStatusRisco(Long idBarragem, Integer codigoRisco) {			
 		Barragem barragem = find(idBarragem);
-		barragem.setCodigoCategoriaRisco(CategoriaRiscoEnum.ALTO.getCodigo());		
+		barragem.setCodigoCategoriaRisco(codigoRisco);	
 		return repo.save(barragem);		
 	}
 

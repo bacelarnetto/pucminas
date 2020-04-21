@@ -1,4 +1,4 @@
-package br.com.sca.barragem.docs;
+package br.com.sca.barragem.config;
 
 import org.springframework.context.annotation.Configuration;
 

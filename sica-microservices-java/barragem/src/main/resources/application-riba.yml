@@ -48,7 +48,16 @@ url:
     auth:
       user: http://localhost:8083/user/
 
-
+mq:
+  alert:
+    exchange: alert.monitoramento.exchange
+    queue: 
+      barragem: alert.barragem.queue 
+      morador: alert.morador.queue
+    routingkey: 
+      barragem: alert.barragem.routingkey
+      morador: alert.morador.routingkey
+      
 
 jwt:
   config:

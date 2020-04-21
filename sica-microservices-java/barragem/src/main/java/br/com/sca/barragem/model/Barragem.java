@@ -117,5 +117,6 @@ public class Barragem implements AbstractEntity {
 	public SituacaoOperacionalEnum getSituacaoOperacional() {
 		return SituacaoOperacionalEnum.toEnum(codigoSituacaoOperacional);
 	}
+
 	
 }

@@ -22,20 +22,23 @@ import br.com.sca.barragem.dto.EnvioAlertaDTO;
 import br.com.sca.barragem.dto.MoradorAlertaDTO;
 import br.com.sca.barragem.dto.MoradorDTO;
 import br.com.sca.barragem.dto.MoradorNewDTO;
-import br.com.sca.barragem.integration.SegurancaIntegration;
 import br.com.sca.barragem.model.Morador;
+import br.com.sca.barragem.service.MonitoramentoService;
 import br.com.sca.barragem.service.MoradorService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping(value = "morador")
+@Api(value = "Endpoints de Moradores")
 public class MoradorController {
 
 	@Autowired
 	private MoradorService moradorService;
 	
+	
 	@Autowired
-	private SegurancaIntegration segurancaIntegration;	
+	private MonitoramentoService monitoramentoService;
 
 	@ApiOperation(value="Cadastrar um Morador")
 	@RequestMapping(method = RequestMethod.POST)
@@ -115,7 +118,10 @@ public class MoradorController {
 	@RequestMapping(value = "/enviar-alerta", method = RequestMethod.POST)
 	public ResponseEntity<String> enviarAlerta(@RequestBody EnvioAlertaDTO dto,
 			@RequestHeader(value = "Authorization") String authorization) {
-		String msn  = segurancaIntegration.enviarAlerta(dto);		
+		//String msn  = segurancaIntegration.enviarAlerta(dto);	
+		
+		String msn = monitoramentoService.enviarAlertaManual(dto);
+		
 		return ResponseEntity.ok().body(msn);
 	}
 

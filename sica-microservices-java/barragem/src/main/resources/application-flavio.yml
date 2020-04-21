@@ -48,7 +48,17 @@ url:
     seguraca:
       moradores: http://localhost:3333/moradores
 
-
+mq:
+  alert:
+    exchange: alert.monitoramento.exchange
+    queue: 
+      barragem: alert.barragem.queue 
+      morador: alert.morador.queue
+    routingkey: 
+      barragem: alert.barragem.routingkey
+      morador: alert.morador.routingkey
+    
+          
 jwt:
   config:
     type: signed
