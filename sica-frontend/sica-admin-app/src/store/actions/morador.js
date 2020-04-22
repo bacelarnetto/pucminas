@@ -72,7 +72,7 @@ export const Creators = {
     type: Types.DELETE_MORADOR,
     itemSelected,
     query: { 
-      description: filter.nome,
+      nome: filter.nome,
       page, 
       lines_per_page: rowsPerPage, 
       direction: order.toUpperCase(), 

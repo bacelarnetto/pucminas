@@ -1,7 +1,7 @@
 import React, {useRef, useState, useEffect} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-community/async-storage';
-import {View, Text, Image, TouchableOpacity, ScrollView} from 'react-native';
+import {View, Text, Image, TouchableOpacity, ScrollView, StatusBar } from 'react-native';
 
 import Menu, {MenuItem, MenuDivider} from 'react-native-material-menu';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -55,6 +55,7 @@ export default function Home() {
 
   return (
     <ScrollView style={styles.container}>
+       <StatusBar barStyle="dark-content"/>
       <View style={styles.header}>
         <Image source={logoImg} />
 
@@ -115,13 +116,13 @@ export default function Home() {
         <RowDetail label="Data da Construção" value={barragem.dataConstrucao} />
 
         <RowDetail
-          label="Categoria de Risco:"
+          label="Categoria de Risco"
           value={
             !barragem.categoriaRisco ? '' : barragem.categoriaRisco.descricao
           }
         />
         <RowDetail
-          label="Dano Potencial Associado:"
+          label="Dano Potencial Associado"
           value={
             !barragem.danoPotencialAssociado
               ? ''
@@ -129,7 +130,7 @@ export default function Home() {
           }
         />
         <RowDetail
-          label="Situação Operacional:"
+          label="Situação Operacional"
           value={
             !barragem.situacaoOperacional
               ? ''
@@ -137,7 +138,7 @@ export default function Home() {
           }
         />
         <RowDetail
-          label="Objetivo de Contenção:"
+          label="Objetivo de Contenção"
           value={
             !barragem.objetivoContencao
               ? ''

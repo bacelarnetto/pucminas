@@ -1,9 +1,9 @@
 const url = {
   BASE: 'http://192.168.56.101/gateway',
   LOGIN: '/auth/login',
-  BARRAGEM_MORADOR: '/barragem/public/morador/',
-  BARRAGEM_LIST: '/barragem/public/barragem/',
-  BARRAGEM_BY_MORADOR: '/barragem/public/barragem-por-morador?',
+  BARRAGEM_MORADOR: '/monitoramento/public/morador/',
+  BARRAGEM_LIST: '/monitoramento/public/barragem/',
+  BARRAGEM_BY_MORADOR: '/monitoramento/public/barragem-por-morador?',
 };
 
 const method = {

@@ -14,6 +14,7 @@ const taskAlert = async idBarragem => {
   await taskAlertByMoradores(moradores) 
 }
 
+
 const taskAlertByMoradores = async moradores => {
   if(!isEmpty(moradores)){
     await moradores.map(item => {
@@ -29,4 +30,12 @@ const taskAlertByMoradores = async moradores => {
   }  
 }
 
-module.exports = { taskAlert, taskAlertByMoradores }
+const taskAlertPushNotification = async barragem => {
+  Queue.add('PushNotification', { barragem : barragem.nome })
+}
+
+const taskAlertEmail = async  morador => {
+  Queue.add('AlertMail', { morador })
+}
+
+module.exports = { taskAlert, taskAlertByMoradores, taskAlertPushNotification,  taskAlertEmail }

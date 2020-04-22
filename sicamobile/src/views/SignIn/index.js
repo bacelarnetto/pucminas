@@ -12,7 +12,6 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import logoImg from '../../assets/logo.png';
 import backgroundImage from '../../assets/login.png'
 
 import styles from './styles';
@@ -80,7 +79,7 @@ export default function SingIn() {
       {renderMessage()}
       <TextInput
         placeholder="Digite seu e-mail"
-        placeholderTextColor="#FFFFFF"
+        placeholderTextColor="#aac6a5"
         style={styles.input}
         autoCapitalize="none"
         autoCorrect={false}
@@ -88,7 +87,7 @@ export default function SingIn() {
         onChangeText={setEmail}
       />
       <TextInput
-        placeholderTextColor="#FFFFFF"
+        placeholderTextColor="#aac6a5"
         style={styles.input}
         autoCapitalize="none"
         autoCorrect={false}
