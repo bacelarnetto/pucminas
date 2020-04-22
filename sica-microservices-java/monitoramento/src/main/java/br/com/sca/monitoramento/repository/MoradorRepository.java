@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -24,7 +25,11 @@ public interface MoradorRepository extends JpaRepository<Morador, Long> {
 	@Query(value = "SELECT m FROM Morador m WHERE m.barragem.id = :idBarragem ")
 	public List<Morador> findListMoradorByIdBarragem(Long idBarragem);
 	
-	
+	@Transactional
+	@Modifying
+	@Query("delete from Morador m where m.barragem.id = :idBarragem")
+	void deleteByBarragem(Long idBarragem);
+		
 	@Query(value = " SELECT " +
 					"   m.id AS id, " +
 					"   m.nome AS nome, " +
@@ -42,3 +47,4 @@ public interface MoradorRepository extends JpaRepository<Morador, Long> {
 	long count();
 	
 }
+

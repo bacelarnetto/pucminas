@@ -27,6 +27,7 @@ import br.com.sca.monitoramento.dto.ObjetivoContencaoDTO;
 import br.com.sca.monitoramento.dto.SituacaoOperacionalDTO;
 import br.com.sca.monitoramento.model.Barragem;
 import br.com.sca.monitoramento.repository.BarragemRepository;
+import br.com.sca.monitoramento.repository.MoradorRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -39,6 +40,8 @@ import lombok.extern.slf4j.Slf4j;
 public class BarragemService {
 	
     private final BarragemRepository repo;
+    
+    private final MoradorRepository moradorRepository;
 
 
 	public Barragem find(Long id) {
@@ -76,15 +79,16 @@ public class BarragemService {
 		return repo.save(barragem);		
 	}
 
+	@Transactional
 	public void delete(Long id) {
 		find(id);
 		try {
+			moradorRepository.deleteByBarragem(id);
 			repo.deleteById(id);
 		} catch (DataIntegrityViolationException e) {
 			throw new DataIntegrityException("Não é possível excluir um Barragem");
 		}
-	}
-	
+	}	
 	
 
 	private void updateData(Barragem newBarragem, Barragem barragem) {		

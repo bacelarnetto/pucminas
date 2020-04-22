@@ -115,14 +115,14 @@ public class ManutencaoService {
 				manutencao.getResponsavel(), 
 				manutencao.getParecerResponsavel()));
 		
-		Manutencao mSave = repo.save(newManutencao);		
+		Manutencao m = repo.save(newManutencao);		
 		try {
-			repo.deleteById(mSave.getId());
+			repo.deleteById(m.getId());
 		} catch (DataIntegrityViolationException e) {
 			throw new DataIntegrityException("Não é possível excluir um Manutencao");
 		}
 		
-		return mSave;
+		return m;
 	}
 
 	@Transactional
