@@ -55,9 +55,9 @@ services:
         reservations:
           memory: 370M
 
-  barragem:
-    container_name: barragem
-    image: barragem
+  monitoramento:
+    container_name: monitoramento
+    image: monitoramento
     restart: always
     environment:
       TZ: America/Sao_Paulo
@@ -73,26 +73,7 @@ services:
           memory: 400M
         reservations:
           memory: 370M
-
-  monitoramento:
-    container_name: monitoramento
-    image: monitoramento
-    restart: always
-    environment:
-      TZ: America/Sao_Paulo
-    ports:
-      - "8085:8085"
-    links:
-      - discovery
-    depends_on:
-      - discovery
-    deploy:
-      resources:
-        limits:
-          memory: 400M
-        reservations:
-          memory: 370M
-
+ 
   workflow:
     container_name: workflow
     image: workflow
