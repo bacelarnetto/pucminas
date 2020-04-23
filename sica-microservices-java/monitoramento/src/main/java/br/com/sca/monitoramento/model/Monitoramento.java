@@ -1,12 +1,29 @@
 package br.com.sca.monitoramento.model;
 
+import java.util.Date;
+
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import br.com.sca.commons.lib.model.AbstractEntity;
-import lombok.EqualsAndHashCode;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
+import br.com.sca.commons.lib.model.AbstractEntity;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Monitoramento implements AbstractEntity {
 
 	private static final long serialVersionUID = 1L;
@@ -27,6 +44,10 @@ public class Monitoramento implements AbstractEntity {
 	private String pressao;
 
 	private String movimentacao;
+	
+	@JsonFormat(pattern="dd/MM/yyyy HH:mm")
+    private Date dataCadastro;
+	
 
 	public String getTemperatura() {
 		return temperatura;

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import br.com.sca.monitoramento.model.Monitoramento;
+import br.com.sca.monitoramento.dto.MonitoramentoDTO;
 import br.com.sca.monitoramento.service.MonitoramentoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -25,7 +25,7 @@ public class MonitoramentoController {
 
 	@ApiOperation(value = "Receber as Notificacões dos Sensores")
 	@PostMapping(path = "/", consumes = "application/json")
-	public ResponseEntity<Void> receberNotificacaoSensor(@RequestBody Monitoramento monitoramento) {
+	public ResponseEntity<Void> receberNotificacaoSensor(@RequestBody MonitoramentoDTO monitoramento) {
 		service.processaMonitoramentoBarragem(monitoramento);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(monitoramento.getIdBarragem()).toUri();
