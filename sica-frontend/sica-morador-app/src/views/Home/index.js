@@ -86,8 +86,8 @@ export default function Home() {
             <RowDatail label='Nome da Barragem:' value={barragem.descricao} />
             <RowDatail label='Tipo:' value={barragem.tipo.nome} />
             <RowDatail label='Minerio:' value={barragem.minerio} />
-            <RowDatail label='Empreendedor:' value={barragem.empreendedor} />
-            <RowDatail label='CNPJ Empreendedor:' value={barragem.cnpjEmpreendedor} />           
+            <RowDatail label='Empresa:' value={barragem.empreendedor} />
+            <RowDatail label='CNPJ Empresa:' value={barragem.cnpjEmpreendedor} />           
             <RowDatail label='Alimentado por Usina:' 
               value={barragem.alimentadoUsina === 'S'|| barragem.alimentadoUsina === 's'? 'SIM' : 'NÃO' } 
             />
@@ -97,7 +97,7 @@ export default function Home() {
               style={{color: colorStatus(barragem.categoriaRisco.codigo), fontWeight: 'bold'}}
             />
             <RowDatail label='Dano Potencial Associado:' value={barragem.danoPotencialAssociado.descricao}
-             style={{color: colorStatus(barragem.categoriaRisco.codigo), fontWeight: 'bold'}}
+             style={{color: colorStatus(barragem.danoPotencialAssociado.codigo), fontWeight: 'bold'}}
             />
             <RowDatail label='Situação Operacional:' value={barragem.situacaoOperacional.descricao} />
             <RowDatail label='Objetivo de Contenção:' value={barragem.objetivoContencao.descricao} />

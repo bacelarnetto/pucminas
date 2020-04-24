@@ -378,7 +378,7 @@ const FornecedorTable = props => {
                       hover
                     >
                       <TableCell colSpan={9} >
-                        <div >
+                        <div className={classes.loadingContent} >
                           <h5>Nenhum registro encontrado!</h5>
                         </div>
                       </TableCell>
