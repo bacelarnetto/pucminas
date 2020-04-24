@@ -1,4 +1,7 @@
+import 'react-native-gesture-handler';
 import React, {Component} from 'react';
+
+import {NavigationContainer} from '@react-navigation/native';
 
 import OneSignal from 'react-native-onesignal'; // Import package from node modules
 import Routes from './src/Routes';
@@ -36,6 +39,10 @@ export default class App extends Component {
     console.log('Device info: ', device);
   }
   render() {
-    return <Routes />;
+    return (
+      <NavigationContainer>
+        <Routes />
+      </NavigationContainer>
+    )
   }
 }

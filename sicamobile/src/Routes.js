@@ -1,5 +1,5 @@
 import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
+
 import {createStackNavigator} from '@react-navigation/stack';
 import {isAuthenticated} from './auth';
 
@@ -9,8 +9,7 @@ import Home from './views/Home';
 import SignIn from './views/SignIn';
 
 export default function Routes() {
-  return (
-    <NavigationContainer>
+  return (   
       <AppStack.Navigator screenOptions={{headerShown: false}}>
         <AppStack.Screen name="SignIn" component={SignIn} />
         {isAuthenticated ? (
@@ -18,7 +17,6 @@ export default function Routes() {
         ) : (
           <AppStack.Screen name="SignIn" component={SignIn} />
         )}
-      </AppStack.Navigator>
-    </NavigationContainer>
+      </AppStack.Navigator>    
   );
 }

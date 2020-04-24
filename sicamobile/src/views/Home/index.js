@@ -1,27 +1,15 @@
-import React, {useRef, useState, useEffect} from 'react';
-import {useNavigation} from '@react-navigation/native';
+import React, {useState, useEffect} from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
-import {View, Text, Image, TouchableOpacity, ScrollView, StatusBar } from 'react-native';
-
-import Menu, {MenuItem, MenuDivider} from 'react-native-material-menu';
-import Icon from 'react-native-vector-icons/FontAwesome';
-
-import logoImg from '../../assets/logo.png';
+import {View, Text, ScrollView, StatusBar} from 'react-native';
 
 import styles from './styles';
 import {BarragemService as service} from './../../servers/barragem';
 import RowDetail from '../../components/RowDetail';
+import Header from '../../components/Header';
+import Alert from '../../components/Alert';
 
 export default function Home() {
-  const navigation = useNavigation();
-
   const [barragem, setBarragem] = useState({});
-
-  const menu = useRef();
-
-  const hideMenu = () => menu.current.hide();
-
-  const showMenu = () => menu.current.show();
 
   useEffect(() => {
     async function loadBarragem() {
@@ -31,12 +19,6 @@ export default function Home() {
     }
     loadBarragem();
   }, []);
-
-  const handleLogout = async () => {
-    hideMenu();
-    await AsyncStorage.clear();
-    await navigation.navigate('SignIn');
-  };
 
   const colorStatus = (id) => {
     let color = '';
@@ -55,33 +37,13 @@ export default function Home() {
 
   return (
     <ScrollView style={styles.container}>
-       <StatusBar barStyle="dark-content"/>
-      <View style={styles.header}>
-        <Image source={logoImg} />
+      <StatusBar barStyle="dark-content" />
 
-        <View>
-          <Menu
-            ref={menu}
-            button={
-              <TouchableOpacity onPress={showMenu}>
-                <Text style={{color: '#004d40'}}>
-                  <Icon name="ellipsis-v" color="#004d40" size={14} />
-                  &nbsp;MENU
-                </Text>
-              </TouchableOpacity>
-            }>
-            <MenuItem onPress={hideMenu}>
-              <Icon name="edit" size={15} />
-              &nbsp;&nbsp;&nbsp;Atualizar seu perfil
-            </MenuItem>
-            <MenuDivider />
-            <MenuItem onPress={handleLogout}>
-              <Icon name="power-off" size={15} />
-              &nbsp;&nbsp;&nbsp;Sair
-            </MenuItem>
-          </Menu>
-        </View>
-      </View>
+      <Header />
+
+      {barragem.categoriaRisco && barragem.categoriaRisco.codigo === 3 && (
+        <Alert />
+      )}
 
       <Text style={styles.title}>Bem-vindo!</Text>
       <Text style={styles.description}>
@@ -117,12 +79,26 @@ export default function Home() {
 
         <RowDetail
           label="Categoria de Risco"
+          style={{
+            color: colorStatus(
+              !barragem.categoriaRisco ? '' : barragem.categoriaRisco.codigo,
+            ),
+            fontWeight: 'bold',
+          }}
           value={
             !barragem.categoriaRisco ? '' : barragem.categoriaRisco.descricao
           }
         />
         <RowDetail
           label="Dano Potencial Associado"
+          style={{
+            color: colorStatus(
+              !barragem.danoPotencialAssociado
+                ? ''
+                : barragem.danoPotencialAssociado.codigo,
+            ),
+            fontWeight: 'bold',
+          }}
           value={
             !barragem.danoPotencialAssociado
               ? ''
