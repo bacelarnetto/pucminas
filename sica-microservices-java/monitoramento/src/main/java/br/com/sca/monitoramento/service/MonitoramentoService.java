@@ -69,7 +69,7 @@ public class MonitoramentoService {
 
 	private void notificarMorador(Long idBarragem) {
 		Barragem barragem = barragemService.find(idBarragem);
-		barragemProducer.produce(new BarragemAlertaDTO(barragem.getDescricao()));
+		barragemProducer.produce(new BarragemAlertaDTO(barragem.getId(), barragem.getDescricao()));
 		// intenção é fazer um batch
 		List<MoradorAlertaDTO> moradores = moradorRepository.findListMoradorAlertaByIdBarragem(idBarragem);
 		for (MoradorAlertaDTO morador : moradores) {

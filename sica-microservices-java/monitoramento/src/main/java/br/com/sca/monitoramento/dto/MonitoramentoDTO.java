@@ -2,8 +2,6 @@ package br.com.sca.monitoramento.dto;
 
 import java.io.Serializable;
 
-import br.com.sca.commons.lib.model.AbstractEntity;
-import br.com.sca.monitoramento.dto.MoradorDTO.MoradorDTOBuilder;
 import br.com.sca.monitoramento.validation.MoradorUpdateValidation;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -10,15 +10,17 @@ public class BarragemAlertaDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	private Long id;
 	private String nome;
 
 	public BarragemAlertaDTO() {
 		super();
 	}
 
-	public BarragemAlertaDTO(String nome) {
-		super();
-		this.nome = nome;
+	public BarragemAlertaDTO(Long id, String nome) {
+		super();		
+		this.id = id;
+		this.nome = nome;		
 	}
 
 	public String getNome() {
@@ -27,6 +29,14 @@ public class BarragemAlertaDTO implements Serializable {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 }
