@@ -1,5 +1,6 @@
 import React, { useState,  useEffect } from 'react';
 import { Link as RouterLink,  NavLink  } from 'react-router-dom';
+import io from "socket.io-client"
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { withStyles, makeStyles } from '@material-ui/styles';
@@ -74,8 +75,15 @@ const Topbar = props => {
     setQntNotifications(qnt);   
   };
 
-  setInterval(function() { handleAlert() }, 15000);
-
+  useEffect(() => {
+    const url = 'http://localhost:3334';
+    const socket = io(url);
+    socket.on("barragem", barragem =>{
+     console.log(barragem)
+     handleAlert()
+    });  
+  }, [])
+ 
   const handleClickOpen = () => {
     setOpen(true);
   };

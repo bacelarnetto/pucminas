@@ -3,6 +3,7 @@ import { toastr } from 'react-redux-toastr'
 
 import { Types as types, Creators as actions } from '../actions/barragem';
 import { BarragemService as service }  from './../../servers/barragem'
+import { MoradorService as moradorService }  from './../../servers/morador'
 
 
 import {  isEdit }  from './../../common/util';
@@ -118,6 +119,37 @@ function* insertBarragemSaga(action) {
   }
 }
 
+function* enviarAlertaMoradorSaga(action) {
+  yield put(actions.enviarAlertaMoradorStart())
+  try {    
+    const response = yield moradorService.enviarAlertaMorador(action.barragem); 
+    if(response !== undefined && response !== null &&
+    (response.status === 200 || response.status === 201)) {
+      if(response.data === 'OK'){
+        yield put(actions.enviarAlertaMoradorSucess())
+        toastr.success('Sucesso:', 'Enviar de alertas realizado com sucesso.') 
+         //busca a lista apos a exclusao
+        yield put(actions.buscaListBarragensStart()) 
+        const responseList = yield service.findListPagination(action.query);
+        const barragems = responseList.data.content;
+        const totalPages = responseList.data.totalPages;
+        const itemsCountPerPage = responseList.data.size;
+        const totalElements = responseList.data.totalElements;
+        yield put(actions.buscaListBarragensSucess(barragems, totalPages, itemsCountPerPage, totalElements ))
+      }else{
+        yield put(actions.enviarAlertaMoradorError())
+        toastr.warning('Serviço indisponível: ', response.data) 
+      }
+    }else{
+      throw new Error('Erro ao tentar enviar os alertas'); // gera uma exceção
+    }
+  } catch (error) {
+    yield put(actions.enviarAlertaMoradorError())
+    toastr.error('Erro:', error.message)
+    console.error(error) // eslint-disable-line
+  }
+}
+
 export function* watchBarragem() {
   yield all([
     takeEvery(types.BUSCA_LIST_BARRAGEM, buscaListBarragemsSaga),
@@ -125,5 +157,6 @@ export function* watchBarragem() {
     takeLatest(types.INSERT_BARRAGEM, insertBarragemSaga),
     takeLatest(types.DELETE_BARRAGEM, deleteBarragemSaga),
     takeLatest(types.EDIT_BARRAGEM, editBarragemSaga),   
+    takeLatest(types.ENVIAR_ALERTA_MORADOR, enviarAlertaMoradorSaga), 
   ]);
 }

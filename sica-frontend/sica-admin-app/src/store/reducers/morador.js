@@ -23,7 +23,6 @@ export default (state = INITIAL_STATE, action) => {
     case types.DELETE_MORADOR_SUCCESS:// loading é true porque ainda tem que carregar a lista    
     case types.BUSCA_DETAIL_MORADOR_START:
     case types.BUSCA_LIST_MORADOR_START:
-    case types.ENVIAR_ALERTA_MORADOR_START:
       return {
         ...state,
         loading: true
@@ -34,7 +33,6 @@ export default (state = INITIAL_STATE, action) => {
     case types.DELETE_MORADOR_ERROR:
     case types.BUSCA_DETAIL_MORADOR_ERROR:
     case types.BUSCA_LIST_MORADOR_ERROR:
-    case types.ENVIAR_ALERTA_MORADOR_ERROR:
       return {
         ...state,
         loading: false,
@@ -62,7 +60,6 @@ export default (state = INITIAL_STATE, action) => {
 
     case types.INSERT_MORADOR_SUCCESS:
     case types.EDIT_MORADOR_SUCCESS:
-    case types.ENVIAR_ALERTA_MORADOR_SUCCESS:
       return {
         ...state,
         loading: false,

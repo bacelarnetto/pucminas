@@ -40,7 +40,6 @@ import Tooltip from '@material-ui/core/Tooltip';
 import NotificationImportantIcon from '@material-ui/icons/NotificationImportant';
 
 import { Creators as actions } from './../../../../store/actions/barragem';
-import { Creators as actionsMorador } from './../../../../store/actions/morador';
 
 const useStyles = makeStyles(() => ({
   root: {},
@@ -177,8 +176,6 @@ const BarragemTable = props => {
     setOpen(false);
   };
 
-
-
   const handleClickOpenAlertaMorador = (idBarragem, nomeBarragem) => {
     setId(idBarragem)
     setNome(nomeBarragem)
@@ -193,7 +190,7 @@ const BarragemTable = props => {
 
   const handleAlertaMorador = event => {
     event.preventDefault();
-    dispatch(actionsMorador.enviarAlertaMorador(id),[])  
+    dispatch(actions.enviarAlertaMorador(id, values, page, rowsPerPage, order, orderBy),[])  
     setOpenAlertaMorador(false);
   };
 

@@ -24,10 +24,6 @@ export const Types = {
   EDIT_MORADOR_SUCCESS: 'form/EDIT_MORADOR_SUCCESS',
   EDIT_MORADOR_ERROR: 'form/EDIT_MORADOR_ERROR',
 
-  ENVIAR_ALERTA_MORADOR: 'post/ENVIAR_ALERTA_MORADOR',
-  ENVIAR_ALERTA_MORADOR_START: 'post/ENVIAR_ALERTA_MORADOR_START',
-  ENVIAR_ALERTA_MORADOR_SUCCESS: 'post/ENVIAR_ALERTA_MORADOR_SUCCESS',
-  ENVIAR_ALERTA_MORADOR_ERROR: 'post/ENVIAR_ALERTA_MORADOR_ERROR',
 }
 
 export const Creators = {
@@ -192,31 +188,6 @@ export const Creators = {
 
   buscaDetailMoradorError : () => ({
     type: Types.BUSCA_DETAIL_MORADOR_ERROR,
-    loading: false,
-    erro: true
-  }),
-  /** ENVIAR ALERTA A MORADORES **/
-  enviarAlertaMorador: (idBarragem) => ({
-    type: Types.ENVIAR_ALERTA_MORADOR,
-    barragem: { 
-      idBarragem,      
-    }
-  }),
-
-  enviarAlertaMoradorStart : () => ({  
-    type: Types.ENVIAR_ALERTA_MORADOR_START,
-    loading: true,
-    erro: false
-  }),
-
-  enviarAlertaMoradorSucess: () => ({
-    type: Types.ENVIAR_ALERTA_MORADOR_SUCCESS,
-    loading: false,
-    erro: false
-  }),
-
-  enviarAlertaMoradorError: () => ({
-    type: Types.ENVIAR_ALERTA_MORADOR_ERROR,
     loading: false,
     erro: true
   }),

@@ -27,6 +27,8 @@ export default (state = INITIAL_STATE, action) => {
     case types.DELETE_BARRAGEM_SUCCESS:// loading é true porque ainda tem que carregar a lista    
     case types.BUSCA_DETAIL_BARRAGEM_START:
     case types.BUSCA_LIST_BARRAGEM_START:
+    case types.ENVIAR_ALERTA_MORADOR_START:
+    case types.ENVIAR_ALERTA_MORADOR_SUCCESS:// loading é true porque ainda tem que carregar a lista 
       return {
         ...state,
         loading: true
@@ -36,7 +38,8 @@ export default (state = INITIAL_STATE, action) => {
     case types.EDIT_BARRAGEM_ERROR:    
     case types.DELETE_BARRAGEM_ERROR:
     case types.BUSCA_DETAIL_BARRAGEM_ERROR:
-    case types.BUSCA_LIST_BARRAGEM_ERROR:
+    case types.BUSCA_LIST_BARRAGEM_ERROR:      
+    case types.ENVIAR_ALERTA_MORADOR_ERROR:
       return {
         ...state,
         loading: false,

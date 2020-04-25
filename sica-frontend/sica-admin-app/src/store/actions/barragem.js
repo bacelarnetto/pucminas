@@ -24,6 +24,11 @@ export const Types = {
   EDIT_BARRAGEM_START: 'form/EDIT_BARRAGEM_START',
   EDIT_BARRAGEM_SUCCESS: 'form/EDIT_BARRAGEM_SUCCESS',
   EDIT_BARRAGEM_ERROR: 'form/EDIT_BARRAGEM_ERROR',
+
+  ENVIAR_ALERTA_MORADOR: 'post/ENVIAR_ALERTA_MORADOR',
+  ENVIAR_ALERTA_MORADOR_START: 'post/ENVIAR_ALERTA_MORADOR_START',
+  ENVIAR_ALERTA_MORADOR_SUCCESS: 'post/ENVIAR_ALERTA_MORADOR_SUCCESS',
+  ENVIAR_ALERTA_MORADOR_ERROR: 'post/ENVIAR_ALERTA_MORADOR_ERROR',
 }
 
 export const Creators = {
@@ -209,6 +214,39 @@ export const Creators = {
 
   buscaDetailBarragemError : () => ({
     type: Types.BUSCA_DETAIL_BARRAGEM_ERROR,
+    loading: false,
+    erro: true
+  }),
+
+  /** ENVIAR ALERTA A MORADORES **/
+  enviarAlertaMorador: (idBarragem, filter, page, rowsPerPage, order, orderBy ) => ({
+    type: Types.ENVIAR_ALERTA_MORADOR,
+    barragem: { 
+      idBarragem,      
+    },
+    query: { 
+      description: filter.descricao,
+      page, 
+      lines_per_page: rowsPerPage, 
+      direction: order.toUpperCase(), 
+      order_by: orderBy
+    }
+  }),
+
+  enviarAlertaMoradorStart : () => ({  
+    type: Types.ENVIAR_ALERTA_MORADOR_START,
+    loading: true,
+    erro: false
+  }),
+
+  enviarAlertaMoradorSucess: () => ({
+    type: Types.ENVIAR_ALERTA_MORADOR_SUCCESS,
+    loading: false,
+    erro: false
+  }),
+
+  enviarAlertaMoradorError: () => ({
+    type: Types.ENVIAR_ALERTA_MORADOR_ERROR,
     loading: false,
     erro: true
   }),

@@ -34,8 +34,18 @@ const taskAlertPushNotification = async barragem => {
   Queue.add('PushNotification', { barragem : barragem.nome })
 }
 
+const taskAlertBarragem = async barragem => {
+  Queue.add('AlertBarragem', { idBarragem: barragem.id , nomeBarragem : barragem.nome })
+}
+
 const taskAlertEmail = async  morador => {
   Queue.add('AlertMail', { morador })
 }
 
-module.exports = { taskAlert, taskAlertByMoradores, taskAlertPushNotification,  taskAlertEmail }
+module.exports = { 
+  taskAlert,   
+  taskAlertByMoradores,
+  taskAlertBarragem,
+  taskAlertPushNotification,  
+  taskAlertEmail 
+}

@@ -35,7 +35,8 @@ module.exports = () => amqp.connect(rabbitmqConfig.host, function(error0, connec
         channel.consume(queue, function(msg) {
             console.log(" [x] Received all moradores Push Notification %s", msg.content.toString());
             let barragem = JSON.parse(msg.content.toString());   
-            SegurancaTask.taskAlertPushNotification(barragem)   
+            SegurancaTask.taskAlertPushNotification(barragem)
+            SegurancaTask.taskAlertBarragem(barragem)  
         }, {
             noAck: true
         });
