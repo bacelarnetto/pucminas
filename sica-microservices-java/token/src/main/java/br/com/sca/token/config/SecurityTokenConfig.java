@@ -15,7 +15,9 @@ public class SecurityTokenConfig extends WebSecurityConfigurerAdapter{
 	
 	private static final String[] PUBLIC_MATCHERS = {
 			"/**/swagger-ui.html",
-			"/monitoramento/public/**"
+			"/monitoramento/public/**",
+			"/hystrix-dashboard/hystrix/**",
+			"/**/alert/**"
 	};
 
 	private static final String[] PUBLIC_MATCHERS_GET = {

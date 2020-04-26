@@ -76,7 +76,7 @@ const Topbar = props => {
   };
 
   useEffect(() => {
-    const url = 'http://localhost:3334';
+    const url = 'http://localhost:3335';
     const socket = io(url);
     socket.on("barragem", barragem =>{
      console.log(barragem)

@@ -1,4 +1,4 @@
-const PORT = process.env.SERVER_PORT || 3334;
+const PORT = 3335;
 const
     io = require("socket.io"),
     server = io.listen(PORT);

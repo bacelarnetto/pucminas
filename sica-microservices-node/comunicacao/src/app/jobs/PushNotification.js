@@ -1,17 +1,25 @@
 var request = require('request');
+const { createHystrixCommands } = require('simplified-hystrixjs');
+
+
+const sendPushNotification = async barragem => {
+	await sendMessage(barragem)
+}
+
+const serviceCommand = createHystrixCommands(sendPushNotification, { name : 'OneSignal'});
 
 export default {
 	key: 'PushNotification',
 	async handle({ data }) {
 		const { barragem } = data;
-		await sendMessage(barragem)
+		await serviceCommand.sendPushNotification(barragem)
 	}
 }
 
-const sendMessage = (barragem) => {
+var sendMessage = async barragem => {
 	var restKey = 'MjkwZmMyMTAtZGE2My00NDVhLTk5MWYtNGE5MGQ5NzkwZjUx';
 	var appID = '67a57c27-b481-41ef-b754-e5c3cbe28cf1';
-	request(
+	await request(
 		{
 			method:'POST',
 			uri:'https://onesignal.com/api/v1/notifications',
@@ -41,4 +49,9 @@ const sendMessage = (barragem) => {
 			}
 		}
 	);
+
+
+	
+
+	
 }
