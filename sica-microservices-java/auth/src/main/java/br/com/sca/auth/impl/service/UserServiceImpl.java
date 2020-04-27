@@ -2,6 +2,7 @@ package br.com.sca.auth.impl.service;
 
 import java.util.Optional;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
@@ -77,6 +78,21 @@ public class UserServiceImpl implements UserService {
 		return userRepository.save(newUser);
 	}
 	
+	@Override
+	public Usuario updateByEmail(UserUpdateDTO dto) {
+		Usuario newUser = userRepository.findByEmail(dto.getEmail());
+		
+		if(newUser == null) {
+			new ObjectNotFoundException(
+					"Objeto não encontrado! Id: " + dto.getEmail() + ", User: " + Usuario.class.getName());
+		}
+		
+		userRepository.deleteRoleByIdUser(newUser.getId());
+		updateData(newUser, dto);
+		return userRepository.save(newUser);
+		
+	}
+	
 	private void updateData(Usuario newUser, UserUpdateDTO dto) {
 		newUser.setEmail(dto.getEmail());
 		newUser.setPassword(pe.encode(dto.getSenha()));
@@ -117,6 +133,8 @@ public class UserServiceImpl implements UserService {
 			throw new DataIntegrityException("Não é possível excluir Usuario");
 		}
 	}
+
+	
 
 
 }

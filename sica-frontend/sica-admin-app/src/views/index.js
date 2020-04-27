@@ -20,5 +20,6 @@ export { default as Barragem } from './Barragem/Barragem';
 export { default as BarragemInsertEdit} from './Barragem/BarragemInsertEdit';
 export { default as Usuario } from './Usuario/Usuario';
 export { default as UsuarioInsertEdit} from './Usuario/UsuarioInsertEdit';
+export { default as Monitoramento } from './Monitoramento/Monitoramento';
 
 export { default as Logout} from './Logout';

@@ -24,7 +24,7 @@ public class AuthIntegration {
 	@Autowired
 	private RestTemplate restAuthTemplate;
 
-	@HystrixCommand(fallbackMethod = "fallback")
+	@HystrixCommand(fallbackMethod = "fallbackInsert")
 	public String insertUser(UserDTO dto) {
 		HttpHeaders headers = new HttpHeaders();
 
@@ -37,12 +37,32 @@ public class AuthIntegration {
 		
 		return responseEntity.getStatusCode().name();
 	}
+	
+	@HystrixCommand(fallbackMethod = "fallbackUpdate")
+	public String updateUser(UserDTO dto) {
+		HttpHeaders headers = new HttpHeaders();
+
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		headers.set("Authorization", "API_BARRAGEM_XPIIHSHJHH*(*0006$%");
+		
+		HttpEntity<UserDTO> request = new HttpEntity<UserDTO>(dto, headers);
+		
+		ResponseEntity<UserDTO> responseEntity = restAuthTemplate.exchange(baseUrl, HttpMethod.PUT, request, UserDTO.class);
+		
+		return responseEntity.getStatusCode().name();
+	}
 
 	// a fallback method to be called if failure happened
-	public String fallback(UserDTO dto) {
+	public String fallbackInsert(UserDTO dto) {
 		return "Não foi possivel cadastrar o moradores como usuario. " + "Email: " + dto.getEmail()
 				+ ". Serviço indisponível.";
 	}
+	
+	// a fallback method to be called if failure happened
+		public String fallbackUpdate(UserDTO dto) {
+			return "Não foi possivel atualizar o moradores como usuario. " + "Email: " + dto.getEmail()
+					+ ". Serviço indisponível.";
+		}
 
 	@Bean
 	public RestTemplate restAuthTemplate() {

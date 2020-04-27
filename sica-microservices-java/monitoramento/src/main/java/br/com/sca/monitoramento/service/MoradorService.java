@@ -30,9 +30,11 @@ public class MoradorService {
 	
 	@Autowired
 	private AuthIntegration authIntegration;
+	
+	
+	private static final Integer PERFIL_USER_MORADOR = 5;
 
 	public Morador find(Long id) {
-
 		Optional<Morador> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Morador.class.getName()));
@@ -41,12 +43,13 @@ public class MoradorService {
 	@Transactional
 	public Morador insert(Morador morador, String senha) {
 		morador.setId(null);
-		UserDTO user = new UserDTO(morador.getEmail(), senha, 5 , morador.getEmail());
+		UserDTO user = new UserDTO(morador.getEmail(), senha, PERFIL_USER_MORADOR , morador.getEmail());
 		authIntegration.insertUser(user);
 		morador = repo.save(morador);
 		return morador;
 	}
 	
+		
 	
 	@Transactional
 	public Morador insert(Morador morador) {
@@ -140,6 +143,13 @@ public class MoradorService {
 		newMorador.setUf(morador.getUf());
 		newMorador.setBarragem(morador.getBarragem());
 		newMorador.setCep(morador.getCep());
+	}
+	
+	@Transactional
+	public UserDTO updateUser(String email, String senha) {	
+		UserDTO user = new UserDTO(email, senha, PERFIL_USER_MORADOR , email);
+		authIntegration.updateUser(user);		
+		return user;
 	}
 
 }

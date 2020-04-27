@@ -18,14 +18,7 @@ eureka:
 zuul:
   sensitive-headers: Cookie
   ignored-headers: Access-Control-Allow-Credentials, Access-Control-Allow-Origin
-  ignoredServices: '*'
-  routes:
-    alert-barragem:
-      path: /alert/barragem/**
-      service-id: comunicacao
-      customSensitiveHeaders: true
-      url: http://localhost:3335/
-      stripPrefix: true
+
 
 
 jwt:

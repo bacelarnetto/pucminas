@@ -92,6 +92,16 @@ public class UserController {
 	}
 	
 	
+	@ApiOperation(value="Update Usuario por email")
+	@RequestMapping(method = RequestMethod.PUT)
+	public ResponseEntity<Void> update(@Valid 
+			@RequestBody UserUpdateDTO user,
+			@RequestHeader(value = "Authorization") String authorization) {
+		userService.updateByEmail(user);
+		return ResponseEntity.noContent().build();
+	}
+	
+	
 	@ApiOperation(value="Exclusao da Usuario")
 	@RequestMapping(method = RequestMethod.DELETE, path = "/{id}")
 	public ResponseEntity<Void> delete(@PathVariable("id")  Long id,

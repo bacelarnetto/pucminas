@@ -1,5 +1,6 @@
 package br.com.sca.auth.service;
 
+
 import org.springframework.data.domain.Page;
 
 import br.com.sca.auth.dto.UserDTO;
@@ -22,5 +23,7 @@ public interface UserService {
 	public void delete(Long id);
 	
 	public Page<Usuario> findPage(String username, Integer page, Integer linesPerPage, String orderBy, String direction);
+
+	public Usuario updateByEmail(UserUpdateDTO user);
 
 }

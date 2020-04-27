@@ -30,6 +30,7 @@ import {
   MoradorInsertEdit as MoradorInsertEditView,
   Usuario as UsuarioView,
   UsuarioInsertEdit as UsuarioInsertEditView,
+  Monitoramento as MonitoramentoView,
   Logout as LogoutView
 
 } from './views';
@@ -172,6 +173,13 @@ const Routes = () => {
           path="/usuario/:id"
         />
 
+        <RouteWithLayout
+          component={MonitoramentoView}
+          exact
+          layout={MainLayout}
+          path="/monitoramento/:id"
+        />
+
         <Route
           component={LogoutView}
           path="/logout"
@@ -188,7 +196,7 @@ const Routes = () => {
           layout={MinimalLayout}
           path="/not-found"
         />
-        <Redirect to="/not-found" />
+        <Redirect to="/monitoramento/1" />
       </Switch>
     );
 

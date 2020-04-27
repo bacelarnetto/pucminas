@@ -47,6 +47,9 @@ const url = {
   BARRAGEM_MORADOR_QNT:'/monitoramento/morador/qnt-morador',
   BARRAGEM_MORADOR_ENVIAR_ALERTA:'/monitoramento/morador/enviar-alerta',
  
+  MONITORAMENTO_LIST_PAGE: '/monitoramento/monitoramento/list-page?',
+  MONITORAMENTO_RESUMO: '/monitoramento/monitoramento/resumo?',
+
   // API AUTH
   AUTH_USUARIO_LIST_PAGE: '/auth/user/list-page?',
   AUTH_USUARIO_LIST: '/auth/user/list',

@@ -9,6 +9,7 @@ import barragem from './barragem'
 import morador from './morador'
 import usuario from './usuario'
 import dashboard from './dashboard'
+import monitoramento from './monitoramento'
 
 import { reducer as toastrReducer } from 'react-redux-toastr'
 
@@ -39,7 +40,8 @@ const appReducer = combineReducers({
   barragem,
   morador,
   usuario,
-  dashboard
+  dashboard,
+  monitoramento
 });
 
 const rootReducer = (state, action) => {   

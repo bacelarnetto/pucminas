@@ -124,6 +124,17 @@ public class MoradorController {
 		
 		return ResponseEntity.ok().body(msn);
 	}
+	
+	
+	@ApiOperation(value="Atualizar o usuario de acesso do morador")
+	@RequestMapping(value = "/user", method = RequestMethod.PUT)
+	public ResponseEntity<Void> updateUser( 
+			@RequestParam(value = "email") String email,
+			@RequestParam(value = "senha") String senha,
+			@RequestHeader(value = "Authorization") String authorization) {
+		moradorService.updateUser(email, senha);
+		return ResponseEntity.noContent().build();
+	}
 
 
 }

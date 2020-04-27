@@ -36,6 +36,8 @@ import SearchIcon from '@material-ui/icons/Search';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import AddIcon from '@material-ui/icons/Add';
+import InsertChartIcon from '@material-ui/icons/InsertChart';
+
 import Tooltip from '@material-ui/core/Tooltip';
 import NotificationImportantIcon from '@material-ui/icons/NotificationImportant';
 
@@ -349,10 +351,10 @@ const BarragemTable = props => {
                       hover
                       key={barragem.id}
                     > 
-                      <TableCell  style={{ width: 160 }}>
+                      <TableCell  style={{ width: 220 }}>
                         <div
                           className={classes.colAction}
-                          style={{ width: 150 }}
+                          style={{ width: 210 }}
                         >
                           <Tooltip title="Excluir">
                             <IconButton
@@ -370,6 +372,16 @@ const BarragemTable = props => {
                                 className={classes.buttonLabel}
                               >
                                 <EditIcon />
+                              </IconButton>
+                            </Tooltip>
+                          </ RouterLink>
+                          < RouterLink to={'monitoramento/'+ barragem.id}>
+                            <Tooltip title="Monitoramento">
+                              <IconButton
+                                aria-label="Monitoramento"
+                                className={classes.buttonLabel}
+                              >
+                                <InsertChartIcon />
                               </IconButton>
                             </Tooltip>
                           </ RouterLink>

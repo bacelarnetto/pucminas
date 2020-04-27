@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import br.com.sca.commons.lib.model.AbstractEntity;
+import br.com.sca.monitoramento.enums.CategoriaRiscoEnum;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -100,5 +101,9 @@ public class Monitoramento implements AbstractEntity {
 
 	public void setCodigoCriticidade(Integer codigoCriticidade) {
 		this.codigoCriticidade = codigoCriticidade;
+	}
+	
+	public CategoriaRiscoEnum getCategoriaRisco() {
+		return CategoriaRiscoEnum.toEnum(codigoCriticidade);
 	}
 }
