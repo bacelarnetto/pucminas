@@ -5,6 +5,7 @@ import { isAuthenticated } from "./auth";
 import SingIn from './views/SignIn';
 import SingUp from './views/SignUp';
 import Home from './views/Home';
+import TrocarSenha from './views/TrocarSenha';
 
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
@@ -27,6 +28,8 @@ const Routes = () => (
       
       <Route path="/register" component={SingUp} />
       <PrivateRoute path="/home" component={Home} />
+      <PrivateRoute path="/trocar-senha" component={TrocarSenha} />
+      
       
     </Switch>
   </BrowserRouter>

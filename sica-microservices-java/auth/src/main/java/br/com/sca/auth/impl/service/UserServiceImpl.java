@@ -72,13 +72,13 @@ public class UserServiceImpl implements UserService {
 
 	@Transactional
 	public Usuario update(UserUpdateDTO dto) {
+		userRepository.deleteRoleByIdUser(dto.getId());
 		Usuario newUser = find(dto.getId());
-		userRepository.deleteRoleByIdUser(newUser.getId());
-		updateData(newUser, dto);
+		updateData(newUser, dto);		
 		return userRepository.save(newUser);
 	}
 	
-	@Override
+	@Transactional
 	public Usuario updateByEmail(UserUpdateDTO dto) {
 		Usuario newUser = userRepository.findByEmail(dto.getEmail());
 		
@@ -86,8 +86,6 @@ public class UserServiceImpl implements UserService {
 			new ObjectNotFoundException(
 					"Objeto não encontrado! Id: " + dto.getEmail() + ", User: " + Usuario.class.getName());
 		}
-		
-		userRepository.deleteRoleByIdUser(newUser.getId());
 		updateData(newUser, dto);
 		return userRepository.save(newUser);
 		

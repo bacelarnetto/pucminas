@@ -19,10 +19,39 @@ public interface UserRepository extends JpaRepository<Usuario, Long> {
 	
 	Page<Usuario> findByUsernameContainingIgnoreCase(@Param("username") String username, Pageable pageable);
 	
-	@Transactional
 	@Modifying
 	@Query(value = "delete from role where usuario_id = :idUser", 
 			  nativeQuery = true)
 	void deleteRoleByIdUser(Long idUser);
+	
+
+	@Query(value = "select roles from role where usuario_id = :idUser and roles = :idRole", 
+	  nativeQuery = true)
+	public Long findIdRoleByIdUser(Integer idRole, Long idUser);
+	
+	@Modifying(clearAutomatically = true)
+	@Query(value =  " update role  set roles = :idRole "
+			+ " where usuario_id  = :idUser ",
+			nativeQuery = true)
+	void updateRole( Long idUser, Integer idRole);
+	
+	@Modifying(clearAutomatically = true)
+	@Query("update Usuario u set "
+			+ " u.username = :username, u.password = :password,  u.email = :email"
+			+ " where u.id = :id")	 
+	void updateUserById(
+			@Param("id") Long id, 
+			@Param("username") String username,
+			@Param("password") String password,
+			@Param("email") String email);
+	
+	@Modifying(clearAutomatically = true)
+	@Query("update Usuario u set "
+			+ " u.username = :username, u.password = :password"
+			+ " where u.email = :email ")	 
+	void updateUserByEmail(
+			@Param("username") String username,
+			@Param("password") String ppassword,
+			@Param("email") String email);
 
 }

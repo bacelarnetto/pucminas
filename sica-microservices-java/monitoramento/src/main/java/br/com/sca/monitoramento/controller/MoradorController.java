@@ -22,6 +22,7 @@ import br.com.sca.monitoramento.dto.EnvioAlertaDTO;
 import br.com.sca.monitoramento.dto.MoradorAlertaDTO;
 import br.com.sca.monitoramento.dto.MoradorDTO;
 import br.com.sca.monitoramento.dto.MoradorNewDTO;
+import br.com.sca.monitoramento.dto.UserUpdateDTO;
 import br.com.sca.monitoramento.model.Morador;
 import br.com.sca.monitoramento.service.MonitoramentoService;
 import br.com.sca.monitoramento.service.MoradorService;
@@ -129,12 +130,13 @@ public class MoradorController {
 	@ApiOperation(value="Atualizar o usuario de acesso do morador")
 	@RequestMapping(value = "/user", method = RequestMethod.PUT)
 	public ResponseEntity<Void> updateUser( 
-			@RequestParam(value = "email") String email,
-			@RequestParam(value = "senha") String senha,
+			@RequestBody UserUpdateDTO user,
 			@RequestHeader(value = "Authorization") String authorization) {
-		moradorService.updateUser(email, senha);
+		moradorService.updateUser(user.getEmail(), user.getSenha());
 		return ResponseEntity.noContent().build();
 	}
+	
+	
 
 
 }

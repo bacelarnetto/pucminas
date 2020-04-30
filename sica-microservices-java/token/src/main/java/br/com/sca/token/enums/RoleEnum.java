@@ -7,7 +7,8 @@ public enum RoleEnum {
 	ENGINEER(3, "ROLE_ENGINEER"),
 	PROVIFER(4, "ROLE_PROVIDER"),
 	RESIDENT(5, "ROLE_RESIDENT"),
-	MECHANICAL(6, "ROLE_MECHANICAL");
+	MECHANICAL(6, "ROLE_MECHANICAL"),
+	CIVIL_DEFENSE(7, "ROLE_CIVILDEFENSE");
 
 	private int codigo;
 	private String descricao;

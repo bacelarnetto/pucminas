@@ -15,6 +15,7 @@
   Button } from '@material-ui/core';
   import Tooltip from '@material-ui/core/Tooltip';
   import InputIcon from '@material-ui/icons/Input';
+  import VpnKeyIcon from '@material-ui/icons/VpnKey';
   import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
@@ -120,11 +121,17 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
                 onClose={handleCloseMenu}
               >
                 <MenuItem onClick={handleCloseMenu}>
-                  Profile
+                  <RouterLink to="/trocar-senha">
+                    <VpnKeyIcon style={{ marginRight: '10px', fontSize:'20'}}/> 
+                    Alterar senha
+                  </RouterLink>
                 </MenuItem>
                 <MenuItem onClick={handleClickOpen}>
                   <InputIcon  style={{ marginRight: '10px', fontSize:'20'}}/> 
+                  <RouterLink >
                    Sair
+                  </RouterLink>
+                  
                 </MenuItem>
               </Menu>
             </div>

@@ -191,9 +191,9 @@ export default function SingUp() {
             </Grid>
             <Grid item md={3} xs={12}>
               <TextField
-                error={validation.required(values.senha) && showErrors}
+                error={validation.required(values.senha.trim()) && showErrors}
                 fullWidth
-                helperText={showErrors && validation.required(values.senha)}
+                helperText={showErrors && validation.required(values.senha.trim())}
                 label="Senha"
                 name="senha"
                 onChange={handleChange}

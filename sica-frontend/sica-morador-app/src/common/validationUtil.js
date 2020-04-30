@@ -1,9 +1,6 @@
 //https://redux-form.com/7.4.2/examples/fieldlevelvalidation/
 const required = value => (
-  value ||
-  value  !== undefined ||
-  typeof value === 'number' || 
-  value.length !== 0   ?  undefined : 'Preenchimento obrigatório'
+  !value ?  'Preenchimento obrigatório' : undefined 
 )
 const minLengthRequired = (min, value) => (
   value ||

@@ -51,14 +51,22 @@ public class SecurityTokenConfig extends WebSecurityConfigurerAdapter{
 	};
 	
 	private static final String[] PRIVATE_MATCHERS_ENGINEER = {
-			"/monitoramento/barragem/**",
-			"/monitoramento/morador/**"
+			"/monitoramento/barragem/**"
 	};
 	
 	private static final String[] PRIVATE_MATCHERS_PROVIDER = {
 			"/ativo/integration-suppliers/**"
 	};
-
+	
+	private static final String[] PRIVATE_MATCHERS_RESIDENT = {
+			"/monitoramento/morador/**"
+	};
+	
+	private static final String[] PRIVATE_MATCHERS_CIVILDEFENSE = {
+			"/monitoramento/defesacivil/**"
+	};
+	
+	
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {		
@@ -70,7 +78,9 @@ public class SecurityTokenConfig extends WebSecurityConfigurerAdapter{
 			.antMatchers(PRIVATE_MATCHERS_ADMIN).hasRole("ADMIN")
 			.antMatchers(PRIVATE_MATCHERS_FUNCTIONARY).hasAnyRole("ADMIN", "FUNCTIONARY")
             .antMatchers(PRIVATE_MATCHERS_ENGINEER).hasAnyRole("ADMIN", "ENGINEER") 
-            .antMatchers(PRIVATE_MATCHERS_PROVIDER).hasAnyRole( "ADMIN", "PROVIDER")  
+            .antMatchers(PRIVATE_MATCHERS_PROVIDER).hasAnyRole("ADMIN", "PROVIDER")  
+            .antMatchers(PRIVATE_MATCHERS_RESIDENT).hasAnyRole("ADMIN", "ENGINEER", "RESIDENT")
+            .antMatchers(PRIVATE_MATCHERS_CIVILDEFENSE).hasAnyRole("ADMIN", "CIVILDEFENSE")
 			.anyRequest().authenticated();
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		http.exceptionHandling().authenticationEntryPoint((req, resp, e) -> resp.sendError(HttpServletResponse.SC_UNAUTHORIZED));

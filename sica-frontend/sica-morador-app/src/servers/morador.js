@@ -21,6 +21,20 @@ export const MoradorService = {
         errors.map(item => toast.error(`Campo ${item.fieldName}: ${item.message}`))        
       }
     }
-  },  
+  }, 
+
+  alterarSenha: async (value) => {
+    try {
+      return await api[globalTypes.method.PUT](globalTypes.url.MORADOR_USER, value)
+    } catch (error) {
+      console.error('Erro: ' + JSON.stringify(error.response.data))
+      if(error.response.status === 422){//erro de validação
+        const errors = error.response.data.errors
+        errors.map(item => toast.error(`Campo ${item.fieldName}: ${item.message}`))        
+      }
+    }
+  }, 
+  
+  
  
 }

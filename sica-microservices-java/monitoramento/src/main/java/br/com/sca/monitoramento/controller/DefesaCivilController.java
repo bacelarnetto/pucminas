@@ -19,7 +19,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping(value =  "defesa-civil" )
+@RequestMapping(value =  "defesacivil" )
 @Api(value = "Endpoints para uso da Defesa Civil")
 public class DefesaCivilController {
 
