@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import io from "socket.io-client"
 import {
   CssBaseline,
   Box,
@@ -15,7 +16,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Copyright  from './../../components/Copyright'
 import Header  from './../../components/Header'
 import RowDatail from './../../components/RowDetail'
+import Alert from './../../components/Alert'
 
+import globalTypes from './../../common/constants/GlobalTypes'
 import {BarragemService as service} from './../../servers/barragem';
 
 const useStyles = makeStyles(theme => ({
@@ -29,16 +32,39 @@ const useStyles = makeStyles(theme => ({
 
 export default function Home() {
   const classes = useStyles();  
+
   const [barragem, setBarragem] = useState({});
+  const [alert, setAlert] = useState(false);
 
   useEffect(() => {
-    async function loadBarragem() {
-      const email = await localStorage.getItem('moradorEmail');
+    async function loadBarragem() {   
+      const email = await localStorage.getItem('moradorEmail');   
       const response = await service.findBarragem(email);
       await setBarragem(response);
+      await setAlert(isRicoAlto(response));
     }
     loadBarragem();
-  }, []);
+  }, [alert]);
+
+  const isRicoAlto = (barragem) => {
+    return barragem.categoriaRisco.codigo === 3 ? true : false;
+  }
+
+  const ativeAlert = async () => {   
+    const email = await localStorage.getItem('moradorEmail');    
+    const response = await service.findBarragem(email);
+    await setBarragem(response); 
+    setAlert(true);
+  };
+
+  useEffect(() => {
+    const url = globalTypes.url.ENDPONIT_SOCKET_ALERT;
+    const socket = io(url);
+    socket.on("barragem", barragem =>{
+     console.log(barragem)
+     ativeAlert()
+    });  
+  }, [])
 
   const colorStatus = id => {
     let color = ''
@@ -64,6 +90,7 @@ export default function Home() {
       <CssBaseline />
       <br/>
       <div className={classes.paper}>
+
         <Grid
           container
           spacing={2}
@@ -81,8 +108,10 @@ export default function Home() {
           </Grid>
         </Grid>
         <br/>
-
         
+        {alert && <Alert />  }
+
+                
         <Card
           style={{width:'100%'}}
         >

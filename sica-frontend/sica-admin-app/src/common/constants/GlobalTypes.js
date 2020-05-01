@@ -1,5 +1,6 @@
 const url = {
-  BASE: process.env.REACT_APP_BACKEND_SICA || 'http://localhost:8080/gateway', 
+  BASE: process.env.REACT_APP_BACKEND_SICA || 'http://localhost:8080/gateway',  
+  ENDPONIT_SOCKET_ALERT: process.env.REACT_APP_BACKEND_SICA_SOCKET_ALERT || 'http://localhost:3335',
   LOGIN: '/auth/login',
   // API DE ATIVOS
   ATIVO_MARCA_LIST_PAGE: '/ativo/marca/list-page?',

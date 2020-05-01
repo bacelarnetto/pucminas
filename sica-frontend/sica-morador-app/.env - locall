@@ -1,0 +1,2 @@
+REACT_APP_BACKEND_SICA=http://localhost:8080/gateway
+REACT_APP_BACKEND_SICA_SOCKET_ALERT=http://localhost:3335

@@ -37,7 +37,7 @@ export const MoradorService = {
 
   findMoradorByEmail: async (email) => {
     try {
-      const morador = await api.get(globalTypes.url.BARRAGEM_MORADOR_BY_EMAIL + email)
+      const morador = await api.get(globalTypes.url.MORADOR_BY_EMAIL + email)
       return morador.data
     } catch (error) {
       console.error('Erro: ' + JSON.stringify(error.response.data))

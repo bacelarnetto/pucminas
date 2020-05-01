@@ -196,7 +196,7 @@ const Routes = () => {
           layout={MinimalLayout}
           path="/not-found"
         />
-        <Redirect to="/monitoramento/1" />
+        <Redirect to="/not-found" />
       </Switch>
     );
 

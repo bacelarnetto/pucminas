@@ -7,7 +7,7 @@ export default function Copyright() {
     <div>
       <Typography variant="body2" color="textSecondary" align="center">
         {'Copyright © '}
-        <Link color="inherit" href="http://localhost:8001">
+        <Link color="inherit" href="/">
         SCA - Sistema de controle ambiental. Todos os direitos reservados.
         </Link>{' '}
         {new Date().getFullYear()}

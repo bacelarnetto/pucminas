@@ -48,14 +48,14 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
   const history = useHistory();
   const [open, setOpen] = useState(false);
 
-  const [auth, setAuth] = React.useState(true);
+  const [auth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const openMenu = Boolean(anchorEl);
   
 
   const handleClickOpen = () => {
+    handleCloseMenu();
     setOpen(true);
-    setAnchorEl(false)
   };
 
   const handleClose = () => {
@@ -67,12 +67,11 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
     history.push('/');
   }
 
-
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleCloseMenu = () => {
+  const handleCloseMenu = () => {    
     setAnchorEl(null);
   };
 
@@ -125,7 +124,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
                   </RouterLink>
                 </MenuItem>
                 <MenuItem onClick={handleClickOpen}>
-                <a href="#">
+                <a href="/">
                   <InputIcon  style={{ marginRight: '10px', fontSize:'20'}}/> 
                   
                    Sair

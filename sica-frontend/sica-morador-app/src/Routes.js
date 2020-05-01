@@ -24,14 +24,13 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 const Routes = () => (
   <BrowserRouter>
     <Switch>
-      <Route path="/" exact component={SingIn} />
-      
+
+      <Route path="/" exact component={SingIn} />      
       <Route path="/register" component={SingUp} />
       <PrivateRoute path="/home" component={Home} />
       <PrivateRoute path="/trocar-senha" component={TrocarSenha} />
-      <PrivateRoute path="/alterar-dados" component={AlterarDados} />
-      
-      
+      <PrivateRoute path="/alterar-dados" component={AlterarDados} />  
+          
     </Switch>
   </BrowserRouter>
 );

@@ -24,6 +24,7 @@ import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
 import InputIcon from '@material-ui/icons/Input';
 import Tooltip from '@material-ui/core/Tooltip';
 
+import globalTypes from './../../../../common/constants/GlobalTypes'
 import { GeralService as service } from '././../../../../servers/geral'
 
 const useStyles = makeStyles(theme => ({
@@ -76,7 +77,7 @@ const Topbar = props => {
   };
 
   useEffect(() => {
-    const url = 'http://localhost:3335';
+    const url = globalTypes.url.ENDPONIT_SOCKET_ALERT;
     const socket = io(url);
     socket.on("barragem", barragem =>{
      console.log(barragem)
