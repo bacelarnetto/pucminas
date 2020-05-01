@@ -1,4 +1,4 @@
-import React , { useState,  useEffect }from 'react';
+import React , { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -63,12 +63,6 @@ export default function TrocarSenha() {
 
   const [showErrors, setShowErrors] = useState(false);
 
-
-  useEffect(() => {
-    
-    
-  }, []);
-
   const handleChange = event => {
     setValues({
       ...values,
@@ -126,7 +120,7 @@ export default function TrocarSenha() {
           style={{width:'100%'}}
         >
           <CardHeader
-            subheader={localStorage.getItem('moradorEmail')}
+             subheader={`Usuário: ${localStorage.getItem('moradorEmail')}`}
             title="Alteração de Senha"
           />
           <Divider />

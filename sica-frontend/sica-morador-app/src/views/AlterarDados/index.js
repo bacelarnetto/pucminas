@@ -1,19 +1,19 @@
 import React , { useState,  useEffect }from 'react';
 import { Link } from 'react-router-dom';
-import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import {
+  Container,
+  Divider,
+  Card,
+  CardHeader,
+  CardContent
+} from '@material-ui/core'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-
 import InputMask from 'react-input-mask'
 
 import { toast } from 'react-toastify';
@@ -21,10 +21,12 @@ import { toast } from 'react-toastify';
 import validation from './../../common/validationUtil';
 import estados  from './../../common/UF';
 
-import { BarragemService as barragemService }  from './../../servers/barragem'
+import Copyright  from './../../components/Copyright'
+import Header  from './../../components/Header'
+
 import { MoradorService as moradorService }  from './../../servers/morador'
 
-import Copyright  from './../../components/Copyright'
+import { BarragemService as barragemService }  from './../../servers/barragem'
 
 toast.configure(
   {
@@ -53,39 +55,57 @@ const useStyles = makeStyles(theme => ({
   
 }));
 
-export default function SingUp() {
+export default function AlterarDados() {
   const classes = useStyles();
+  const email = localStorage.getItem('moradorEmail');
   const [values, setValues] = useState({
     id: '',   
     nome: '',
     idade: '',
-    email: '',
+    email: email,
     cidade: '',
     endereco: '',
     bairro: '',
     numero: '',
     telefone: '',
     uf: 'sel',
-    idBarragem : 'sel',
-    senha: ''
+    idBarragem : 'sel'
   });
 
   const [load, setLoad] = useState(false)
 
   const UFs = estados;
 
-  const [barragens, setBarragens] = useState([]);
+  const [barragens, setBarragens] = useState([]); 
 
   const [showErrors, setShowErrors] = useState(false);
 
-
   useEffect(() => {
-    async function loadBarragem() {
+    async function detalheMorador() {
      const list = await barragemService.findList()
      setBarragens(list);
+     
+     const morador = await moradorService.findMoradorByEmail(email)
+     let codBarragem = 
+                    morador.barragem !== null && 
+                    morador.barragem !== '' && 
+                    morador.barragem !== undefined ? morador.barragem.id : 'sel'
+     setValues({
+      id:  morador.id || '',  
+      nome: morador.nome || '',
+      idade: morador.idade || '',
+      email: morador.email || '',
+      cidade: morador.cidade || '',
+      endereco: morador.endereco || '',
+      bairro: morador.bairro || '',
+      numero: morador.numero || '',
+      telefone: morador.telefone || '',
+      uf:  morador.uf || 'sel',
+      idBarragem : codBarragem,    
+    });
     }
-    loadBarragem();
-  }, []);
+    detalheMorador();
+  }, [email]);
 
   const handleChange = event => {
     setValues({
@@ -94,72 +114,59 @@ export default function SingUp() {
     });
   };
 
-  const handleSubmit = async event => {   
+  
+  const handleSubmit = async event => {
     event.preventDefault();
-    setLoad(true)
+    setLoad(true)   
     if (validation.minLengthRequired(6, values.nome.trim())
-      || validation.email(values.email) 
       || validation.required(values.endereco.trim()) 
       || validation.required(values.bairro.trim())
-      || validation.number(values.idade.trim())
+      || validation.number(values.idade)
       || validation.number(values.numero.trim())
       || values.idBarragem === 'sel'
       || values.uf === 'sel' 
       || validation.required(values.cidade.trim())
-      || validation.required(values.senha.trim())
     ) {
       toast.error(`Por favor, preencha os campos obrigatórios.`)
       setShowErrors(true);
       setLoad(false);
     } else {      
-        await moradorService.submitMorador(values) ;        
-        await toast.success(`Cadastro realizado com sucesso.`)
-        setValues({  
-          id: '',   
-          nome: '',
-          idade: '',
-          email: '',
-          cidade: '',
-          endereco: '',
-          bairro: '',
-          numero: '',
-          telefone: '',
-          uf: 'sel',
-          idBarragem : 'sel',
-          senha: ''
-        });        
-      
+        await moradorService.alterarMorador(values) ;        
+        await toast.success(`Alteração realizada com sucesso.`)
       setShowErrors(false);
       setLoad(false);
     }
   }
-  return (
-    <Container component="main" maxWidth="md">
 
-      <AppBar>
-          <Toolbar >
-            <Typography variant="h6">SCA</Typography>
-          </Toolbar>
-        </AppBar>
+  return (
+    <Container 
+      component="main" 
+      maxWidth="md">
+      <Header/>
       <CssBaseline />
       <br/>
       <div className={classes.paper}>
         <div
             className="contentActionTop"
           >
-          <Link to="/" >
+          <Link to="/home" >
             <Button
               className="buttonVoltar" 
             ><ArrowBackIcon/> Voltar</Button>            
           </Link>
         </div>    
-        <Avatar className={classes.avatar}>
-          <PersonAddIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Cadastro de Moradores
-        </Typography>
-        <form className={classes.form} noValidate onSubmit={handleSubmit} >
+        <Card
+          style={{width:'100%'}}
+        >
+          <CardHeader
+            subheader={`Usuário: ${localStorage.getItem('moradorEmail')}`}
+            title="Alteração de Dados Pessoais"
+          />
+          <Divider />
+
+          <CardContent>
+
+          <form className={classes.form} noValidate onSubmit={handleSubmit} >
           <Grid container spacing={2}>
             <Grid item md={9} xs={12}>
               <TextField
@@ -189,35 +196,7 @@ export default function SingUp() {
                 variant="outlined"
               />
             </Grid>
-            <Grid item md={3} xs={12}>
-              <TextField
-                error={validation.required(values.senha.trim()) && showErrors}
-                fullWidth
-                helperText={showErrors && validation.required(values.senha.trim())}
-                label="Senha"
-                name="senha"
-                onChange={handleChange}
-                required
-                inputProps={{ min: '1', max: '200', step: '1' }}
-                type="password" 
-                value={values.senha}
-                variant="outlined"
-              />
-            </Grid>
-            <Grid item md={9} xs={12}>
-              <TextField
-                error={validation.email(values.email) && showErrors}
-                fullWidth
-                helperText={showErrors && validation.email(values.email)}
-                label="E-mail"
-                name="email"
-                onChange={handleChange}
-                required
-                type="email"
-                value={values.email}
-                variant="outlined"
-              />
-            </Grid>
+
             <Grid
               item
               xs={12}
@@ -379,6 +358,9 @@ export default function SingUp() {
           </Button>
          
         </form>
+        </CardContent>
+      </Card>
+      
       </div>
       <Box mt={5}>
         <Copyright />

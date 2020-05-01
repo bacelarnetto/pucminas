@@ -77,6 +77,15 @@ public class MoradorController {
 		Morador morador = moradorService.find(id);
 		return ResponseEntity.ok().body(morador);
 	}
+	
+	@ApiOperation(value="Buscar Morador por email")
+	@RequestMapping(value = "/detail", method = RequestMethod.GET)
+	public ResponseEntity<Morador> findByEmail(
+			@RequestParam(value = "email", required = false) String email,
+			@RequestHeader(value = "Authorization") String authorization) {
+		Morador morador = moradorService.findByEmail(email);
+		return ResponseEntity.ok().body(morador);
+	}
 
 	@ApiOperation(value="Buscar a lista com todos os Moradores")
 	@RequestMapping(method = RequestMethod.GET)

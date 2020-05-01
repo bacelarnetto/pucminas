@@ -9,11 +9,11 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import { BarragemService as service }  from './../../servers/barragem'
 
 import { AuthService as authService }  from './../../servers/auth'
 
@@ -48,6 +48,14 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  loadingContent:{
+    marginTop: '100px',
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent:'center',
+    width:'100%'
+  },
 }));
 
 toast.configure(
@@ -59,21 +67,24 @@ toast.configure(
 
 export default function SignIn() {
   const classes = useStyles();
-
   const history = useHistory();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
 
   async function handleLogin(e) {
     e.preventDefault();
     try {
-      await authService.authUser(email, password)    
-      const barragem = await service.findBarragem(email)
+      setLoading(true);
+      await authService.authUser(email, password)     
       await localStorage.setItem('moradorEmail', email);
-      await localStorage.setItem('moradorBarragem', JSON.stringify(barragem));
       history.push('/home');
+      setLoading(false);
+      setEmail('');
+      setPassword('');
     } catch (error) {
+      setLoading(false);
       await toast.error(`Erro: ${error.message}`)
     }
   }
@@ -93,7 +104,7 @@ export default function SignIn() {
           <Typography component="h1" variant="h5">
             Acesso
           </Typography>
-          <form className={classes.form} onSubmit={handleLogin} noValidate>
+          { !loading && ( <form className={classes.form} onSubmit={handleLogin} noValidate>
             <TextField
               variant="outlined"
               margin="normal"
@@ -145,8 +156,14 @@ export default function SignIn() {
             <Box mt={5}>
               <Copyright />
             </Box>
-          </form>
+          </form>)}
+          { loading &&  (
+              <div className={classes.loadingContent}>
+                <CircularProgress size={100} />
+              </div> 
+            )}
         </div>
+
       </Grid>
     </Grid>
   );

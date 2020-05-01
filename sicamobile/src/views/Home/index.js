@@ -81,7 +81,7 @@ export default function Home() {
           label="Categoria de Risco"
           style={{
             color: colorStatus(
-              !barragem.categoriaRisco ? '' : barragem.categoriaRisco.codigo,
+              !barragem.categoriaRisco ? '' : barragem.categoriaRisco.codigo
             ),
             fontWeight: 'bold',
           }}
@@ -95,7 +95,7 @@ export default function Home() {
             color: colorStatus(
               !barragem.danoPotencialAssociado
                 ? ''
-                : barragem.danoPotencialAssociado.codigo,
+                : barragem.danoPotencialAssociado.codigo
             ),
             fontWeight: 'bold',
           }}

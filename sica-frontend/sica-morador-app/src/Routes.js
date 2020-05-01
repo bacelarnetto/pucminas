@@ -6,7 +6,7 @@ import SingIn from './views/SignIn';
 import SingUp from './views/SignUp';
 import Home from './views/Home';
 import TrocarSenha from './views/TrocarSenha';
-
+import AlterarDados from './views/AlterarDados';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -29,6 +29,7 @@ const Routes = () => (
       <Route path="/register" component={SingUp} />
       <PrivateRoute path="/home" component={Home} />
       <PrivateRoute path="/trocar-senha" component={TrocarSenha} />
+      <PrivateRoute path="/alterar-dados" component={AlterarDados} />
       
       
     </Switch>

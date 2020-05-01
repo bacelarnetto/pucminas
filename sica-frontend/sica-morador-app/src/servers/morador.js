@@ -34,6 +34,24 @@ export const MoradorService = {
       }
     }
   }, 
+
+  findMoradorByEmail: async (email) => {
+    try {
+      const morador = await api.get(globalTypes.url.BARRAGEM_MORADOR_BY_EMAIL + email)
+      return morador.data
+    } catch (error) {
+      console.error('Erro: ' + JSON.stringify(error.response.data))
+    }
+  },
+
+  alterarMorador: async (value) => {
+    try {
+      const id =  value.id 
+      return await api[globalTypes.method.PUT](globalTypes.url.MORADOR + id, value)
+    } catch (error) {
+      console.error('Erro: ' + JSON.stringify(error.response.data))
+    }
+  },
   
   
  

@@ -39,6 +39,15 @@ public class MoradorService {
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Morador.class.getName()));
 	}
+	
+	public Morador findByEmail(String email) {
+		Morador obj = repo.findByEmail(email);
+		if(obj == null) {
+			new ObjectNotFoundException(
+					"Objeto não encontrado! Email: " + email + ", Tipo: " + Morador.class.getName());
+		}
+		return obj;
+	}
 
 	@Transactional
 	public Morador insert(Morador morador, String senha) {

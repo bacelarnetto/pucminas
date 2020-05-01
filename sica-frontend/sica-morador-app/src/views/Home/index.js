@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   CssBaseline,
   Box,
@@ -16,6 +16,8 @@ import Copyright  from './../../components/Copyright'
 import Header  from './../../components/Header'
 import RowDatail from './../../components/RowDetail'
 
+import {BarragemService as service} from './../../servers/barragem';
+
 const useStyles = makeStyles(theme => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -27,7 +29,16 @@ const useStyles = makeStyles(theme => ({
 
 export default function Home() {
   const classes = useStyles();  
-  let barragem = JSON.parse(localStorage.getItem('moradorBarragem')); 
+  const [barragem, setBarragem] = useState({});
+
+  useEffect(() => {
+    async function loadBarragem() {
+      const email = await localStorage.getItem('moradorEmail');
+      const response = await service.findBarragem(email);
+      await setBarragem(response);
+    }
+    loadBarragem();
+  }, []);
 
   const colorStatus = id => {
     let color = ''
@@ -84,7 +95,7 @@ export default function Home() {
           <CardContent>
             <br/>
             <RowDatail label='Nome da Barragem:' value={barragem.descricao} />
-            <RowDatail label='Tipo:' value={barragem.tipo.nome} />
+            <RowDatail label='Tipo:' value={!barragem.tipo ? '' : barragem.tipo.nome} />
             <RowDatail label='Minerio:' value={barragem.minerio} />
             <RowDatail label='Empresa:' value={barragem.empreendedor} />
             <RowDatail label='CNPJ Empresa:' value={barragem.cnpjEmpreendedor} />           
@@ -93,14 +104,22 @@ export default function Home() {
             />
             <RowDatail label='Vida Util(anos):' value={barragem.vidaUtilQuantidadeAnos} />
             <RowDatail label='Data da Construção:' value={barragem.dataConstrucao} />
-            <RowDatail label='Categoria de Risco:' value={barragem.categoriaRisco.descricao}  
-              style={{color: colorStatus(barragem.categoriaRisco.codigo), fontWeight: 'bold'}}
+            <RowDatail label='Categoria de Risco:' value={!barragem.categoriaRisco ? '' : barragem.categoriaRisco.descricao}  
+              style={{color: colorStatus(!barragem.categoriaRisco ? '' : barragem.categoriaRisco.codigo), fontWeight: 'bold'}}
             />
-            <RowDatail label='Dano Potencial Associado:' value={barragem.danoPotencialAssociado.descricao}
-             style={{color: colorStatus(barragem.danoPotencialAssociado.codigo), fontWeight: 'bold'}}
+            <RowDatail label='Dano Potencial Associado:' value={ !barragem.danoPotencialAssociado
+              ? ''
+              : barragem.danoPotencialAssociado.descricao}
+             style={{color: colorStatus(!barragem.danoPotencialAssociado
+              ? ''
+              : barragem.danoPotencialAssociado.codigo), fontWeight: 'bold'}}
             />
-            <RowDatail label='Situação Operacional:' value={barragem.situacaoOperacional.descricao} />
-            <RowDatail label='Objetivo de Contenção:' value={barragem.objetivoContencao.descricao} />
+            <RowDatail label='Situação Operacional:' value={!barragem.situacaoOperacional
+              ? ''
+              : barragem.situacaoOperacional.descricao} />
+            <RowDatail label='Objetivo de Contenção:' value={!barragem.objetivoContencao
+              ? ''
+              : barragem.objetivoContencao.descricao} />
 
             <RowDatail label='Cidade:' value={barragem.cidade} />
             <RowDatail label='UF:' value={barragem.uf} />

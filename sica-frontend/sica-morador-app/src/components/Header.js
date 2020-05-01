@@ -1,6 +1,6 @@
  import React, { useState } from 'react';
  import { Link as RouterLink,  useHistory  } from 'react-router-dom';
- import { withStyles, makeStyles } from '@material-ui/styles';
+ import { makeStyles } from '@material-ui/styles';
 
  import { 
   AppBar, 
@@ -13,9 +13,9 @@
   DialogContentText,
   DialogTitle,
   Button } from '@material-ui/core';
-  import Tooltip from '@material-ui/core/Tooltip';
   import InputIcon from '@material-ui/icons/Input';
   import VpnKeyIcon from '@material-ui/icons/VpnKey';
+  import EditIcon from '@material-ui/icons/Edit';
   import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
@@ -42,14 +42,6 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
     }
   }));
 
-  const LightTooltip = withStyles(theme => ({
-    tooltip: {
-      backgroundColor: theme.palette.common.white,
-      color: 'rgba(0, 0, 0, 0.87)',
-      boxShadow: theme.shadows[1],
-      fontSize: 11,
-    },
-  }))(Tooltip);
  
  export default function Header() {
   const classes = useStyles();
@@ -120,6 +112,12 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
                 open={openMenu}
                 onClose={handleCloseMenu}
               >
+                 <MenuItem onClick={handleCloseMenu}>
+                  <RouterLink to="/alterar-dados">
+                    <EditIcon style={{ marginRight: '10px', fontSize:'20'}}/> 
+                    Alterar seus Dados
+                  </RouterLink>
+                </MenuItem>
                 <MenuItem onClick={handleCloseMenu}>
                   <RouterLink to="/trocar-senha">
                     <VpnKeyIcon style={{ marginRight: '10px', fontSize:'20'}}/> 
@@ -127,10 +125,11 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
                   </RouterLink>
                 </MenuItem>
                 <MenuItem onClick={handleClickOpen}>
+                <a href="#">
                   <InputIcon  style={{ marginRight: '10px', fontSize:'20'}}/> 
-                  <RouterLink >
+                  
                    Sair
-                  </RouterLink>
+                  </a>
                   
                 </MenuItem>
               </Menu>
