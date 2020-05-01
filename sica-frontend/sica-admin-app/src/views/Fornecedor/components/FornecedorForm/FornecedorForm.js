@@ -16,6 +16,7 @@ import {
   CircularProgress,
   TextField
 } from '@material-ui/core';
+import Backdrop from '@material-ui/core/Backdrop';
 import InputMask from 'react-input-mask'
 
 import { Creators as actions } from './../../../../store/actions/fornecedor';
@@ -23,7 +24,7 @@ import { isEdit }  from './../../../../common/util';
 import validation from './../../../../common/validationUtil';
 import estados  from './../../../../common/UF';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
   root: {},
   button:{
     color:'#FFFFFF',
@@ -38,6 +39,13 @@ const useStyles = makeStyles(() => ({
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent:'center'
+  } ,
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: '#fff',
+  },
+  loadingBlock:{
+    zIndex: theme.zIndex.drawer + 2,
   }
 }));
 
@@ -124,6 +132,7 @@ const FornecedorForm = props => {
   }
 
   return (
+    <div>
     <Card
       {...rest}
       className={clsx(classes.root, className)}
@@ -364,6 +373,19 @@ const FornecedorForm = props => {
         </CardActions>
       </form>
     </Card>
+
+    <Backdrop
+      className={classes.backdrop}
+      open={loading}
+      >
+      <Card className={classes.loadingBlock}>
+        <CardContent>
+          <CircularProgress color="inherit" />
+        </CardContent>        
+      </Card>
+      </Backdrop>
+
+    </div>
   );
 };
 

@@ -17,6 +17,7 @@ import {
   CircularProgress,
   TextField,
 } from '@material-ui/core';
+import Backdrop from '@material-ui/core/Backdrop';
 import { toastr } from 'react-redux-toastr'
 
 
@@ -429,6 +430,18 @@ const PedidoForm = props => {
         </CardActions>
         
       </Card>
+
+      
+    <Backdrop
+      className={classes.backdrop}
+      open={loading}
+      >
+      <Card className={classes.loadingBlock}>
+        <CardContent>
+          <CircularProgress color="inherit" />
+        </CardContent>        
+      </Card>
+      </Backdrop>
 
     </div>
   );

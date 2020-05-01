@@ -17,7 +17,7 @@ import {
   TextField,
   Typography,
 } from '@material-ui/core';
-
+import Backdrop from '@material-ui/core/Backdrop';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 
 import {
@@ -34,7 +34,7 @@ import MomentUtils from '@date-io/moment';
 import 'moment/locale/pt-br';
 moment.locale('pt-br');
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
   root: {},
   button:{
     color:'#FFFFFF',
@@ -57,7 +57,14 @@ const useStyles = makeStyles(() => ({
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent:'center'
-  }  
+  }   ,
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: '#fff',
+  },
+  loadingBlock:{
+    zIndex: theme.zIndex.drawer + 2,
+  }
 }));
 
 const ManutencaoForm = props => {
@@ -159,7 +166,9 @@ const ManutencaoForm = props => {
   const handleSubmit = event => {
     event.preventDefault();
     if (validation.required(values.solicitante.trim())  
-    || validation.required(values.descricao.trim())) {
+    || validation.required(values.descricao.trim())
+    || (isEdit(keyManutencao) && values.tipo === 'sel')
+    || ( isEdit(keyManutencao) && values.status === 'sel')) {
       setShowErrors(true);
     } else {
       if(isEdit(keyManutencao)) {
@@ -186,6 +195,7 @@ const ManutencaoForm = props => {
   
 
   return (
+    <div>
     <Card
       {...rest}
       className={clsx(classes.root, className)}
@@ -402,7 +412,9 @@ const ManutencaoForm = props => {
                 xs={12}
               >
                 <TextField    
+                  error={values.status === 'sel' && showErrors}
                   fullWidth
+                  helperText={values.status === 'sel' && showErrors && 'Por favor, selecione um status.'}
                   label="Status"
                   margin="dense"
                   name="status"
@@ -498,6 +510,18 @@ const ManutencaoForm = props => {
       </form>
      
     </Card>
+  
+    <Backdrop
+      className={classes.backdrop}
+      open={loading}
+      >
+      <Card className={classes.loadingBlock}>
+        <CardContent>
+          <CircularProgress color="inherit" />
+        </CardContent>        
+      </Card>
+      </Backdrop>
+    </div>
   );
 };
 

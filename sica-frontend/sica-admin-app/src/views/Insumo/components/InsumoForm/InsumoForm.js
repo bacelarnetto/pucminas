@@ -16,7 +16,7 @@ import {
   CircularProgress,
   TextField,
 } from '@material-ui/core';
-
+import Backdrop from '@material-ui/core/Backdrop';
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker
@@ -31,7 +31,7 @@ import MomentUtils from '@date-io/moment';
 import 'moment/locale/pt-br';
 moment.locale('pt-br');
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
   root: {},
   button:{
     color:'#FFFFFF',
@@ -46,7 +46,14 @@ const useStyles = makeStyles(() => ({
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent:'center'
-  }  
+  }   ,
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: '#fff',
+  },
+  loadingBlock:{
+    zIndex: theme.zIndex.drawer + 2,
+  }
 }));
 
 const InsumoForm = props => {
@@ -142,6 +149,7 @@ const InsumoForm = props => {
   }
 
   return (
+    <div>
     <Card
       {...rest}
       className={clsx(classes.root, className)}
@@ -360,6 +368,19 @@ const InsumoForm = props => {
         </CardActions>
       </form>
     </Card>
+ 
+    <Backdrop
+      className={classes.backdrop}
+      open={loading}
+      >
+      <Card className={classes.loadingBlock}>
+        <CardContent>
+          <CircularProgress color="inherit" />
+        </CardContent>        
+      </Card>
+      </Backdrop>
+
+    </div>
   );
 };
 
