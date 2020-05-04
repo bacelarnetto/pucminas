@@ -1,8 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
-import {View, Text, ScrollView, StatusBar} from 'react-native';
+import io from "socket.io-client"
+import {
+  View, 
+  Text, 
+  ScrollView, 
+  StatusBar} from 'react-native';
 
 import styles from './styles';
+import globalTypes from './../../common/constants/GlobalTypes'
 import {BarragemService as service} from './../../servers/barragem';
 import RowDetail from '../../components/RowDetail';
 import Header from '../../components/Header';
@@ -10,15 +16,38 @@ import Alert from '../../components/Alert';
 
 export default function Home() {
   const [barragem, setBarragem] = useState({});
+  const [alert, setAlert] = useState(false);
 
   useEffect(() => {
     async function loadBarragem() {
       const email = await AsyncStorage.getItem('username');
       const response = await service.findBarragem(email);
       await setBarragem(response);
+      await setAlert(isRicoAlto(response));
     }
     loadBarragem();
   }, []);
+
+
+  const isRicoAlto = (barragem) => {
+    return barragem.categoriaRisco.codigo === 3 ? true : false;
+  }
+
+  const ativeAlert = async () => {   
+    const email = await AsyncStorage.getItem('username');   
+    const response = await service.findBarragem(email);
+    await setBarragem(response); 
+    setAlert(true);
+  };
+
+  useEffect(() => {
+    const url = globalTypes.url.ENDPONIT_SOCKET_ALERT;
+    const socket = io(url, { forceNode: true });;
+    socket.on("barragem", barragem =>{
+     console.log(barragem)
+     ativeAlert()
+    });  
+  }, [])
 
   const colorStatus = (id) => {
     let color = '';
@@ -37,13 +66,11 @@ export default function Home() {
 
   return (
     <ScrollView style={styles.container}>
-      <StatusBar barStyle="dark-content" />
+      <StatusBar barStyle="dark-content" translucent backgroundColor="transparent"/>
 
       <Header />
 
-      {barragem.categoriaRisco && barragem.categoriaRisco.codigo === 3 && (
-        <Alert />
-      )}
+       {alert && <Alert />  }
 
       <Text style={styles.title}>Bem-vindo!</Text>
       <Text style={styles.description}>

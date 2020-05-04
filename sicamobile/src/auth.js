@@ -1,12 +1,17 @@
-import {AsyncStorage} from 'react-native';
-export const isAuthenticated = () => {
-  const token = AsyncStorage.getItem('token');
-  const expirationDate = new Date(AsyncStorage.getItem('expirationDate'));
-  if (expirationDate <= new Date()) {
-    AsyncStorage.clear();
-    return false;
-  }
+import AsyncStorage from '@react-native-community/async-storage';
+import api from './servers/api';
+
+
+export const onSignOut = async () => {
+  await AsyncStorage.removeItem('token');
+  await AsyncStorage.clear;
+}
+
+
+export const isAuthenticated = async () => {
+  const token = await AsyncStorage.getItem('token');
   if (token !== null) {
+    api.defaults.headers.common['Authorization'] = token;
     return true;
   }
   return false;

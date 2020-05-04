@@ -8,7 +8,6 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',

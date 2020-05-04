@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-community/async-storage';
 import {
   ScrollView,
   StatusBar,
@@ -25,8 +26,8 @@ import RowForm from '../../components/RowForm';
 import { BarragemService as barragemService }  from './../../servers/barragem'
 import { MoradorService as moradorService }  from './../../servers/morador'
 
-export default function SingUp() {
-
+export default function AlterarDados() {
+  const [id, setId] = useState('');
   const [nome, setNome] = useState('');
   const [idade, setIdade] = useState('');
   const [email, setEmail] = useState('');
@@ -37,7 +38,6 @@ export default function SingUp() {
   const [telefone, setTelefone] = useState('');
   const [uf, setUf] = useState('sel');
   const [idBarragem, setIdBarragem] = useState('sel');
-  const [senha, setSenha] = useState('');
 
   const [showErrors, setShowErrors] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -49,23 +49,44 @@ export default function SingUp() {
   const navigation = useNavigation();
 
   function navigateBack() {
-    navigation.navigate('SignIn');
+    navigation.navigate('Home');
   }
 
   useEffect(() => {
-    async function loadBarragem() {
-     const list = await barragemService.findList()
-     setBarragens(list);
-    }
-    loadBarragem();
+    async function detalheMorador() {
+      const list = await barragemService.findList()
+      setBarragens(list);
+      const emailv = await AsyncStorage.getItem('username');
+      
+      const morador = await moradorService.findMoradorByEmail(emailv)
+      let codBarragem = 
+                     morador.barragem !== null && 
+                     morador.barragem !== '' && 
+                     morador.barragem !== undefined ? morador.barragem.id : 'sel'
+    
+       setId(morador.id || '');  
+       setNome(morador.nome|| ''); 
+       setIdade(morador.idade || ''); 
+       setEmail(morador.email || ''); 
+       setCidade(morador.cidade || ''); 
+       setEndereco(morador.endereco || ''); 
+       setBairro(morador.bairro || ''); 
+       setNumero(morador.numero || ''); 
+       setTelefone(morador.telefone || ''); 
+       setUf(morador.uf || 'sel'); 
+       setIdBarragem (codBarragem);    
+
+     }
+     detalheMorador();
   }, []);
 
   async function handleSave() {
     setLoading(true);
+    const emailv = await AsyncStorage.getItem('username');
+
     if( 
         validation.required(nome)||
         validation.required(idade)||
-        validation.required(senha)||
         validation.required(endereco)||
         validation.required(bairro)||
         validation.required(numero)||
@@ -84,10 +105,11 @@ export default function SingUp() {
       });
       setLoading(false);
     }else{
-      await moradorService.submitMorador({
+      await moradorService.alterarMorador({
+        id,
         nome,
         idade,
-        email, 
+        email: emailv, 
         cidade, 
         endereco, 
         bairro, 
@@ -95,28 +117,16 @@ export default function SingUp() {
         telefone, 
         uf, 
         idBarragem, 
-        senha, 
       }) ;        
 
-      setShowErrors(false);
+      
       showMessage({
         message: "Sucesso!",
         description: "Cadastro realizado.",
         type: "success",
       });
      
-      setNome('');
-      setIdade('');
-      setEmail('');
-      setCidade('');
-      setEndereco('');
-      setBairro('');
-      setNumero('');
-      setTelefone('');
-      setUf('sel');
-      setIdBarragem('sel');
-      setSenha('');
-
+      setShowErrors(false);
       setLoading(false);
     }
     
@@ -155,7 +165,7 @@ export default function SingUp() {
        
       </View>
       <View style={styles.detailPanelHeader}>
-        <Text  style={styles.detailPanelTitle} >Casdastro de Morador</Text>
+        <Text  style={styles.detailPanelTitle} >Alteração de Dados Pessoais</Text>
       </View>
       <View style={styles.detailPanel}>
         <RowForm>
@@ -176,7 +186,7 @@ export default function SingUp() {
             placeholderTextColor="#aac6a0"
             style={styles.input}
             placeholder="Idade"
-            value={idade}
+            value={String(idade)}
             onChangeText={setIdade}
             multiline={true}
             keyboardType={'numeric'}
@@ -185,42 +195,6 @@ export default function SingUp() {
           {showErrors && validation.required(idade) && 
           <Text style={{marginLeft: 10, color:'#BA1717', fontSize:11}}>
               {validation.required(idade)}
-          </Text>}
-        </RowForm>
-
-        <RowForm>
-          <TextInput
-            placeholderTextColor="#aac6a0"
-            style={styles.input}
-            placeholder="Senha"
-            autoCapitalize="none"
-            autoCorrect={false}            
-            secureTextEntry
-            value={senha}
-            onChangeText={setSenha}
-            underlineColorAndroid={showErrors && validation.required(senha) ? "#BA1717": "#115301" }
-          />
-          {showErrors && validation.required(senha) && 
-          <Text style={{marginLeft: 10, color:'#BA1717', fontSize:11}}>
-              {validation.required(senha)}
-          </Text>}
-        </RowForm>
-
-        <RowForm>
-          <TextInput
-            placeholderTextColor="#aac6a0"
-            style={styles.input}
-            placeholder="E-mail"
-            value={email}
-            onChangeText={setEmail}
-            multiline={true}
-            autoCapitalize="none"
-            underlineColorAndroid="#115301"
-            underlineColorAndroid={showErrors && validation.email(email) ? "#BA1717": "#115301" }
-          />
-          {showErrors && validation.email(email) && 
-          <Text style={{marginLeft: 10, color:'#BA1717', fontSize:11}}>
-              {validation.email(email)}
           </Text>}
         </RowForm>
 
@@ -324,6 +298,7 @@ export default function SingUp() {
             underlineColorAndroid="#115301"
           />
         </RowForm>
+
 
         <RowForm>
           <Picker

@@ -1,5 +1,4 @@
 import React, {useRef} from 'react';
-import AsyncStorage from '@react-native-community/async-storage';
 import {useNavigation} from '@react-navigation/native';
 
 import {View, Text, Image, TouchableOpacity} from 'react-native';
@@ -7,6 +6,7 @@ import Menu, {MenuItem, MenuDivider} from 'react-native-material-menu';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import logoImg from './../../assets/logo.png';
+import { onSignOut } from './../../auth';
 
 import styles from './styles';
 
@@ -21,9 +21,19 @@ export default function Header() {
 
   const handleLogout = async () => {
     hideMenu();
-    await AsyncStorage.clear();
+    await onSignOut();
     await navigation.navigate('SignIn');
   };
+
+  function navigateTrocarSenha() {
+    hideMenu();
+    navigation.navigate('TrocarSenha');
+  }
+
+  function navigateAlterarDados() {
+    hideMenu();
+    navigation.navigate('AlterarDados');
+  }
 
   return (
     <View style={styles.header}>
@@ -39,7 +49,11 @@ export default function Header() {
               </Text>
             </TouchableOpacity>
           }>
-          <MenuItem onPress={hideMenu}>
+          <MenuItem onPress={navigateTrocarSenha}>
+            <Icon name="lock" size={15} />
+            &nbsp;&nbsp;&nbsp;Atualizar senha
+          </MenuItem>
+          <MenuItem onPress={navigateAlterarDados}>
             <Icon name="edit" size={15} />
             &nbsp;&nbsp;&nbsp;Atualizar seu perfil
           </MenuItem>

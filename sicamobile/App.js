@@ -2,6 +2,7 @@ import 'react-native-gesture-handler';
 import React, {Component} from 'react';
 
 import {NavigationContainer} from '@react-navigation/native';
+import FlashMessage from "react-native-flash-message";
 
 import OneSignal from 'react-native-onesignal'; // Import package from node modules
 import Routes from './src/Routes';
@@ -42,6 +43,7 @@ export default class App extends Component {
     return (
       <NavigationContainer>
         <Routes />
+        <FlashMessage position="top" />
       </NavigationContainer>
     )
   }

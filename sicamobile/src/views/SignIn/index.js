@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
-import AsyncStorage from '@react-native-community/async-storage';
 import {
   View,
   Text,
@@ -17,6 +16,7 @@ import backgroundImage from '../../assets/login.png'
 import styles from './styles';
 
 import {AuthService as authService} from './../../servers/auth';
+import { isAuthenticated } from './../../auth';
 
 export default function SingIn() {
   const navigation = useNavigation();
@@ -30,6 +30,7 @@ export default function SingIn() {
     try {
       setLoading(true);
       await authService.authUser(email, password);
+      await isAuthenticated();
       await navigation.navigate('Home');
       setLoading(false);
       setMessage('');
@@ -39,6 +40,10 @@ export default function SingIn() {
       setLoading(false);
       setMessage(`${error.message}`);
     }
+  }
+
+  const handleNewAccount = () =>{
+    navigation.navigate('SignUp');
   }
 
   const renderMessage = () => {
@@ -97,6 +102,12 @@ export default function SingIn() {
         onChangeText={setPassword}
       />
       {renderButton()}
+
+      <TouchableOpacity style={{ padding: 10 }} onPress={handleNewAccount}>
+          <Text style={styles.buttonText}>
+              {'Não possui uma conta? Inscrever-se.'}
+          </Text>
+      </TouchableOpacity>
     </ImageBackground>
   );
 }
