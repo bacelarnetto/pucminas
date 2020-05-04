@@ -11,7 +11,6 @@ Sistema de Controle Ambiental - SCA
 [Spring Cloud](https://spring.io/projects/spring-cloud)<br/>
 [Node.js](https://nodejs.org/en/)<br/>
 [Camunda](https://camunda.com/)<br/>
-[Grafana](https://grafana.com/)/[Prometheus](https://prometheus.io/)<br/>
 
 ### DevOps
 [Maven](https://maven.apache.org/)<br/>
@@ -31,6 +30,10 @@ Sistema de Controle Ambiental - SCA
 [Redux](https://redux.js.org/)<br/>
 [Redux-saga](https://redux-saga.js.org/)<br/>
 [Material-ui](https://material-ui.com/)<br/>
+
+### Mobile
+[React Native](https://react-native.org/)<br/>
+[OneSignal](https://onesignal.com/)<br/>
 
 ## Instalação
 
@@ -77,8 +80,6 @@ Para mais informações, acesse: https://www.portainer.io/ e https://portainer.r
 #### Auth
 
 #### Ativo
-
-#### Barragem
 
 #### Workflow
 
