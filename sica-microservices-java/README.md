@@ -16,10 +16,6 @@ Zuul API Gateway. Ele lida com todas as solicitações e executa o roteamento di
 
 ## Monitoramento
 
-## Hystrix-dashboard
-
-
-
 ## Hystrix Dashboard
 URL: http://localhost:7979/hystrix/
 

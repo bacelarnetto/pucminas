@@ -113,6 +113,9 @@ URL: http://localhost:5050/
 ## Redis
 URL: http://localhost:3333/admin/queues
 
+## Hystrix Dashboard
+URL: http://localhost:7979/hystrix/
+
 ## Portainer (Instalação Opcional).
 URL: http://localhost:9000/
 
