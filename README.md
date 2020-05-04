@@ -104,6 +104,9 @@ URL: http://localhost:3000/
 ## Módulo web de cadastro de moradores
 URL: http://localhost:3001/
 
+## Eureka - Service Discovery
+URL: http://localhost:8081/
+
 ## RabbitMQ
 URL: http://localhost:9080/
 
