@@ -57,24 +57,32 @@ public class MonitoramentoService {
 				"Alterando Status da Barragem. Processo feito via " + " sensor. ID: " + monitoramento.getIdBarragem());
 		barragemService.mudaStatusRisco(monitoramento.getIdBarragem(), monitoramento.getCodigoCriticidade());
 		if (CategoriaRiscoEnum.ALTO.equals(CategoriaRiscoEnum.toEnum(monitoramento.getCodigoCriticidade()))) {
-			notificarMorador(monitoramento.getIdBarragem().longValue());
+			try {
+				notificarMorador(monitoramento.getIdBarragem().longValue());
+			} catch (InterruptedException e) {
+				logger.warn("Erro no envio de mesagens:" + e.getMessage());
+			}
 		}
 	}
 
 	public String enviarAlertaManual(EnvioAlertaDTO dto) {
 		logger.info("Alterando Status da Barragem para ALTO. Processo" + " feito via TELA. ID: " + dto.getIdBarragem());
 		barragemService.mudaStatusRisco(dto.getIdBarragem(), CategoriaRiscoEnum.ALTO.getCodigo());
-		notificarMorador(dto.getIdBarragem().longValue());
+		try {
+			notificarMorador(dto.getIdBarragem().longValue());
+		} catch (InterruptedException e) {
+			logger.warn("Erro no envio de mesagens:" + e.getMessage());
+		}
 		return "OK";
 	}
 
-	private void notificarMorador(Long idBarragem) {
+	private void notificarMorador(Long idBarragem) throws InterruptedException {
 		Barragem barragem = barragemService.find(idBarragem);
 		barragemProducer.produce(new BarragemAlertaDTO(barragem.getId(), barragem.getDescricao()));
-		// intenção é fazer um batch
 		List<MoradorAlertaDTO> moradores = moradorRepository.findListMoradorAlertaByIdBarragem(idBarragem);
 		for (MoradorAlertaDTO morador : moradores) {
 			moradorProducer.produce(morador);
+			Thread.sleep(200);
 		}
 	}
 
