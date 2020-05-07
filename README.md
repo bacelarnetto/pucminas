@@ -62,7 +62,7 @@ DOCKER, JAVA, MAVEN, NODE.js.
 2 - Abrir o diretório "pucminas/sica-frontend/" via linha de comando.<br/>
 3 - Executar o comando `docker-compose -up` ou `docker-compose -up --build`<br/>
 
-#### Portainer - Gerenciamento Docker WEB (Instalação Opcional).
+#### Portainer - Gerenciamento Docker WEB.
 Solução para gerenciamento de recursos como imagens e containers Docker, networks e volumes.<br/>
 ##### Instalação:
 `$ docker volume create portainer_data`<br/>
@@ -119,7 +119,7 @@ URL: http://localhost:3333/admin/queues
 ## Hystrix Dashboard
 URL: http://localhost:7979/hystrix/
 
-## Portainer (Instalação Opcional).
+## Portainer.
 URL: http://localhost:9000/
 
 
