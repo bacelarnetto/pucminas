@@ -11,6 +11,7 @@ Sistema de Controle Ambiental - SCA
 [Spring Cloud](https://spring.io/projects/spring-cloud)<br/>
 [Node.js](https://nodejs.org/en/)<br/>
 [Camunda](https://camunda.com/)<br/>
+[Socket.io](https://socket.io/)<br/>
 
 ### DevOps
 [Maven](https://maven.apache.org/)<br/>
@@ -30,10 +31,12 @@ Sistema de Controle Ambiental - SCA
 [Redux](https://redux.js.org/)<br/>
 [Redux-saga](https://redux-saga.js.org/)<br/>
 [Material-ui](https://material-ui.com/)<br/>
+[Socket.io](https://socket.io/)<br/>
 
 ### Mobile
 [React Native](https://react-native.org/)<br/>
 [OneSignal](https://onesignal.com/)<br/>
+[Socket.io](https://socket.io/)<br/>
 
 ## Instalação
 
