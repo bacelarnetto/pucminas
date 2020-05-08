@@ -1,11 +1,9 @@
 pipeline{
-    agent{
-        label "node"
-    }
+    agent any
     stages{
         stage("Just Test"){
             steps{
-                sh "deu certo"
+                sh "deu certo!!!"
             }
         }
     }   
