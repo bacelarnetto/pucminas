@@ -3,7 +3,7 @@ pipeline{
     stages{
         stage("Build Backend Java"){
             steps{
-                sh "sudo su && cd sica-microservices-java && mvn clean install -Dmaven.test.skip=true"
+                sh "sudo gpasswd -a $USER docker && cd sica-microservices-java && mvn clean install -Dmaven.test.skip=true"
             }
         }
     }   
