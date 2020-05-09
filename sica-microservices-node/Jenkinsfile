@@ -1,14 +1,10 @@
 pipeline{
     agent any
     stages{
-
-        stage('Build') {
-            environment { 
-                    AOEU= sh (returnStdout: true, script: 'echo aoeu').trim()
-                }
-            steps {
-                sh 'cd sica-microservices-node && env'
-                sh 'cd sica-microservices-node && echo $AOEU'
+        stage("Deploy Back-end Node.js"){
+            steps{
+                sh "cp /home/jrbn/work/pucminas/sica-microservices-node/comunicacao/.env /var/lib/jenkins/workspace/Back-End-Node/sica-microservices-node/comunicacao/.env"
+               // sh "cd sica-microservices-node && docker-compose up -d --build"
             }
         }
     }   
