@@ -3,7 +3,7 @@ pipeline{
     stages{
         stage("Build Front-end React"){
             steps{
-                echo "Build!!! gerando os arquivos .env com as variáveis ambiente"
+                echo ">>> Build!!! gerando os arquivos .env com as variáveis ambiente"
                 sh "sudo -S cp /home/jrbn/work/pucminas/sica-frontend/sica-admin-app/.env /var/lib/jenkins/workspace/Front-End-React/sica-frontend/sica-admin-app" 
                 sh "sudo chmod 777 /var/lib/jenkins/workspace/Front-End-React/sica-frontend/sica-admin-app/.env" 
                 sh "sudo -S cp /home/jrbn/work/pucminas/sica-frontend/sica-morador-app/.env /var/lib/jenkins/workspace/Front-End-React/sica-frontend/sica-morador-app"
@@ -12,6 +12,7 @@ pipeline{
         }
         stage("Deploy Front-end React"){
             steps{
+                echo ">>> Deploy!!!"
                 sh "cd sica-frontend && docker-compose up -d --build"
             }
         }

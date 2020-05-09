@@ -3,11 +3,13 @@ pipeline{
     stages{
         stage("Build Back-end Java"){
             steps{
+                echo "Build!!! gerando as imagens no docker"
                 sh "cd sica-microservices-java && mvn clean install -Dmaven.test.skip=true"
             }
         }
         stage("Deploy Back-end Java"){
             steps{
+                echo ">>> Deploy!!!"
                 sh "cd sica-microservices-java && docker-compose build"
                 sh "cd sica-microservices-java && docker-compose up -d"
             }
