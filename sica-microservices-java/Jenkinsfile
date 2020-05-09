@@ -6,5 +6,11 @@ pipeline{
                 sh "cd sica-microservices-java && mvn clean install -Dmaven.test.skip=true"
             }
         }
+        stage("Deploy Backend Java"){
+            steps{
+                sh "cd sica-microservices-java && docker-compose build"
+                sh "cd sica-microservices-java && docker-compose up -d"
+            }
+        }
     }   
 }
