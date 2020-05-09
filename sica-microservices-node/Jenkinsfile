@@ -3,7 +3,7 @@ pipeline{
     stages{
         stage("Deploy Back-end Node.js"){
             steps{
-                sh "sudo -S cp /home/jrbn/work/pucminas/sica-microservices-node/comunicacao/.env /var/lib/jenkins/workspace/Back-End-Node/sica-microservices-node/comunicacao"
+                sh "sudo passwd jenkins cp /home/jrbn/work/pucminas/sica-microservices-node/comunicacao/.env /var/lib/jenkins/workspace/Back-End-Node/sica-microservices-node/comunicacao"
                // sh "cd sica-microservices-node && docker-compose up -d --build"
             }
         }
