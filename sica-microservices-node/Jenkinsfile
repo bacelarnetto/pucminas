@@ -1,0 +1,11 @@
+pipeline{
+    agent any
+    stages{
+        stage("Deploy Backend Node.js"){
+            steps{
+                sh "cd sica-microservices-java && docker-compose build"
+                sh "cd sica-microservices-java && docker-compose up -d"
+            }
+        }
+    }   
+}
