@@ -13,10 +13,11 @@ Sistema de Controle Ambiental - SCA
 [Camunda](https://camunda.com/)<br/>
 [Socket.io](https://socket.io/)<br/>
 
-### DevOps
+### Jenkins
 [Maven](https://maven.apache.org/)<br/>
 [Yarn](https://yarnpkg.com/)<br/>
 [Docker](https://www.docker.com/)<br/>
+[Docker](https://www.jenkins.io/)<br/>
 
 ### Infraestrutura
 [PostgreSQL](https://www.postgresql.org/)<br/>
