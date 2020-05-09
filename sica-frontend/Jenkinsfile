@@ -3,8 +3,7 @@ pipeline{
     stages{
         stage("Deploy Front-end"){
             steps{
-                sh "cd sica-frontend && docker-compose build"
-                sh "cd sica-frontend && docker-compose up -d"
+                sh "cd sica-frontend && docker-compose up -d --build"
             }
         }
     }   

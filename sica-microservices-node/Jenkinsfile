@@ -3,8 +3,7 @@ pipeline{
     stages{
         stage("Deploy Back-end Node.js"){
             steps{
-                sh "cd sica-microservices-node && docker-compose build"
-                sh "cd sica-microservices-node && docker-compose up -d"
+                sh "cd sica-microservices-node && docker-compose up -d --build"
             }
         }
     }   
