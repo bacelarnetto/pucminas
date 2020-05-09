@@ -3,12 +3,14 @@ pipeline{
     stages{
         stage("Build Back-end Node.js"){
             steps{
-                sh "sudo chmod 777 /home/jrbn/work/pucminas/sica-microservices-node/comunicacao/.env && sudo -S cp /home/jrbn/work/pucminas/sica-microservices-node/comunicacao/.env /var/lib/jenkins/workspace/Back-End-Node/sica-microservices-node/comunicacao" 
+                sh "sudo -S cp /home/jrbn/work/pucminas/sica-microservices-node/comunicacao/.env /var/lib/jenkins/workspace/Back-End-Node/sica-microservices-node/comunicacao" 
+                sh "sudo chmod 777 /var/lib/jenkins/workspace/Back-End-Node/sica-microservices-node/comunicacao/.env" 
             }
         }
         stage("Deploy Back-end Node.js"){
-            steps{               
-                sh "cd sica-microservices-node && docker-compose up -d --build"
+            steps{ 
+                echo "Deploy"              
+               // sh "cd sica-microservices-node && docker-compose up -d --build"
             }
         }
     }   
