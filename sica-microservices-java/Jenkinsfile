@@ -1,12 +1,12 @@
 pipeline{
     agent any
     stages{
-        stage("Build Backend Java"){
+        stage("Build Back-end Java"){
             steps{
                 sh "cd sica-microservices-java && mvn clean install -Dmaven.test.skip=true"
             }
         }
-        stage("Deploy Backend Java"){
+        stage("Deploy Back-end Java"){
             steps{
                 sh "cd sica-microservices-java && docker-compose build"
                 sh "cd sica-microservices-java && docker-compose up -d"

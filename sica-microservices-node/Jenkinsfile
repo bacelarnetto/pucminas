@@ -1,7 +1,7 @@
 pipeline{
     agent any
     stages{
-        stage("Deploy Backend Node.js"){
+        stage("Deploy Back-end Node.js"){
             steps{
                 sh "cd sica-microservices-node && docker-compose build"
                 sh "cd sica-microservices-node && docker-compose up -d"
