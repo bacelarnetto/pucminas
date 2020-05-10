@@ -27,19 +27,18 @@ Módulo Mobile de cadastro utilizado pelos próprios moradores para visual
      URL: https://socket.io/<br/>
      
 ### Telas
+<kbd><img src="/img/mobile_login.png"></kbd><br/>
 
-<img src="/img/mobile_login.png"><br/>
+<kbd><img src="/img/mobile_cadastro.png"></kbd><br/>
 
-<img src="/img/mobile_cadastro.png"><br/>
+<kbd><img src="/img/mobile_home.png"></kbd><br/>
 
-<img src="/img/mobile_home.png"><br/>
+<kbd><img src="/img/mobile_senha.png"></kbd><br/>
 
-<img src="/img/mobile_senha.png"><br/>
+<kbd><img src="/img/mobile_dados.png"></kbd><br/>
 
-<img src="/img/mobile_dados.png"><br/>
+<kbd><img src="/img/mobile_push.png"></kbd><br/>
 
-<img src="/img/mobile_push.png"><br/>
-
-<img src="/img/mobile_alert.png"><br/>
+<kbd><img src="/img/mobile_alert.png"></kbd><br/>
 
 
