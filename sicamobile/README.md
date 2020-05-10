@@ -1,10 +1,8 @@
-# Módulo de Moradores
-Módulo Mobile de cadastro utilizado pelos próprios moradores para visualizar as informações das barragens próximas das suas residências e receberem alertas.<br/>
+# Aplicativo de Moradores
+Aplicativo de cadastro utilizado pelos próprios moradores para visualizar as informações das barragens próximas das suas residências e receberem alertas.<br/>
 
 ## Instalação
-`yarn` <br/>
-
-
+`react-native run-android` <br/>
 
 ## Principais bibliotecas e frameworks usados.
 
