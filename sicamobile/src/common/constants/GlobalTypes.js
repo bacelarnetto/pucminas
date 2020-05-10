@@ -1,6 +1,6 @@
 const url = {
   BASE: 'http://192.168.0.9/api',
-  ENDPONIT_SOCKET_ALERT: 'http://192.168.0.7:3335',  
+  ENDPONIT_SOCKET_ALERT: 'http://192.168.0.9:3335',  
   LOGIN: '/auth/login',
   BARRAGEM_MORADOR: '/monitoramento/public/morador/',
   BARRAGEM_LIST: '/monitoramento/public/barragem/',

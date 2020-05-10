@@ -42,7 +42,7 @@ export default function Home() {
 
   useEffect(() => {
     const url = globalTypes.url.ENDPONIT_SOCKET_ALERT;
-    const socket = io(url, { forceNode: true });;
+    const socket = io(url, { forceNode: true });
     socket.on("barragem", barragem =>{
      console.log(barragem)
      ativeAlert()
