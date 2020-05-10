@@ -1,6 +1,6 @@
 const url = {
-  BASE: process.env.REACT_APP_BACKEND_SICA || 'http://localhost/api',  
-  ENDPONIT_SOCKET_ALERT: process.env.REACT_APP_BACKEND_SICA_SOCKET_ALERT || 'http://localhost:3335',
+  BASE: process.env.REACT_APP_BACKEND_SICA || 'http://192.168.56.101/api',  
+  ENDPONIT_SOCKET_ALERT: process.env.REACT_APP_BACKEND_SICA_SOCKET_ALERT || 'http://192.168.56.101:3335',
   LOGIN: '/auth/login',
   // API DE ATIVOS
   ATIVO_MARCA_LIST_PAGE: '/ativo/marca/list-page?',
