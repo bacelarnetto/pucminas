@@ -85,7 +85,7 @@ Para mais informações, acesse: https://www.portainer.io/ e https://portainer.r
 
 #### Ativo
 
-#### Workflow
+#### Processos Minerários - Workflow
 
 #### Monitoramento
 
