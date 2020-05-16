@@ -79,7 +79,7 @@ public class SecurityTokenConfig extends WebSecurityConfigurerAdapter{
 			.antMatchers(PRIVATE_MATCHERS_FUNCTIONARY).hasAnyRole("ADMIN", "FUNCTIONARY")
             .antMatchers(PRIVATE_MATCHERS_ENGINEER).hasAnyRole("ADMIN", "ENGINEER") 
             .antMatchers(PRIVATE_MATCHERS_PROVIDER).hasAnyRole("ADMIN", "PROVIDER")  
-            .antMatchers(PRIVATE_MATCHERS_RESIDENT).hasAnyRole("ADMIN", "ENGINEER", "RESIDENT")
+            .antMatchers(PRIVATE_MATCHERS_RESIDENT).hasAnyRole("ADMIN", "FUNCTIONARY", "ENGINEER", "RESIDENT")
             .antMatchers(PRIVATE_MATCHERS_CIVILDEFENSE).hasAnyRole("ADMIN", "CIVILDEFENSE")
 			.anyRequest().authenticated();
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
