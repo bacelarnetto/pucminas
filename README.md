@@ -105,7 +105,7 @@ Mais informação sobre api de [comunicação](/sica-microservices-node/comunica
 ## Módulo web administrativo
 URL: http://localhost:3000/
 
-## Módulo web de cadastro de moradores
+## Módulo web de moradores
 URL: http://localhost:3001/
 
 ## Eureka - Service Discovery
