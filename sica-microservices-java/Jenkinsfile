@@ -3,8 +3,14 @@ pipeline{
     stages{
         stage("Build Back-end Java"){
             steps{
-                echo "Build!!! gerando as imagens no docker"
+                echo "Build!!! compilando o projeto e gerando as imagens no docker"
                 sh "cd sica-microservices-java && mvn clean install -Dmaven.test.skip=true"
+            }
+        }
+         stage("Unit Tests Back-end Java"){
+            steps{
+                echo "Teste!!! executando os testes unitarios"
+                sh "cd sica-microservices-java && mvn test"
             }
         }
         stage("Deploy Back-end Java"){
