@@ -3,10 +3,9 @@ pipeline {
   agent any
 
   stages {
-        stage('Test') {
+        stage('Compose Infra') {
             steps {
-                sh 'pwd'
-                sh 'docker-compose -f docker-compose.yml up'
+              sh 'cd sica-infra && docker-compose up'
             }
         }
     }
