@@ -5,7 +5,7 @@ pipeline {
   stages {
         stage('Compose Infra') {
             steps {
-              sh 'cd sica-infra && docker-compose up'
+              sh 'cd sica-infra && docker-compose up &'
             }
         }
     }
