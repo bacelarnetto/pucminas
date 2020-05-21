@@ -3,6 +3,7 @@ pipeline{
     stages{
         stage("Build Back-end Java"){
             steps{
+                sh 'export PATH=/home/flavio/applications/jdk-11:$PATH'
                 echo "Build!!! compilando o projeto e gerando as imagens no docker"
                 sh "cd sica-microservices-java && mvn clean install -Dmaven.test.skip=true"
             }
@@ -19,5 +20,5 @@ pipeline{
                 sh "cd sica-microservices-java && docker-compose up -d --build"
             }
         }
-    }   
+    }
 }
