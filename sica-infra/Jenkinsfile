@@ -1,11 +1,9 @@
 pipeline {
-    agent {
-        docker { image 'node:7-alpine' }
-    }
-    stages {
+  stages {
         stage('Test') {
             steps {
-                sh 'node --version'
+                sh 'export JAVA_HOME='/home/flavio/applications/jdk-11'
+                sh 'java -version'
             }
         }
     }
