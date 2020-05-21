@@ -7,6 +7,11 @@ pipeline {
             steps {
                 sh 'export JAVA_HOME="/home/flavio/applications/jdk-11"'
                 sh 'java -version'
+                sh 'export PATH="/home/flavio/applications/jdk-11";$PATH'
+                sh 'java -version'
+
+                sh 'pwd'  
+
             }
         }
     }
