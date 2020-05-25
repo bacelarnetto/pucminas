@@ -5,6 +5,7 @@ pipeline {
   stages {
         stage('Compose Infra') {
             steps {
+              sh 'docker stop $(docker ps -aq)'
               sh 'cd sica-infra && docker-compose up &'
             }
         }
