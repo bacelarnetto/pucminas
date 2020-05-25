@@ -3,10 +3,10 @@ pipeline {
   agent any
 
   stages {
-        stage('Compose Infra') {
+        stage(Building Infra') {
             steps {
               sh 'docker stop $(docker ps -aq)'
-              sh 'cd sica-infra && docker-compose up &'
+              sh 'cd sica-infra && docker-compose up'
             }
         }
     }
