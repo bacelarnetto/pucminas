@@ -2,7 +2,9 @@
 Aplicativo de cadastro utilizado pelos próprios moradores para visualizar as informações das barragens próximas das suas residências e receberem alertas.<br/>
 
 ## Instalação
-`react-native run-android` <br/>
+1 - `yarn` <br/>
+
+2 - `react-native run-android` <br/>
 
 ## Principais bibliotecas e frameworks usados.
 
