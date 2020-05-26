@@ -1,7 +1,7 @@
 pipeline{
     agent any
     stages{
-        stage("Build Front-end React"){
+        stage("Build Front-End"){
             steps{
                 echo ">>> Build!!! gerando os arquivos .env com as variáveis ambiente"
                 sh "sudo cp ~/applications/pucminas/sica-frontend/sica-admin-app/.env /var/lib/jenkins/jobs/sica-front/workspace/sica-frontend/sica-admin-app"
