@@ -10,7 +10,7 @@ pipeline{
                sh  'sudo cp ~/applications/pucminas/sica-frontend/sica-admin-app/admin.env /var/lib/jenkins/jobs/sica-front/workspace/sica-frontend/sica-admin-app'
 
                 echo " Build : aplicando permissionamento arquivo"
-                sh "'sudo chmod 777 /var/lib/jenkins/jobs/sica-front/workspace/sica-frontend/sica-admin-app/admin.env'
+                sh 'sudo chmod 777 /var/lib/jenkins/jobs/sica-front/workspace/sica-frontend/sica-admin-app/admin.env'
               }
         }
 
