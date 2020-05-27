@@ -7,7 +7,7 @@ pipeline{
                 echo "  Build : copiando arquivos .env "
                 sh 'pwd'
 
-               sh  'sudo cp sica-admin-app/admin.env /var/lib/jenkins/jobs/sica-front/workspace/sica-frontend/sica-admin-app'
+               sh  'sudo cp /home/flavio/applications/pucminas/sica-frontend/sica-admin-app/admin.env sica-admin-app'
 
                 echo " Build : aplicando permissionamento arquivo"
                 sh 'sudo chmod 777 /var/lib/jenkins/jobs/sica-front/workspace/sica-frontend/sica-admin-app/admin.env'
