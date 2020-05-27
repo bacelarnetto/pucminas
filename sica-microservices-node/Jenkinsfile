@@ -5,9 +5,9 @@ pipeline{
             steps{
                 echo "Build!!! gerando os arquivos .env com as variáveis ambiente"
                 sh "sudo -S cp /home/flavio/applications/pucminas/sica-microservices-node/comunicacao/*.env /var/lib/jenkins/jobs/sica-node/workspace/sica-microservices-node/comunicacao"
-                sh "sudo chmod 777 /var/lib/jenkins/workspace/Back-End-Node/sica-microservices-node/comunicacao/.env"
+                sh "sudo chmod 777 /var/lib/jenkins/jobs/sica-node/workspace/sica-microservices-node/comunicacao/*.env"
                 sh "sudo -S cp /home/flavio/applications/pucminas/sica-microservices-node/seguranca/.env /var/lib/je  nkins/jobs/sica-node/workspace/sica-microservices-node  /seguranca"
-                sh "sudo chmod 777 /var/lib/jenkins/workspace/Back-End-Node/sica-microservices-node/seguranca/.env"
+                sh "sudo chmod 777 /var/lib/jenkins/jobs/sica-node/workspace/sica-microservices-node/seguranca/*.env"
             }
         }
         stage("Deploy Back-end Node.js"){
