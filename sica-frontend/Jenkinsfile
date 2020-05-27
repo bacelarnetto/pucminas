@@ -3,10 +3,8 @@ pipeline{
     stages{
         stage("Build Front-End"){
             steps{
-
                 echo "  Build : copiando arquivos .env "
-                sh 'cd ~'
-                sh  'sudo cp applications/pucminas/sica-frontend/sica-admin-app/admin.env sica-admin-app'
+                sh  'sudo cp /home/flavio/applications/pucminas/sica-frontend/sica-admin-app/admin.env sica-admin-app'
                 echo " Build : aplicando permissionamento arquivo"
                 sh 'sudo chmod 777 /var/lib/jenkins/jobs/sica-front/workspace/sica-frontend/sica-admin-app/admin.env'
               }
@@ -15,6 +13,7 @@ pipeline{
         stage("Deploy Front-end React"){
             steps{
                 echo ">>> Deploy!!!"
+                sh 'pwd'
                 sh "cd sica-frontend && docker-compose up -d --build"
             }
         }
