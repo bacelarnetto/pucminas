@@ -1,5 +1,5 @@
 # Arquitetura de Software - PUC Minas
-### Prova de Conceito do projeto de conclusão do curso de Pós-Graduação em Arquiterura de Sofware Distribuido da PUC Minas 
+### Prova de Conceito do projeto de conclusão do curso de Pós-Graduação em Arquitetura de Software Distribuído da PUC Minas 
 
 ## Escopo
 Sistema de Controle Ambiental - SCA
