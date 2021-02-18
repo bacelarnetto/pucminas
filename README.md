@@ -33,7 +33,7 @@ Sistema de Controle Ambiental - SCA
 [Redux-saga](https://redux-saga.js.org/)<br/>
 [Material-ui](https://material-ui.com/)<br/>
 [Socket.io](https://socket.io/)<br/>
-[Node.js](https://nodejs.org/en/)<br/> Importante! usar a versão (v12.16.1) 
+[Node.js](https://nodejs.org/en/) Importante! usar a versão (v12.16.1) <br/>
 
 ### Mobile
 [React Native](https://react-native.org/)<br/>
