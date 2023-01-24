@@ -9,7 +9,7 @@ Sistema de Controle Ambiental - SCA
 [Java](https://java.com/pt_BR/)<br/>
 [Spring Boot](https://spring.io/projects/spring-boot)<br/>
 [Spring Cloud](https://spring.io/projects/spring-cloud)<br/>
-[Node.js](https://nodejs.org/en/)<br/> (v12.16.1)
+[Node.js](https://nodejs.org/en/)(v12.16.1)<br/> 
 [Camunda](https://camunda.com/)<br/>
 [Socket.io](https://socket.io/)<br/>
 
