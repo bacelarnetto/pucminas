@@ -16,13 +16,13 @@ import br.com.sca.ativo.model.Fornecedor;
 @Repository
 public interface FornecedorRepository extends JpaRepository<Fornecedor, Long> {
 	
-	@Query(value = "SELECT f FROM Fornecedor f WHERE f.status = '1' ")
+	@Query(value = "SELECT f FROM Fornecedor f WHERE f.status = 1 ")
 	Page<Fornecedor> findListFornecedor(Pageable pageable);
 	
-	@Query(value = "SELECT f FROM Fornecedor f WHERE f.status = '1' AND lower(f.nome) like lower(concat('%', :nome,'%'))")
+	@Query(value = "SELECT f FROM Fornecedor f WHERE f.status = 1 AND lower(f.nome) like lower(concat('%', :nome,'%'))")
 	Page<Fornecedor> findListFornecedorByNome(@Param("nome")String nome, Pageable pageable);
 	
-	@Query(value = "SELECT f FROM Fornecedor f WHERE f.status = '1' ")
+	@Query(value = "SELECT f FROM Fornecedor f WHERE f.status = 1 ")
 	public List<Fornecedor> findListAll();
 	
 }

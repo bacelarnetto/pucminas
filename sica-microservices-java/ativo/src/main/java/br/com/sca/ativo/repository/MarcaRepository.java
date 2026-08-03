@@ -16,13 +16,13 @@ import br.com.sca.ativo.model.Marca;
 @Repository
 public interface MarcaRepository extends JpaRepository<Marca, Long> {
 	
-	@Query(value = "SELECT m FROM Marca m WHERE m.status = '1' ")
+	@Query(value = "SELECT m FROM Marca m WHERE m.status = 1 ")
 	Page<Marca> findListMarca(Pageable pageable);
 	
-	@Query(value = "SELECT m FROM Marca m WHERE m.status = '1' AND lower(m.nome) like lower(concat('%', :nome,'%'))")
+	@Query(value = "SELECT m FROM Marca m WHERE m.status = 1 AND lower(m.nome) like lower(concat('%', :nome,'%'))")
 	Page<Marca> findListMarcaByNome(@Param("nome")String nome, Pageable pageable);
 	
-	@Query(value = "SELECT m FROM Marca m WHERE m.status = '1' ")
+	@Query(value = "SELECT m FROM Marca m WHERE m.status = 1 ")
 	public List<Marca> findListAll();
 	
 }

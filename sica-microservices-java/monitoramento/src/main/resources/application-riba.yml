@@ -15,7 +15,7 @@ spring:
     name: monitoramento
 
   rabbitmq:
-    host: 192.168.56.101
+    host: localhost
     port: 5672
     username: guest
     password: guest
@@ -37,7 +37,7 @@ spring:
   datasource:
     initialization-mode: always
     platform: postgres
-    url: jdbc:postgresql://192.168.56.101:5433/sica_barragem
+    url: jdbc:postgresql://localhost:5433/sica_barragem
     driver-class-name: org.postgresql.Driver
     username: root
     password: 12345 

@@ -1,16 +1,16 @@
 package br.com.sca.token.config;
 
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletResponse;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
 
 
-public class SecurityTokenConfig extends WebSecurityConfigurerAdapter{
+public class SecurityTokenConfig {
 		
 	
 	private static final String[] PUBLIC_MATCHERS = {
@@ -24,6 +24,7 @@ public class SecurityTokenConfig extends WebSecurityConfigurerAdapter{
 			"/**/swagger-resources/**", 
 			"/**/webjars/springfox-swagger-ui/**", 
 			"/**/v2/api-docs/**",
+			"/**/v3/api-docs/**",
 			"/monitoramento/defesa-civil/**"
 	};
 
@@ -66,24 +67,23 @@ public class SecurityTokenConfig extends WebSecurityConfigurerAdapter{
 			"/monitoramento/defesacivil/**"
 	};
 	
-	
-
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {		
+	@Bean
+	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.cors().and().csrf().disable();
-		http.authorizeRequests()
-			.antMatchers(HttpMethod.POST, PUBLIC_MATCHERS_POST).permitAll()
-			.antMatchers(HttpMethod.GET, PUBLIC_MATCHERS_GET).permitAll()
-			.antMatchers(PUBLIC_MATCHERS).permitAll()
-			.antMatchers(PRIVATE_MATCHERS_ADMIN).hasRole("ADMIN")
-			.antMatchers(PRIVATE_MATCHERS_FUNCTIONARY).hasAnyRole("ADMIN", "FUNCTIONARY")
-            .antMatchers(PRIVATE_MATCHERS_ENGINEER).hasAnyRole("ADMIN", "ENGINEER") 
-            .antMatchers(PRIVATE_MATCHERS_PROVIDER).hasAnyRole("ADMIN", "PROVIDER")  
-            .antMatchers(PRIVATE_MATCHERS_RESIDENT).hasAnyRole("ADMIN", "FUNCTIONARY", "ENGINEER", "RESIDENT")
-            .antMatchers(PRIVATE_MATCHERS_CIVILDEFENSE).hasAnyRole("ADMIN", "CIVILDEFENSE")
-			.anyRequest().authenticated();
+		http.authorizeHttpRequests(authorize -> authorize
+			.requestMatchers(HttpMethod.POST, PUBLIC_MATCHERS_POST).permitAll()
+			.requestMatchers(HttpMethod.GET, PUBLIC_MATCHERS_GET).permitAll()
+			.requestMatchers(PUBLIC_MATCHERS).permitAll()
+			.requestMatchers(PRIVATE_MATCHERS_ADMIN).hasRole("ADMIN")
+			.requestMatchers(PRIVATE_MATCHERS_FUNCTIONARY).hasAnyRole("ADMIN", "FUNCTIONARY")
+            .requestMatchers(PRIVATE_MATCHERS_ENGINEER).hasAnyRole("ADMIN", "ENGINEER") 
+            .requestMatchers(PRIVATE_MATCHERS_PROVIDER).hasAnyRole("ADMIN", "PROVIDER")  
+            .requestMatchers(PRIVATE_MATCHERS_RESIDENT).hasAnyRole("ADMIN", "FUNCTIONARY", "ENGINEER", "RESIDENT")
+            .requestMatchers(PRIVATE_MATCHERS_CIVILDEFENSE).hasAnyRole("ADMIN", "CIVILDEFENSE")
+			.anyRequest().authenticated());
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		http.exceptionHandling().authenticationEntryPoint((req, resp, e) -> resp.sendError(HttpServletResponse.SC_UNAUTHORIZED));
+		return http.build();
 	}
 		
 	@Bean

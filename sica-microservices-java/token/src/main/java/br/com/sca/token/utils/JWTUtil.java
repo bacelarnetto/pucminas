@@ -11,11 +11,12 @@ import org.springframework.stereotype.Component;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
 
 @Component
 public class JWTUtil {
 	
-	@Value("${jwt.secret:SequenciaDeCaracteresParaAssinarToken}")
+	@Value("${jwt.secret:SequenciaDeCaracteresParaAssinarTokenMuitoLongaParaAtenderRequisitoHs512DoJjwt}")
 	private String secret;
 
 	@Value("${jwt.expiration:6000}")
@@ -37,7 +38,7 @@ public class JWTUtil {
 				// This is important because it affects the way we get them back in the Gateway.
 				.claim("authorities", authorities)
 				.setExpiration(new Date(expire * 1000))
-				.signWith(SignatureAlgorithm.HS512, secret.getBytes())
+				.signWith(Keys.hmacShaKeyFor(secret.getBytes()), SignatureAlgorithm.HS512)
 				.compact();
 	}
 	
@@ -74,7 +75,8 @@ public class JWTUtil {
 	
 	private Claims getClaims(String token) {
 		try {
-			return Jwts.parser().setSigningKey(secret.getBytes()).parseClaimsJws(token).getBody();
+			return Jwts.parserBuilder().setSigningKey(Keys.hmacShaKeyFor(secret.getBytes())).build()
+					.parseClaimsJws(token).getBody();
 		}catch (Exception e) {
 			System.out.println(e);
 			return null;

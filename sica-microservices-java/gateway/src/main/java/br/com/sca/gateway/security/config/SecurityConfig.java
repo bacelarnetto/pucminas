@@ -1,85 +1,93 @@
 package br.com.sca.gateway.security.config;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import br.com.sca.token.filter.JWTAuthorizationFilter;
-import br.com.sca.token.config.SecurityTokenConfig;
+import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
+import org.springframework.security.config.web.server.SecurityWebFiltersOrder;
+import org.springframework.security.config.web.server.ServerHttpSecurity;
+import org.springframework.security.web.server.SecurityWebFilterChain;
+
+import br.com.sca.gateway.security.filter.JWTAuthorizationFilter;
 import br.com.sca.token.utils.JWTUtil;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.filter.CorsFilter;
-import org.springframework.web.multipart.MultipartResolver;
-import org.springframework.web.multipart.support.StandardServletMultipartResolver;
-
-import javax.servlet.http.HttpServletRequest;
-
 
 @Configuration
-@EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
-public class SecurityConfig extends SecurityTokenConfig {
+@EnableWebFluxSecurity
+public class SecurityConfig {
 
-	private static final HttpMethod[] SUPPORTED_MULTIPART_METHODS = {
-			HttpMethod.OPTIONS,
-			HttpMethod.HEAD,
-			HttpMethod.GET,
-			HttpMethod.PUT,
-			HttpMethod.POST,
-			HttpMethod.DELETE,
-			HttpMethod.PATCH,
-	};
-
-	@Autowired
-	private UserDetailsService userDetailsService;
-	
 	@Autowired
 	private JWTUtil jwtUtil;
-		
-	@Override
-    protected void configure(HttpSecurity http) throws Exception {
-		http.addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtUtil, userDetailsService));
-        super.configure(http);
-    }
-	
-	@Override
-	public void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
-	}
 
+	private static final String[] PUBLIC_MATCHERS = {
+			"/api/swagger-ui.html",
+			"/api/swagger-ui/**",
+			"/api/webjars/**",
+			"/api/monitoramento/public/**"
+	};
+
+	private static final String[] PUBLIC_MATCHERS_GET = {
+			"/api/v3/api-docs/**",
+			"/api/monitoramento/defesacivil/**"
+	};
+
+	private static final String[] PUBLIC_MATCHERS_POST = {
+			"/api/auth/login/**"
+	};
+
+	private static final String[] PRIVATE_MATCHERS_ADMIN = {
+			"/api/auth/user/**",
+			"/api/monitoramento/barragem/**",
+			"/api/monitoramento/morador/**",
+			"/api/ativo/manutencao/**",
+			"/api/ativo/marca/**",
+			"/api/ativo/insumo/**",
+			"/api/ativo/fornecedor/**",
+			"/api/ativo/pedido/**",
+	};
+
+	private static final String[] PRIVATE_MATCHERS_FUNCTIONARY = {
+			"/api/ativo/manutencao/**",
+			"/api/ativo/marca/**",
+			"/api/ativo/insumo/**",
+			"/api/ativo/fornecedor/**",
+			"/api/ativo/pedido/**",
+	};
+
+	private static final String[] PRIVATE_MATCHERS_ENGINEER = {
+			"/api/monitoramento/barragem/**"
+	};
+
+	private static final String[] PRIVATE_MATCHERS_PROVIDER = {
+			"/api/ativo/integration-suppliers/**"
+	};
+
+	private static final String[] PRIVATE_MATCHERS_RESIDENT = {
+			"/api/monitoramento/morador/**"
+	};
+
+	private static final String[] PRIVATE_MATCHERS_CIVILDEFENSE = {
+			"/api/monitoramento/defesacivil/**"
+	};
 
 	@Bean
-	public CorsFilter corsFilter() {
-		final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-		final CorsConfiguration config = new CorsConfiguration();
-		config.setAllowCredentials(true);
-		config.setAllowedOrigins(Collections.singletonList("*"));
-		config.setAllowedHeaders(Collections.singletonList("*"));
-		config.setAllowedMethods(Arrays.stream(HttpMethod.values()).map(HttpMethod::name).collect(Collectors.toList()));
-		source.registerCorsConfiguration("/**", config);
-		return new CorsFilter(source);
+	public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
+		http
+			.csrf().disable()
+			.cors().and()
+			.httpBasic().disable()
+			.addFilterAt(new JWTAuthorizationFilter(jwtUtil), SecurityWebFiltersOrder.AUTHENTICATION)
+			.authorizeExchange(exchanges -> exchanges
+				.pathMatchers(HttpMethod.POST, PUBLIC_MATCHERS_POST).permitAll()
+				.pathMatchers(HttpMethod.GET, PUBLIC_MATCHERS_GET).permitAll()
+				.pathMatchers(PUBLIC_MATCHERS).permitAll()
+				.pathMatchers(PRIVATE_MATCHERS_ADMIN).hasRole("ADMIN")
+				.pathMatchers(PRIVATE_MATCHERS_FUNCTIONARY).hasAnyRole("ADMIN", "FUNCTIONARY")
+				.pathMatchers(PRIVATE_MATCHERS_ENGINEER).hasAnyRole("ADMIN", "ENGINEER")
+				.pathMatchers(PRIVATE_MATCHERS_PROVIDER).hasAnyRole("ADMIN", "PROVIDER")
+				.pathMatchers(PRIVATE_MATCHERS_RESIDENT).hasAnyRole("ADMIN", "FUNCTIONARY", "ENGINEER", "RESIDENT")
+				.pathMatchers(PRIVATE_MATCHERS_CIVILDEFENSE).hasAnyRole("ADMIN", "CIVILDEFENSE")
+				.anyExchange().authenticated());
+		return http.build();
 	}
-
-	@Bean
-	public MultipartResolver multipartResolver() {
-		return new StandardServletMultipartResolver() {
-			@Override
-			public boolean isMultipart(HttpServletRequest request) {
-				boolean methodMatches = Arrays.stream(SUPPORTED_MULTIPART_METHODS)
-						.anyMatch(method -> method.matches(request.getMethod()));
-				String contentType = request.getContentType();
-				return methodMatches && (contentType != null && contentType.toLowerCase().startsWith("multipart/"));
-			}
-		};
-	}
-
 }
