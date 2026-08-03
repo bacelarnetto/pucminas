@@ -1,12 +1,12 @@
-FROM node:alpine
+FROM node:22-alpine
 
 WORKDIR /usr/src/app
 
-COPY package*.json nodemon.json yarn.lock ./
-RUN yarn
+COPY package*.json nodemon.json ./
+RUN npm ci
 
 COPY . .
 
 EXPOSE 3333
 
-CMD [ "yarn", "start" ]
+CMD [ "npm", "start" ]

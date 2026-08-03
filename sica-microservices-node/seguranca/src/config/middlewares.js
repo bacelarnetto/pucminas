@@ -1,21 +1,26 @@
-import bodyParser from 'body-parser'
+import express from 'express'
 import cors from 'cors'
 import swaggerUi from 'swagger-ui-express';
 import swaggerDocument from './../swagger.json';
-import BullBoard from 'bull-board';
+import { createBullBoard } from '@bull-board/api';
+import { BullAdapter } from '@bull-board/api/bullAdapter';
+import { ExpressAdapter } from '@bull-board/express';
 import Queue from './../app/lib/Queue';
-const { createHystrixStream, getPrometheusStream } = require('simplified-hystrixjs');
+
+const serverAdapter = new ExpressAdapter();
+serverAdapter.setBasePath('/admin/queues');
+
+const { addQueue, removeQueue, setQueues, replaceQueues } = createBullBoard({
+    queues: Queue.queues.map(queue => new BullAdapter(queue.bull)),
+    serverAdapter,
+});
 
 
 module.exports = app => {
-    BullBoard.setQueues(Queue.queues.map(queue => queue.bull));
-    app.use(bodyParser.json())
+    app.use(express.json())
     app.use(cors({
         origin: '*'
     }))
     app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
-    app.use('/admin/queues', BullBoard.UI)
-    createHystrixStream(app,'/actuator/hystrix.stream'); // default /manage/hystrix.stream
-    getPrometheusStream()
-    
+    app.use('/admin/queues', serverAdapter.getRouter())
 }

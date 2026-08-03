@@ -1,7 +1,6 @@
 import api from './api';
 
 import globalTypes from './../common/constants/GlobalTypes'
-const { createHystrixCommands } = require('simplified-hystrixjs');
 
 const getMoradoresByIdBarragem = async (idBarragem ) => { 
 		api.defaults.headers.common['Authorization'] = 'node-job'
@@ -9,16 +8,12 @@ const getMoradoresByIdBarragem = async (idBarragem ) => {
 		return response.data 
 }
 
-const serviceCommand = createHystrixCommands(getMoradoresByIdBarragem, { name : 'AlertMoradoresNodeService'});
-  
 export const MoradorService = {
   findMoradoresByIdBarragem: async idBarragem  =>  {
 		try {
-			const moradores =  await serviceCommand.getMoradoresByIdBarragem(idBarragem);
-			return moradores;
+			return await getMoradoresByIdBarragem(idBarragem);
 		} catch (error) {
-				console.log("error in catch", error);
+			console.error("Erro ao buscar moradores da barragem " + idBarragem, error);
 		}
-	} 
-	
+	}
 }
