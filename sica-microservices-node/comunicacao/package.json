@@ -15,7 +15,7 @@
     "dotenv": "^8.2.0",
     "eureka-js-client": "^4.5.0",
     "express": "^4.17.1",
-    "nodemailer": "^6.4.2",
+    "nodemailer": "^9.1.1",
     "nodemon": "^2.0.2",
     "simplified-hystrixjs": "^1.0.16",
     "socket.io": "^2.3.0",
