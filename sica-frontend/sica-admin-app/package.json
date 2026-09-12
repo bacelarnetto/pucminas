@@ -47,7 +47,7 @@
     "react-redux-loading-bar": "^4.6.0",
     "react-redux-toastr": "^7.6.4",
     "react-router-dom": "^5.0.1",
-    "react-scripts": "^3.0.1",
+    "react-scripts": "^5.0.1",
     "recompose": "^0.30.0",
     "redux": "^4.0.0-rc.1",
     "redux-saga": "^1.0.5",
