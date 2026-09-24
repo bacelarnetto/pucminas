@@ -18,7 +18,7 @@
     "nodemailer": "^9.1.1",
     "nodemon": "^2.0.2",
     "simplified-hystrixjs": "^1.0.16",
-    "socket.io": "^2.3.0",
+    "socket.io": "^2.5.1",
     "sucrase": "^3.12.1"
   },
   "devDependencies": {
